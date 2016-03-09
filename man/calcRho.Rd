@@ -4,10 +4,8 @@
 \alias{calcRho}
 \title{Calculate Rho}
 \usage{
-calcRho(observedKappa, handSetBaserate = 0.2, fullSetBaserate = 0.1,
-  handSetLength = 30, fullSetLength = 10000, runs = 800,
-  kappaThreshold = 0.65, kappaMin = 0.4, precisionMin = 0.6,
-  precisionMax = 1, handSetFunction = getHandSet)
+calcRho(observedKappa, handSetBaserate, fullSetBaserate, handSetLength,
+  fullSetLength, runs = 800, kappaThreshold = 0.65, kappaMin = 0.4)
 }
 \arguments{
 \item{observedKappa}{The kappa of the handset that rho is calculated on}

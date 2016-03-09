@@ -4,14 +4,10 @@
 \alias{calcKappa}
 \title{Calculate Kappa}
 \usage{
-calcKappa(set, isSet = TRUE, kappaThreshold = NULL)
+calcKappa(set)
 }
 \arguments{
 \item{set}{This is the set to calculate kappa from}
-
-\item{isSet}{TRUE if set FALSE if contigency table}
-
-\item{kappaThreshold}{if null then return kappa otherwise return list of kappa and above or not}
 }
 \value{
 This returns the kappa of the set given

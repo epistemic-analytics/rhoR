@@ -13,7 +13,7 @@
 #' @return a P value is returned and if this value is less than 0.05, it is said that the handset does generalize to the entire set
 #' calcRho()
 
-calcRho = function(observedKappa, handSetBaserate=.2, fullSetBaserate=.1, handSetLength=30, fullSetLength = 10000, runs=800, kappaThreshold=.65, kappaMin=.40, precisionMin = 0.6, precisionMax = 1, handSetFunction = getHandSet)
+calcRho = function(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation=0, fullSetLength = 10000, runs=800, kappaThreshold=.65, kappaMin=.40, precisionMin = 0.6, precisionMax = 1, handSetFunction = getHandSet)
 {
   #creats distribution from random kappa sets
   savedKappas = rep(0,runs);

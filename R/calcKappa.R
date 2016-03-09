@@ -26,10 +26,3 @@ calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
   }
   return(kappa);
 };
-
-
-
-
-
-#' function that takes in a set or contingency table and calculates rho and kappa and says whether or not it is above a given threshold
-#' rho with ability to change br inflation, precision, kappa, and runs
