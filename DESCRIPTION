@@ -1,7 +1,7 @@
-Package: RhoPackage
-Title: What the Package Does (one line, title case)
+Package: rhoR
+Title: Calculates rho
 Version: 1.0.0.0
-Authors@R: person("Brad", "Rogers", email = "brad12rogers@gmail.com", role = c("aut", "cre"))
+Authors@R: c(person("Brad", "Rogers", email = "brad12rogers@gmail.com", role = c("aut", "cre")),person("Cody L Marquart", email="cody.marquart@wisc.edu", role = "aut"))
 Description: What the package does (one paragraph).
 Depends:
     R (>= 3.1.3)
