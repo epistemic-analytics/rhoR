@@ -1,10 +1,10 @@
 Package: rhoR
-Title: Calculates rho
+Title: rho calculation
 Version: 1.0.0.0
-Authors@R: c(person("Brad", "Rogers", email = "brad12rogers@gmail.com", role = c("aut", "cre")),person("Cody L Marquart", email="cody.marquart@wisc.edu", role = "aut"))
-Description: What the package does (one paragraph).
+Authors@R: c(person("Cody L Marquart", email="cody.marquart@wisc.edu", role = "cre", "aut"), person("Brad", "Rogers", email = "brad12rogers@gmail.com", role = c("aut")))
+Description: Calculate rho and kappa
 Depends:
     R (>= 3.1.3)
-License:
+License: GPL-3
 LazyData: true
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1

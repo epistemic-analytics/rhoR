@@ -1,14 +1,14 @@
-#' Precision Recall Set
-#'
-#' This creates a set with a given recall and precision
-#' @param precision This is the precision of the given set
-#' @param recall This is the recall of the given set
-#' @param length This is the length of the set
-#' @param baserate This is the baserate of the set
-#' @keywords prset, precision, recall, generation, set
-#' @return returns a set with the given parameters
-#' prset()
-
+###
+# Precision Recall Set
+#
+# This creates a set with a given recall and precision
+# @param precision This is the precision of the given set
+# @param recall This is the recall of the given set
+# @param length This is the length of the set
+# @param baserate This is the baserate of the set
+# @keywords prset, precision, recall, generation, set
+# @return returns a set with the given parameters
+###
 prset = function(precision, recall, length, baserate) {
   #generates a set given the different 4 quadrants
   gold1s = max(round(baserate * length , 0), 1); # TP + FN

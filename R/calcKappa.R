@@ -1,13 +1,13 @@
-#' Calculate Kappa
-#'
-#' This function calculates kappa given a set
-#' @param set This is the set to calculate kappa from
-#' @param isSet TRUE if set FALSE if contigency table
-#' @param kappaThreshold if null then return kappa otherwise return list of kappa and above or not
-#' @keywords kappa, calculate
-#' @return This returns the kappa of the set given
-#' calcKappa()
-
+###
+# Calculate Kappa
+#
+# This function calculates kappa given a set
+# @param set This is the set to calculate kappa from
+# @param isSet TRUE if set FALSE if contigency table
+# @param kappaThreshold if null then return kappa otherwise return list of kappa and above or not
+# @keywords kappa, calculate
+# @return This returns the kappa of the set given
+###
 calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
   if(!isSet){
     set = contingencyToSet(set[1,1],set[2,1],set[1,2],set[2,2])
