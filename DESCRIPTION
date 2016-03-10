@@ -1,7 +1,7 @@
 Package: rhoR
 Title: rho calculation
 Version: 1.0.0.0
-Authors@R: c(person("Cody L Marquart", email="cody.marquart@wisc.edu", role = "cre", "aut"), person("Brad", "Rogers", email = "brad12rogers@gmail.com", role = c("aut")))
+Authors@R: c(person("Cody L Marquart", email="cody.marquart@wisc.edu", role = "cre", "aut"), person("Brad", "Rogers", email = "brad12rogers@gmail.com", role = c("aut")), person("David", "Shaffer", email = "david.williamson.shaffer@gmail.com", role = c("aut")))
 Description: Calculate rho and kappa
 Depends:
     R (>= 3.1.3)
