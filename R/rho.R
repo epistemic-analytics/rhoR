@@ -1,6 +1,6 @@
 #' Calculate rho
 #' 
-#' This will function calculate rho given the parameters of the initial set
+#' This function will calculate rho given the parameters of the initial set
 #' 
 #' @export
 #' @param set
