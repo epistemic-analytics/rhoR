@@ -29,7 +29,7 @@ calcRho = function(observedKappa, fullSetBaserate, handSetLength, handSetBaserat
     fullSet = prset(precision = precision, recall = recall, length = fullSetLength, baserate = fullSetBaserate);
 
     #computes kappa of handset to add to distribution
-    savedKappas[i] = handSetFunction(set = fullSet, handSetLength = handSetLength, handSetBaserate = handSetBaserate);
+    savedKappas[i] = handSetFunction(set = fullSet, handSetLength = handSetLength, handSetBaserate = handSetBaserateInflation);
   }
 
   # compare observedKappa to distribution

@@ -2,7 +2,7 @@
 % Please edit documentation in R/rho2.R
 \name{rho2}
 \alias{rho2}
-\title{rho 2}
+\title{Calculate rho}
 \usage{
 rho2(observedKappa, fullSetBaserate, handSetLength,
   handSetBaserateInflation = 0, fullSetLength = 10000, runs = 800,
@@ -10,10 +10,15 @@ rho2(observedKappa, fullSetBaserate, handSetLength,
   precisionMax = 1, handSetFunction = getHandSet)
 }
 \value{
-a value
+The calcuated rho, as a double
 }
 \description{
-rho 2
+This function will calculate rho given the parameters of the initial set
+}
+\examples{
+rho2(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
+rho2(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, handSetBaserateInflation = 0.2, runs = 500)
+
 }
 \keyword{rho}
 

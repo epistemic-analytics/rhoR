@@ -7,10 +7,26 @@
 kappa(set, isSet = TRUE, kappaThreshold = NULL)
 }
 \value{
-a value
+If kappaThreshold is NULL, a double, else a list containing 
+both the kappa, as a double, and a boolen indicating if it is
+above the provided threshold.
 }
 \description{
-Calculate kappa
+This function calculates kappa given a set
+}
+\examples{
+# given contingency Table and no threshold
+kappa(contingencyTable, isSet = FALSE, kappaThreshold = NULL)
+
+# given contingency with threshold
+kappa(contingencyTable, isSet = FALSE, kappaThreshold = 0.65)
+
+# given set and no threshold
+kappa(set, isSet = TRUE, kappaThreshold = NULL)
+
+# given set and threshold
+kappa(set, isSet = TRUE, kappaThreshold = 0.65)
+
 }
 \keyword{kappa}
 

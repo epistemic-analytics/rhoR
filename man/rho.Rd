@@ -2,7 +2,7 @@
 % Please edit documentation in R/rho.R
 \name{rho}
 \alias{rho}
-\title{Calculate Rho}
+\title{Calculate rho (and kappa)}
 \usage{
 rho(set, isSet = TRUE, fullSetBaserate = NULL,
   handSetBaserateInflation = 0, fullSetLength = 10000, runs = 800,
@@ -10,10 +10,19 @@ rho(set, isSet = TRUE, fullSetBaserate = NULL,
   precisionMax = 1, handSetFunction = getHandSet)
 }
 \value{
-a value
+A list containing the calculated rho and kappa values
 }
 \description{
-This function calculates rho given the parameters of the initial set
+This function will calculate rho given the parameters of the initial set,
+and return rho and the calculated kappa.
+}
+\examples{
+# Given contingency getting baserate from set
+rho(contingencyTable, isSet = FALSE)
+
+# Given set giving baserate
+rho(set, isSet = TRUE, fullSetBaserate = 0.2)
+
 }
 \keyword{rho}
 
