@@ -9,6 +9,29 @@ rho(set, isSet = TRUE, fullSetBaserate = NULL,
   kappaThreshold = 0.65, kappaMin = 0.4, precisionMin = 0.6,
   precisionMax = 1, handSetFunction = getHandSet)
 }
+\arguments{
+\item{set}{set or contigency table}
+
+\item{isSet}{Boolean}
+
+\item{fullSetBaserate}{Double}
+
+\item{handSetBaserateInflation}{Double}
+
+\item{fullSetLength}{Integer}
+
+\item{runs}{Integer}
+
+\item{kappaThreshold}{Double}
+
+\item{kappaMin}{Double}
+
+\item{precisionMin}{Double}
+
+\item{precisionMax}{Double}
+
+\item{handSetFunction}{Function}
+}
 \value{
 A list containing the calculated rho and kappa values
 }

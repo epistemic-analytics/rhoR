@@ -5,22 +5,25 @@
 #' This function will calculate rho given the parameters of the initial set
 #' 
 #' @export
-#' @param observedKappa
-#' @param fullSetBaserate
-#' @param handSetLength
-#' @param handSetBaserateInflation
-#' @param fullSetLength
-#' @param runs
-#' @param kappaThreshold
-#' @param kappaMin
-#' @param precisionMin
-#' @param precisionMax
-#' @param handSetFunction
+#' @param observedKappa Double
+#' @param fullSetBaserate Double
+#' @param handSetLength Integer
+#' @param handSetBaserateInflation Double
+#' @param fullSetLength Integer
+#' @param runs Integer
+#' @param kappaThreshold Double
+#' @param kappaMin Double
+#' @param precisionMin Double
+#' @param precisionMax Double
+#' @param handSetFunction Function
 #' @keywords rho
 #' 
 #' @examples
 #' rho2(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
-#' rho2(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, handSetBaserateInflation = 0.2, runs = 500)
+#' rho2(
+#'  observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
+#'  handSetBaserateInflation = 0.2, runs = 500
+#')
 #' 
 #' @return The calcuated rho, as a double
 ###

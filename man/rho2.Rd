@@ -9,6 +9,29 @@ rho2(observedKappa, fullSetBaserate, handSetLength,
   kappaThreshold = 0.65, kappaMin = 0.4, precisionMin = 0.6,
   precisionMax = 1, handSetFunction = getHandSet)
 }
+\arguments{
+\item{observedKappa}{Double}
+
+\item{fullSetBaserate}{Double}
+
+\item{handSetLength}{Integer}
+
+\item{handSetBaserateInflation}{Double}
+
+\item{fullSetLength}{Integer}
+
+\item{runs}{Integer}
+
+\item{kappaThreshold}{Double}
+
+\item{kappaMin}{Double}
+
+\item{precisionMin}{Double}
+
+\item{precisionMax}{Double}
+
+\item{handSetFunction}{Function}
+}
 \value{
 The calcuated rho, as a double
 }
@@ -17,7 +40,10 @@ This function will calculate rho given the parameters of the initial set
 }
 \examples{
 rho2(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
-rho2(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, handSetBaserateInflation = 0.2, runs = 500)
+rho2(
+ observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
+ handSetBaserateInflation = 0.2, runs = 500
+)
 
 }
 \keyword{rho}

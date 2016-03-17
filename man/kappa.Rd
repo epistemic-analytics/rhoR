@@ -6,6 +6,13 @@
 \usage{
 kappa(set, isSet = TRUE, kappaThreshold = NULL)
 }
+\arguments{
+\item{set}{A set or contingency table}
+
+\item{isSet}{Boolean indicating if `set` is, in fact, as set}
+
+\item{kappaThreshold}{Double - threshold to compare against}
+}
 \value{
 If kappaThreshold is NULL, a double, else a list containing 
 both the kappa, as a double, and a boolen indicating if it is

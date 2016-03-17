@@ -5,17 +5,17 @@
 #' and return rho and the calculated kappa.
 #' 
 #' @export
-#' @param set
-#' @param isSet
-#' @param fullSetBaserate
-#' @param handSetBaserateInflation
-#' @param fullSetLength
-#' @param runs
-#' @param kappaThreshold
-#' @param kappaMin
-#' @param precisionMin
-#' @param precisionMax
-#' @param handSetFunction
+#' @param set set or contigency table
+#' @param isSet Boolean
+#' @param fullSetBaserate Double
+#' @param handSetBaserateInflation Double
+#' @param fullSetLength Integer
+#' @param runs Integer
+#' @param kappaThreshold Double
+#' @param kappaMin Double
+#' @param precisionMin Double
+#' @param precisionMax Double
+#' @param handSetFunction Function
 #' @keywords rho
 #' 
 #' @examples
@@ -50,6 +50,16 @@ rho = function(
     }
   }
 
-  return(list(rho = rho2(kappa, fullSetBaserate,length(set), handSetBaserateInflation, fullSetLength, runs, kappaThreshold, kappaMin, precisionMin, precisionMax, handSetFunction), kappa = kappa));
+  return(list(
+    rho = rho2(
+      kappa, 
+      fullSetBaserate,
+      length(set),
+      handSetBaserateInflation,
+      fullSetLength,
+      runs,
+      kappaThreshold, kappaMin, precisionMin, precisionMax, handSetFunction
+    ), 
+    kappa = kappa
+  ));
 }
-

@@ -5,9 +5,9 @@
 #' This function calculates kappa given a set
 #' 
 #' @export
-#' @param set
-#' @param isSet
-#' @param kappaThreshold
+#' @param set A set or contingency table
+#' @param isSet Boolean indicating if `set` is, in fact, as set
+#' @param kappaThreshold Double - threshold to compare against
 #' @keywords kappa
 #' 
 #' @examples
