@@ -34,8 +34,8 @@ Use \code{\link{rho}}
 Use \code{\link{kappa}}
 }
 
-\section{rho2}{
+\section{rho.power}{
  
-Use \code{\link{rho2}}
+Use \code{\link{rho.power}}
 }
 

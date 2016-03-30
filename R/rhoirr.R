@@ -23,8 +23,8 @@
 #' @section kappa: 
 #' Use \code{\link{kappa}}
 #' 
-#' @section rho2: 
-#' Use \code{\link{rho2}}
+#' @section rho.power: 
+#' Use \code{\link{rho.power}}
 #'   
 #' @docType package
 #' @name rhoirr
