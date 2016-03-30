@@ -2,4 +2,4 @@
 
 export(kappa)
 export(rho)
-export(rho2)
+export(rho.power)

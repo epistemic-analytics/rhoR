@@ -51,7 +51,7 @@ rho = function(
   }
 
   return(list(
-    rho = rho2(
+    rho = rho.power(
       kappa, 
       fullSetBaserate,
       length(set),

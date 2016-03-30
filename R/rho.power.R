@@ -19,15 +19,15 @@
 #' @keywords rho
 #' 
 #' @examples
-#' rho2(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
-#' rho2(
+#' rho.power(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
+#' rho.power(
 #'  observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
 #'  handSetBaserateInflation = 0.2, runs = 500
 #')
 #' 
 #' @return The calcuated rho, as a double
 ###
-rho2 = function(
+rho.power = function(
   observedKappa, 
   fullSetBaserate, 
   handSetLength, 
