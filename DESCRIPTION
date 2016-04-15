@@ -1,4 +1,4 @@
-Package: rhoirr
+Package: rhoR
 Title: rho for inter rater reliability
 Version: 1.0.0.1
 Authors@R: c(person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")),person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut")))
@@ -14,7 +14,7 @@ Description: rho is used to test the generalization of inter rater reliability
     coded the rest of the data, we would have acceptable agreement (kappa above the
     threshold).
 Depends:
-    R (>= 3.1.3)
+    R (>= 3.0.0)
 License: GPL-3  | file LICENSE
 LazyData: true
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1

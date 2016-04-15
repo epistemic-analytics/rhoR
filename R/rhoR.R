@@ -1,4 +1,4 @@
-#' rhoirr: A package for computating rho.
+#' rhoR: A package for computating rho.
 #' 
 #' rho is used to test the generalization of inter rater reliability (IRR)
 #' statistics.
@@ -27,5 +27,5 @@
 #' Use \code{\link{rho.power}}
 #'   
 #' @docType package
-#' @name rhoirr
+#' @name rhoR
 NULL
