@@ -4,7 +4,7 @@
 \name{contingencyTable}
 \alias{contingencyTable}
 \title{contingencyTable sample}
-\format{An object of class \code{data.frame} with 2 rows and 3 columns.}
+\format{An object of class \code{data.frame} with 2 rows and 2 columns.}
 \usage{
 contingencyTable
 }

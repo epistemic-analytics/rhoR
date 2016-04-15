@@ -9,7 +9,9 @@
 # @return This returns the kappa of the set given
 ###
 calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
+  contTable = NULL
   if(!isSet){
+    contTable = set
     set = contingencyToSet(set[1,1],set[2,1],set[1,2],set[2,2])
   }
   #calculates kappa by calculating the agreement and the baserates and then creating the adjacenty matrix
@@ -25,4 +27,4 @@ calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
     return(list(kappa = kappa, above = kappa > kappaThreshold));
   }
   return(kappa);
-};
+}
