@@ -46,7 +46,7 @@ rho = function(
     fullSetBaserate = length(which(set[,1] == 1))/length(set);
     
     if(isSet != TRUE) {
-      fullSetBaserate = (sum(contingencyTable[1,]))/(sum(contingencyTable));
+      fullSetBaserate = (sum(set[1,]))/(sum(set));
     }
   }
 
