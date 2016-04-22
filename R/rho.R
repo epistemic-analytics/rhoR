@@ -19,17 +19,27 @@
 #' @keywords rho
 #' 
 #' @examples
-#' # Given contingency getting baserate from set
-#' rho(contingencyTable, isSet = FALSE)
+#' # Create a contingency table:
+#' # ----------------
+#' # __|__P___|__N___|
+#' #  P| 1433 |  567 |
+#' # --|------|------|
+#' #  N|  355 | 7645 |
+#' # ----------------
+#' #
+#' myTable = as.data.frame(matrix(c(c(1433,355), c(567,7645)), ncol =2 ))
 #' 
-#' # Given set giving baserate
-#' rho(set, isSet = TRUE, fullSetBaserate = 0.2)
+#' # Using a contingency table
+#' rho(myTable)
+#' 
+#' # Using a set, a baserate is needed
+#' rho(set, fullSetBaserate = 0.2)
 #' 
 #' @return A list containing the calculated rho and kappa values
 ###
 rho = function(
   set,
-  isSet = TRUE,
+  isSet = NULL,
   fullSetBaserate = NULL,
   handSetBaserateInflation = 0,
   fullSetLength = 10000,
@@ -40,7 +50,10 @@ rho = function(
   precisionMax = 1,
   handSetFunction = getHandSet
 ){
-  kappa = kappa(set, isSet, NULL);
+  if(is.null(isSet)) {
+    isSet = (nrow(myTable) != ncol(myTable))
+  }
+  kappa = kappa(set);
 
   if(is.null(fullSetBaserate)) {
     fullSetBaserate = length(which(set[,1] == 1))/length(set);

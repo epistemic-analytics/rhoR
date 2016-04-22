@@ -5,9 +5,9 @@
 #' This function calculates kappa given a set
 #' 
 #' @export
-#' @param set A set or contingency table
-#' @param isSet Boolean indicating if `set` is, in fact, as set
-#' @param kappaThreshold Double - threshold to compare against
+#' @param set - A set or contingency table
+#' @param isSet - A boolean indicating if `set` is, in fact, as set
+#' @param kappaThreshold - Threshold to compare against, as a Double
 #' @keywords kappa
 #' 
 #' @examples
@@ -28,6 +28,9 @@
 #' both the kappa, as a double, and a boolen indicating if it is
 #' above the provided threshold.
 ###
-kappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
+kappa = function(set, isSet = NULL, kappaThreshold = NULL) {
+  if(is.null(isSet)) {
+    isSet = (nrow(myTable) != ncol(myTable))
+  }
   return(calcKappa(set,isSet,kappaThreshold));
 }

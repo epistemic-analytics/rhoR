@@ -4,14 +4,14 @@
 \alias{kappa}
 \title{Calculate kappa}
 \usage{
-kappa(set, isSet = TRUE, kappaThreshold = NULL)
+kappa(set, isSet = NULL, kappaThreshold = NULL)
 }
 \arguments{
-\item{set}{A set or contingency table}
+\item{set}{- A set or contingency table}
 
-\item{isSet}{Boolean indicating if `set` is, in fact, as set}
+\item{isSet}{- A boolean indicating if `set` is, in fact, as set}
 
-\item{kappaThreshold}{Double - threshold to compare against}
+\item{kappaThreshold}{- Threshold to compare against, as a Double}
 }
 \value{
 If kappaThreshold is NULL, a double, else a list containing 

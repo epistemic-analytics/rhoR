@@ -4,7 +4,7 @@
 \alias{rho}
 \title{Calculate rho (and kappa)}
 \usage{
-rho(set, isSet = TRUE, fullSetBaserate = NULL,
+rho(set, isSet = NULL, fullSetBaserate = NULL,
   handSetBaserateInflation = 0, fullSetLength = 10000, runs = 800,
   kappaThreshold = 0.65, kappaMin = 0.4, precisionMin = 0.6,
   precisionMax = 1, handSetFunction = getHandSet)
@@ -40,11 +40,21 @@ This function will calculate rho given the parameters of the initial set,
 and return rho and the calculated kappa.
 }
 \examples{
-# Given contingency getting baserate from set
-rho(contingencyTable, isSet = FALSE)
+# Create a contingency table:
+# ----------------
+# __|__P___|__N___|
+#  P| 1433 |  567 |
+# --|------|------|
+#  N|  355 | 7645 |
+# ----------------
+#
+myTable = as.data.frame(matrix(c(c(1433,355), c(567,7645)), ncol =2 ))
 
-# Given set giving baserate
-rho(set, isSet = TRUE, fullSetBaserate = 0.2)
+# Using a contingency table
+rho(myTable)
+
+# Using a set, a baserate is needed
+rho(set, fullSetBaserate = 0.2)
 
 }
 \keyword{rho}

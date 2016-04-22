@@ -36,7 +36,9 @@ rho.power(observedKappa, fullSetBaserate, handSetLength,
 The calcuated rho, as a double
 }
 \description{
-This function will calculate rho given the parameters of the initial set
+This function will calculate rho given the parameters of the initial set to
+determine if it is mathmatically possible to achieve a rho at a given 
+hand set length and baserate.
 }
 \examples{
 rho.power(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)

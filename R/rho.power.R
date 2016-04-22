@@ -2,7 +2,9 @@
 #' @title Calculate rho
 #' 
 #' @description 
-#' This function will calculate rho given the parameters of the initial set
+#' This function will calculate rho given the parameters of the initial set to
+#' determine if it is mathmatically possible to achieve a rho at a given 
+#' hand set length and baserate.
 #' 
 #' @export
 #' @param observedKappa Double
