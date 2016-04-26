@@ -30,7 +30,7 @@
 ###
 kappa = function(set, isSet = NULL, kappaThreshold = NULL) {
   if(is.null(isSet)) {
-    isSet = (nrow(myTable) != ncol(myTable))
+    isSet = (nrow(set) != ncol(set))
   }
   return(calcKappa(set,isSet,kappaThreshold));
 }
