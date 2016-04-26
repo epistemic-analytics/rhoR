@@ -51,9 +51,9 @@ rho = function(
   handSetFunction = getHandSet
 ){
   if(is.null(isSet)) {
-    isSet = (nrow(myTable) != ncol(myTable))
+    isSet = (nrow(set) != ncol(set))
   }
-  kappa = kappa(set);
+  kappa = kappa(set, isSet);
 
   if(is.null(fullSetBaserate)) {
     fullSetBaserate = length(which(set[,1] == 1))/length(set);
