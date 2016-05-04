@@ -53,6 +53,10 @@ rho = function(
   if(is.null(isSet)) {
     isSet = (nrow(set) != ncol(set))
   }
+  setLength = length(set);
+  if(isSet == F) {
+    setLength = sum(set);
+  }
   kappa = kappa(set, isSet);
 
   if(is.null(fullSetBaserate)) {
@@ -67,7 +71,7 @@ rho = function(
     rho = rho.power(
       kappa, 
       fullSetBaserate,
-      length(set),
+      setLength,
       handSetBaserateInflation,
       fullSetLength,
       runs,
