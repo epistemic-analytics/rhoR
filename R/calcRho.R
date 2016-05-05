@@ -28,8 +28,7 @@ calcRho = function(
   kappaThreshold = .65, 
   kappaMin = .40, 
   precisionMin = 0.6, 
-  precisionMax = 1, 
-  handSetFunction = getHandSet
+  precisionMax = 1
 ) {
 
   #creates distribution from random kappa sets
@@ -43,7 +42,7 @@ calcRho = function(
     fullSet = prset(precision = precision, recall = recall, length = fullSetLength, baserate = fullSetBaserate);
 
     #computes kappa of handset to add to distribution
-    savedKappas[i] = handSetFunction(set = fullSet, handSetLength = handSetLength, handSetBaserate = handSetBaserateInflation);
+    savedKappas[i] = getHandSet(set = fullSet, handSetLength = handSetLength, handSetBaserate = handSetBaserateInflation);
   }
 
   # compare observedKappa to distribution

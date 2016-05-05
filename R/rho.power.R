@@ -40,7 +40,6 @@ rho.power = function(
   kappaMin = .40, 
   precisionMin = 0.6, 
   precisionMax = 1, 
-  handSetFunction = getHandSet
 ){
-  return(calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, fullSetLength, runs, kappaThreshold, kappaMin, precisionMin, precisionMax, handSetFunction))
+  return(calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, fullSetLength, runs, kappaThreshold, kappaMin, precisionMin, precisionMax))
 }

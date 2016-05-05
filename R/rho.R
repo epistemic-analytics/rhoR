@@ -47,8 +47,7 @@ rho = function(
   kappaThreshold = .65,
   kappaMin = .40,
   precisionMin = 0.6,
-  precisionMax = 1,
-  handSetFunction = getHandSet
+  precisionMax = 1
 ){
   if(is.null(isSet)) {
     isSet = (nrow(set) != ncol(set))
@@ -71,7 +70,7 @@ rho = function(
       handSetBaserateInflation,
       fullSetLength,
       runs,
-      kappaThreshold, kappaMin, precisionMin, precisionMax, handSetFunction
+      kappaThreshold, kappaMin, precisionMin, precisionMax
     ), 
     kappa = kappa
   ));
