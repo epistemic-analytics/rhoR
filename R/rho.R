@@ -1,13 +1,15 @@
-#' @title Calculate rho (and kappa)
+###
+#' @title Calculate rho
 #' 
 #' @description 
-#' This function will calculate rho given the parameters of the initial set,
-#' and return rho and the calculated kappa.
+#' This function will calculate rho given the parameters of the initial set to
+#' determine if it is mathmatically possible to achieve a rho at a given 
+#' hand set length and baserate.
 #' 
 #' @export
-#' @param set set or contigency table
-#' @param isSet Boolean
+#' @param observedKappa Double
 #' @param fullSetBaserate Double
+#' @param handSetLength Integer
 #' @param handSetBaserateInflation Double
 #' @param fullSetLength Integer
 #' @param runs Integer
@@ -19,59 +21,25 @@
 #' @keywords rho
 #' 
 #' @examples
-#' # Create a contingency table:
-#' # ----------------
-#' # __|__P___|__N___|
-#' #  P| 1433 |  567 |
-#' # --|------|------|
-#' #  N|  355 | 7645 |
-#' # ----------------
-#' #
-#' myTable = as.data.frame(matrix(c(c(1433,355), c(567,7645)), ncol =2 ))
+#' rho.power(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
+#' rho.power(
+#'  observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
+#'  handSetBaserateInflation = 0.2, runs = 500
+#')
 #' 
-#' # Using a contingency table
-#' rho(myTable)
-#' 
-#' # Using a set, a baserate is needed
-#' rho(set, fullSetBaserate = 0.2)
-#' 
-#' @return A list containing the calculated rho and kappa values
+#' @return The calcuated rho, as a double
 ###
-rho = function(
-  set,
-  isSet = NULL,
-  fullSetBaserate = NULL,
-  handSetBaserateInflation = 0,
-  fullSetLength = 10000,
-  runs = 800,
-  kappaThreshold = .65,
-  kappaMin = .40,
-  precisionMin = 0.6,
+rho.power = function(
+  observedKappa, 
+  fullSetBaserate, 
+  handSetLength, 
+  handSetBaserateInflation = 0, 
+  fullSetLength = 10000, 
+  runs = 800, 
+  kappaThreshold = .65, 
+  kappaMin = .40, 
+  precisionMin = 0.6, 
   precisionMax = 1
 ){
-  if(is.null(isSet)) {
-    isSet = (nrow(set) != ncol(set))
-  }
-  kappa = kappa(set, isSet);
-
-  if(is.null(fullSetBaserate)) {
-    fullSetBaserate = length(which(set[,1] == 1))/length(set);
-    
-    if(isSet != TRUE) {
-      fullSetBaserate = (sum(set[1,]))/(sum(set));
-    }
-  }
-
-  return(list(
-    rho = rho.power(
-      kappa, 
-      fullSetBaserate,
-      length(set),
-      handSetBaserateInflation,
-      fullSetLength,
-      runs,
-      kappaThreshold, kappaMin, precisionMin, precisionMax
-    ), 
-    kappa = kappa
-  ));
+  return(calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, fullSetLength, runs, kappaThreshold, kappaMin, precisionMin, precisionMax))
 }

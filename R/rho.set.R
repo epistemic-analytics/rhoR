@@ -20,7 +20,7 @@ rho.set = function(
   }
   
   return(list(
-    rho = rho.power(
+    rho = rho(
       kappa, 
       fullSetBaserate,
       length(set),

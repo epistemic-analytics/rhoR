@@ -16,7 +16,7 @@ rho.ct = function(
   }
   
   return(list(
-    rho = rho.power(
+    rho = rho(
       kappa, 
       fullSetBaserate,
       sum(table),
