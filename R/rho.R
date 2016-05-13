@@ -29,7 +29,7 @@
 #' 
 #' @return The calcuated rho, as a double
 ###
-rho.power = function(
+rho = function(
   observedKappa, 
   fullSetBaserate, 
   handSetLength, 

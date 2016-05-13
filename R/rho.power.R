@@ -6,6 +6,7 @@ rho.power = function(baserate){
   while(rhoVal > alpha){
     handSetLength = handSetLength + inc
     rhoVal = rho(1, baserate, handSetLength)
+    cat(handSetLength, rhoVal,"\n")
   }
-  return(handsetLength)
+  return(handSetLength)
 }
