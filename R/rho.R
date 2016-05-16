@@ -17,12 +17,11 @@
 #' @param kappaMin Double
 #' @param precisionMin Double
 #' @param precisionMax Double
-#' @param handSetFunction Function
 #' @keywords rho
 #' 
 #' @examples
-#' rho.power(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
-#' rho.power(
+#' rho(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
+#' rho(
 #'  observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
 #'  handSetBaserateInflation = 0.2, runs = 500
 #')

@@ -17,5 +17,6 @@ Depends:
     R (>= 3.0.0)
 License: GPL-3  | file LICENSE
 LazyData: true
-RoxygenNote: 5.0.1
-Suggests: testthat
+RoxygenNote: 5.0.1.9000
+Suggests:
+    testthat
