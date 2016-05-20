@@ -2,51 +2,38 @@
 % Please edit documentation in R/rho.power.R
 \name{rho.power}
 \alias{rho.power}
-\title{Calculate rho}
+\title{Rho Power}
 \usage{
-rho.power(observedKappa, fullSetBaserate, handSetLength,
-  handSetBaserateInflation = 0, fullSetLength = 10000, runs = 800,
-  kappaThreshold = 0.65, kappaMin = 0.4, precisionMin = 0.6,
-  precisionMax = 1, handSetFunction = getHandSet)
+rho.power(baserate, alpha = 0.05, inc = 10, ...)
 }
 \arguments{
-\item{observedKappa}{Double}
+\item{baserate}{- A double indicating the rate that the first rater scored a 1}
 
-\item{fullSetBaserate}{Double}
+\item{alpha}{- A double indicating}
 
-\item{handSetLength}{Integer}
-
-\item{handSetBaserateInflation}{Double}
-
-\item{fullSetLength}{Integer}
-
-\item{runs}{Integer}
-
-\item{kappaThreshold}{Double}
-
-\item{kappaMin}{Double}
-
-\item{precisionMin}{Double}
-
-\item{precisionMax}{Double}
-
-\item{handSetFunction}{Function}
+\item{kappaThreshold}{- Threshold to compare against, as a Double}
 }
 \value{
-The calcuated rho, as a double
+If kappaThreshold is NULL, a double, else a list containing 
+both the kappa, as a double, and a boolen indicating if it is
+above the provided threshold.
 }
 \description{
-This function will calculate rho given the parameters of the initial set to
-determine if it is mathmatically possible to achieve a rho at a given 
-hand set length and baserate.
+This function calculates the minimum handSetLength required to get a valid rho
 }
 \examples{
-rho.power(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
-rho.power(
- observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
- handSetBaserateInflation = 0.2, runs = 500
-)
+# given contingency Table and no threshold
+kappa(contingencyTable, isSet = FALSE, kappaThreshold = NULL)
+
+# given contingency with threshold
+kappa(contingencyTable, isSet = FALSE, kappaThreshold = 0.65)
+
+# given set and no threshold
+kappa(set, isSet = TRUE, kappaThreshold = NULL)
+
+# given set and threshold
+kappa(set, isSet = TRUE, kappaThreshold = 0.65)
 
 }
-\keyword{rho}
+\keyword{kappa}
 

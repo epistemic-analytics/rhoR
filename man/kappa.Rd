@@ -9,9 +9,9 @@ kappa(set, isSet = NULL, kappaThreshold = NULL)
 \arguments{
 \item{set}{- A set or contingency table}
 
-\item{isSet}{- A boolean indicating if `set` is, in fact, as set}
+\item{isSet}{- An optional boolean indicating if `set` is, in fact, a set or it is a contingency table}
 
-\item{kappaThreshold}{- Threshold to compare against, as a Double}
+\item{kappaThreshold}{- Optional Threshold to compare against, as a Double}
 }
 \value{
 If kappaThreshold is NULL, a double, else a list containing 
@@ -19,7 +19,7 @@ both the kappa, as a double, and a boolen indicating if it is
 above the provided threshold.
 }
 \description{
-This function calculates kappa given a set
+This function calculates kappa given a set or contingency table and can evaluate if it is greater than a threshold
 }
 \examples{
 # given contingency Table and no threshold
