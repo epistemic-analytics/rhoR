@@ -7,7 +7,7 @@
 rho.power(baserate, alpha = 0.05, inc = 10, ...)
 }
 \arguments{
-\item{baserate}{A double indicating the frequency a code occurs for the first rater in the full set}
+\item{baserate}{A double \code{indicating} the frequency a code occurs for the first rater in the full set}
 
 \item{alpha}{A double indicating the threshold of significance for rho (similar to an alpha level for a p value)}
 
@@ -23,7 +23,7 @@ value where rho becomes mathematically possible
 This function calculates the minimum handSetLength required to get a valid rho, which it returns as an integer.
 }
 \examples{
-#Add handSetBaserate as an additional parameter
+#Add \\code{handSetBaserate} as an additional parameter
 rho.power(0.2, handSetBaserate = 0.2)
 
 #Add handSetBaserate as well as changing inc
