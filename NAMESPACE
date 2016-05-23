@@ -2,4 +2,6 @@
 
 export(kappa)
 export(rho)
+export(rho.ct)
 export(rho.power)
+export(rho.set)

@@ -10,40 +10,42 @@ rho(observedKappa, fullSetBaserate, handSetLength,
   precisionMax = 1)
 }
 \arguments{
-\item{observedKappa}{Double}
+\item{observedKappa}{The kappa value that is used to determine rho, as a double}
 
-\item{fullSetBaserate}{Double}
+\item{fullSetBaserate}{The frequency of one's for the first rater in the full set, if NULL, assume the baserate of the hand set is the same as the full set}
 
-\item{handSetLength}{Integer}
+\item{handSetLength}{The length of the hand set chosen}
 
-\item{handSetBaserateInflation}{Double}
+\item{handSetBaserateInflation}{The percent, as a decimal, of the hand set that is gauranteed to be a positive for the first rater}
 
-\item{fullSetLength}{Integer}
+\item{fullSetLength}{The length of the full set that the hand set was taken from}
 
-\item{runs}{Integer}
+\item{runs}{The number of full sets to use in the null hypothesis distribution for rho}
 
-\item{kappaThreshold}{Double}
+\item{kappaThreshold}{Threshold to compare against, as a double}
 
-\item{kappaMin}{Double}
+\item{kappaMin}{The minimum kappa in the null hypothesis distribution for rho}
 
-\item{precisionMin}{Double}
+\item{precisionMin}{The minimum percision to be used for generation of sets in null hypothesis distribution for rho}
 
-\item{precisionMax}{Double}
+\item{precisionMax}{The maximum percision to be used for generation of sets in null hypothesis distribution for rho}
 }
 \value{
 The calcuated rho, as a double
 }
 \description{
-This function will calculate rho given the parameters of the initial set to
-determine if it is mathmatically possible to achieve a rho at a given 
-hand set length and baserate.
+This function will calculate rho given the parameters of the initial set, which it returns as a double.
 }
 \examples{
+# Given only required parameters
 rho(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
+
+# Given required parameters plus handSetBaserateInflation and runs
 rho(
  observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
  handSetBaserateInflation = 0.2, runs = 500
 )
+
 
 }
 \keyword{rho}

@@ -7,33 +7,28 @@
 rho.power(baserate, alpha = 0.05, inc = 10, ...)
 }
 \arguments{
-\item{baserate}{- A double indicating the rate that the first rater scored a 1}
+\item{baserate}{A double indicating the frequency a code occurs for the first rater in the full set}
 
-\item{alpha}{- A double indicating}
+\item{alpha}{A double indicating the threshold of significance for rho (similar to an alpha level for a p value)}
 
-\item{kappaThreshold}{- Threshold to compare against, as a Double}
+\item{inc}{An integer indicating by how much the handSetBaserate should increment each iteration}
+
+\item{...}{Any additional parameters passed into \code{\link{rho}}}
 }
 \value{
-If kappaThreshold is NULL, a double, else a list containing 
-both the kappa, as a double, and a boolen indicating if it is
-above the provided threshold.
+An integer giving the minimum length of handSet, as a denomination of inc, that would give a
+value where rho becomes mathematically possible
 }
 \description{
-This function calculates the minimum handSetLength required to get a valid rho
+This function calculates the minimum handSetLength required to get a valid rho, which it returns as an integer.
 }
 \examples{
-# given contingency Table and no threshold
-kappa(contingencyTable, isSet = FALSE, kappaThreshold = NULL)
+#Add handSetBaserate as an additional parameter
+rho.power(0.2, handSetBaserate = 0.2)
 
-# given contingency with threshold
-kappa(contingencyTable, isSet = FALSE, kappaThreshold = 0.65)
-
-# given set and no threshold
-kappa(set, isSet = TRUE, kappaThreshold = NULL)
-
-# given set and threshold
-kappa(set, isSet = TRUE, kappaThreshold = 0.65)
+#Add handSetBaserate as well as changing inc
+rho.power(0.2, inc = 5, handSetBaserate = 0.2)
 
 }
-\keyword{kappa}
+\keyword{rho.power}
 
