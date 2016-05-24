@@ -2,59 +2,50 @@
 % Please edit documentation in R/rho.R
 \name{rho}
 \alias{rho}
-\title{Calculate rho (and kappa)}
+\title{Calculate rho}
 \usage{
-rho(set, isSet = NULL, fullSetBaserate = NULL,
+rho(observedKappa, fullSetBaserate, handSetLength,
   handSetBaserateInflation = 0, fullSetLength = 10000, runs = 800,
   kappaThreshold = 0.65, kappaMin = 0.4, precisionMin = 0.6,
-  precisionMax = 1, handSetFunction = getHandSet)
+  precisionMax = 1)
 }
 \arguments{
-\item{set}{set or contigency table}
+\item{observedKappa}{The kappa value that is used to determine rho, as a double}
 
-\item{isSet}{Boolean}
+\item{fullSetBaserate}{The frequency of one's for the first rater in the full set, if NULL, assume the baserate of the hand set is the same as the full set}
 
-\item{fullSetBaserate}{Double}
+\item{handSetLength}{The length of the hand set chosen}
 
-\item{handSetBaserateInflation}{Double}
+\item{handSetBaserateInflation}{The percent, as a decimal, of the hand set that is gauranteed to be a positive for the first rater}
 
-\item{fullSetLength}{Integer}
+\item{fullSetLength}{The length of the full set that the hand set was taken from}
 
-\item{runs}{Integer}
+\item{runs}{The number of full sets to use in the null hypothesis distribution for rho}
 
-\item{kappaThreshold}{Double}
+\item{kappaThreshold}{Threshold to compare against, as a double}
 
-\item{kappaMin}{Double}
+\item{kappaMin}{The minimum kappa in the null hypothesis distribution for rho}
 
-\item{precisionMin}{Double}
+\item{precisionMin}{The minimum percision to be used for generation of sets in null hypothesis distribution for rho}
 
-\item{precisionMax}{Double}
-
-\item{handSetFunction}{Function}
+\item{precisionMax}{The maximum percision to be used for generation of sets in null hypothesis distribution for rho}
 }
 \value{
-A list containing the calculated rho and kappa values
+The calcuated rho, as a double
 }
 \description{
-This function will calculate rho given the parameters of the initial set,
-and return rho and the calculated kappa.
+This function will calculate rho given the parameters of the initial set, which it returns as a double.
 }
 \examples{
-# Create a contingency table:
-# ----------------
-# __|__P___|__N___|
-#  P| 1433 |  567 |
-# --|------|------|
-#  N|  355 | 7645 |
-# ----------------
-#
-myTable = as.data.frame(matrix(c(c(1433,355), c(567,7645)), ncol =2 ))
+# Given only required parameters
+rho(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
 
-# Using a contingency table
-rho(myTable)
+# Given required parameters plus handSetBaserateInflation and runs
+rho(
+ observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
+ handSetBaserateInflation = 0.2, runs = 500
+)
 
-# Using a set, a baserate is needed
-rho(set, fullSetBaserate = 0.2)
 
 }
 \keyword{rho}

@@ -4,14 +4,12 @@ genPKcombo = function(kappaDistribution, kappaProbability, precisionDistribution
   currPrecision = sample(precisionDistribution, 1, replace = FALSE, prob = precisionProbability)
 
   if(!checkBRPKcombo(baserate, currPrecision, currKappa)){
-    bucketMin = currKappa - (currKappa %% bucketSize)
-    bucketMax = bucketMin + bucketSize
-    indices = which(kappaDistribution < bucketMax & bucketMin < kappaDistribution)
-    kappaDistribution = kappaDistribution[indices]
-    #kappaProbability = kappaProbability[indices]
-    #if flat in distribution then
-    #kappaProbability = NULL
-    genPKcombo(kappaDistribution, kappaProbability, precisionDistribution, precisionProbability, baserate, bucketSize)
+    precisionMin = (2*baserate*currKappa - 2*baserate - currKappa)/(currKappa - 2)
+    indicies = which(precisionDistribution > precisionMin)
+    precisionDistribution = precisionDistribution[indicies]
+    precisionProbability = precisionProbability[indicies]
+    currPrecision = sample(precisionDistribution, 1, replace = FALSE, prob = precisionProbability)
+    return(list(precision = currPrecision, kappa = currKappa))
   }else{
     return(list(precision = currPrecision, kappa = currKappa))
   }
