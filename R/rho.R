@@ -45,4 +45,5 @@ rho = function(
   precisionMax = 1
 ){
   return(calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, fullSetLength, runs, kappaThreshold, kappaMin, precisionMin, precisionMax))
+  
 }
