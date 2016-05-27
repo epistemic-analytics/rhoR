@@ -37,7 +37,7 @@ rho.set = function(
   precisionMin = 0.6,
   precisionMax = 1
 ){
-  kappa = kappa(set);
+  kappa.set = kappa(set);
   
   if(is.null(fullSetBaserate)) {
     fullSetBaserate = length(which(set[,1] == 1))/length(set);
