@@ -37,7 +37,7 @@ rho.ct = function(
   precisionMin = 0.6,
   precisionMax = 1
 ){
-  kappa = kappa(table, FALSE);
+  kappa.ct = kappa(table);
   
   if(is.null(fullSetBaserate)) {
       fullSetBaserate = (sum(table[1,]))/(sum(table));
