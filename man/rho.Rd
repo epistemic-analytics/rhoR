@@ -4,31 +4,31 @@
 \alias{rho}
 \title{Calculate rho}
 \usage{
-rho(observedKappa, fullSetBaserate, handSetLength,
-  handSetBaserateInflation = 0, fullSetLength = 10000, runs = 800,
-  kappaThreshold = 0.65, kappaMin = 0.4, precisionMin = 0.6,
+rho(observedKappa, codeSetBaserate, testSetLength,
+  testSetBaserateInflation = 0, codeSetLength = 10000, runs = 800,
+  kappaThreshold = 0.65, nullHypMin = 0.4, precisionMin = 0.6,
   precisionMax = 1)
 }
 \arguments{
-\item{observedKappa}{The kappa value that is used to determine rho, as a double}
+\item{observedKappa}{The observed kappa value that will be tested with rho, as a double}
 
-\item{fullSetBaserate}{The frequency of one's for the first rater in the full set, if NULL, assume the baserate of the hand set is the same as the full set}
+\item{codeSetBaserate}{The frequency of one's for the first rater in the code set, if NULL, assume the baserate of the test set is the same as the code set}
 
-\item{handSetLength}{The length of the hand set chosen}
+\item{testSetLength}{The length of the test set for the observedKappa}
 
-\item{handSetBaserateInflation}{The percent, as a decimal, of the hand set that is gauranteed to be a positive for the first rater}
+\item{testSetBaserateInflation}{The percent, as a decimal, of the test set that is gauranteed to be a positive for the first rater}
 
-\item{fullSetLength}{The length of the full set that the hand set was taken from}
+\item{codeSetLength}{The length of the code set used to calculate rho}
 
-\item{runs}{The number of full sets to use in the null hypothesis distribution for rho}
+\item{runs}{The number of code sets to use in the null hypothesis distribution for rho}
 
 \item{kappaThreshold}{Threshold to compare against, as a double}
 
-\item{kappaMin}{The minimum kappa in the null hypothesis distribution for rho}
+\item{nullHypMin}{The minimum kappa in the null hypothesis distribution for rho}
 
-\item{precisionMin}{The minimum percision to be used for generation of sets in null hypothesis distribution for rho}
+\item{precisionMin}{The minimum percision to be used for generation of sets in the null hypothesis distribution for rho}
 
-\item{precisionMax}{The maximum percision to be used for generation of sets in null hypothesis distribution for rho}
+\item{precisionMax}{The maximum percision to be used for generation of sets in the null hypothesis distribution for rho}
 }
 \value{
 The calcuated rho, as a double
@@ -38,12 +38,12 @@ This function will calculate rho given the parameters of the initial set, which 
 }
 \examples{
 # Given only required parameters
-rho(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
+rho(observedKappa = 0.88, codeSetBaserate = 0.2, testSetLength = 80)
 
-# Given required parameters plus handSetBaserateInflation and runs
+# Given required parameters plus testSetBaserateInflation and runs
 rho(
- observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
- handSetBaserateInflation = 0.2, runs = 500
+ observedKappa = 0.88, codeSetBaserate = 0.2, testSetLength = 80, 
+ testSetBaserateInflation = 0.2, runs = 500
 )
 
 

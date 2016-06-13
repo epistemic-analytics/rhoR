@@ -34,8 +34,8 @@ Use \code{\link{rho}}
 Use \code{\link{kappa}}
 }
 
-\section{rho.power}{
+\section{rho.minTSLength}{
  
-Use \code{\link{rho.power}}
+Use \code{\link{rho.minTSLength}}
 }
 

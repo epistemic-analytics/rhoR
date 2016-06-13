@@ -4,28 +4,28 @@
 \alias{rho.ct}
 \title{Rho (contingency Table)}
 \usage{
-rho.ct(table, fullSetBaserate = NULL, handSetBaserateInflation = 0,
-  fullSetLength = 10000, runs = 800, kappaThreshold = 0.65,
-  kappaMin = 0.4, precisionMin = 0.6, precisionMax = 1)
+rho.ct(table, codeSetBaserate = NULL, testSetBaserateInflation = 0,
+  codeSetLength = 10000, runs = 800, kappaThreshold = 0.65,
+  nullHypMin = 0.4, precisionMin = 0.6, precisionMax = 1)
 }
 \arguments{
 \item{table}{The \code{\link{contingencyTable}} used to calculate rho}
 
-\item{fullSetBaserate}{The frequency of one's for the first rater in the full set, if NULL, assume the baserate of the hand set is the same as the full set}
+\item{codeSetBaserate}{The frequency of one's for the first rater in the code set, if NULL, assume the baserate of the test set is the same as the code set}
 
-\item{handSetBaserateInflation}{The percent, as a decimal, of the hand set that is gauranteed to be a positive for the first rater}
+\item{testSetBaserateInflation}{The percent, as a decimal, of the test set that is gauranteed to be a positive for the first rater}
 
-\item{fullSetLength}{The length of the full set}
+\item{codeSetLength}{The length of the code set used to calculate rho}
 
-\item{runs}{The number of full sets to use in the null hypothesis distribution for rho}
+\item{runs}{The number of code sets to use in the null hypothesis distribution for rho}
 
 \item{kappaThreshold}{Threshold to compare against, as a double}
 
-\item{kappaMin}{The minimum kappa in the null hypothesis distribution for rho}
+\item{nullHypMin}{The minimum kappa in the null hypothesis distribution for rho}
 
-\item{precisionMin}{The minimum percision to be used for generation of sets in null hypothesis distribution for rho}
+\item{precisionMin}{The minimum percision to be used for generation of code sets in the null hypothesis distribution for rho}
 
-\item{precisionMax}{The maximum percision to be used for generation of sets in null hypothesis distribution for rho}
+\item{precisionMax}{The maximum percision to be used for generation of code sets in the null hypothesis distribution for rho}
 }
 \value{
 A list containing rho and kappa
@@ -34,11 +34,11 @@ A list containing rho and kappa
 This function calculates rho and kappa for a given contingency Table, and returns a list containing both values.
 }
 \examples{
-# Given handSetBaserateInflation
-rho.ct(table, handSetBaserateInflation = 0.2)
+# Given testSetBaserateInflation
+rho.ct(table, testSetBaserateInflation = 0.2)
 
-# Given fullSetBaserate and handSetBaserateInflation
-rho.ct(table, fullSetBaseate = 0.1, handSetBaserateInflation = 0.2)
+# Given codeSetBaserate and testSetBaserateInflation
+rho.ct(table, codeSetBaseate = 0.1, testSetBaserateInflation = 0.2)
 
 }
 \keyword{rho.ct}
