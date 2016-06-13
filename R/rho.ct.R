@@ -6,52 +6,52 @@
 #' 
 #' @export
 #' @param table The \code{\link{contingencyTable}} used to calculate rho 
-#' @param fullSetBaserate The frequency of one's for the first rater in the full set, if NULL, assume the baserate of the hand set is the same as the full set
-#' @param handSetBaserateInflation The percent, as a decimal, of the hand set that is gauranteed to be a positive for the first rater
-#' @param fullSetLength The length of the full set
-#' @param runs The number of full sets to use in the null hypothesis distribution for rho
+#' @param codeSetBaserate The frequency of one's for the first rater in the code set, if NULL, assume the baserate of the test set is the same as the code set
+#' @param testSetBaserateInflation The percent, as a decimal, of the test set that is gauranteed to be a positive for the first rater
+#' @param codeSetLength The length of the code set used to calculate rho
+#' @param runs The number of code sets to use in the null hypothesis distribution for rho
 #' @param kappaThreshold Threshold to compare against, as a double
-#' @param kappaMin The minimum kappa in the null hypothesis distribution for rho
-#' @param precisionMin The minimum percision to be used for generation of sets in null hypothesis distribution for rho
-#' @param precisionMax The maximum percision to be used for generation of sets in null hypothesis distribution for rho
+#' @param nullHypMin The minimum kappa in the null hypothesis distribution for rho
+#' @param precisionMin The minimum percision to be used for generation of code sets in the null hypothesis distribution for rho
+#' @param precisionMax The maximum percision to be used for generation of code sets in the null hypothesis distribution for rho
 #' @keywords rho.ct
 #' 
 #' @examples
-#' # Given handSetBaserateInflation
-#' rho.ct(table, handSetBaserateInflation = 0.2)
+#' # Given testSetBaserateInflation
+#' rho.ct(table, testSetBaserateInflation = 0.2)
 #' 
-#' # Given fullSetBaserate and handSetBaserateInflation
-#' rho.ct(table, fullSetBaseate = 0.1, handSetBaserateInflation = 0.2)
+#' # Given codeSetBaserate and testSetBaserateInflation
+#' rho.ct(table, codeSetBaseate = 0.1, testSetBaserateInflation = 0.2)
 #' 
 #' @return 
 #' A list containing rho and kappa
 ###
 rho.ct = function(
   table,
-  fullSetBaserate = NULL,
-  handSetBaserateInflation = 0,
-  fullSetLength = 10000,
+  codeSetBaserate = NULL,
+  testSetBaserateInflation = 0,
+  codeSetLength = 10000,
   runs = 800,
   kappaThreshold = .65,
-  kappaMin = .40,
+  nullHypMin = .40,
   precisionMin = 0.6,
   precisionMax = 1
 ){
-  kappa.ct = kappa(table);
+  kappa = kappa.ct(table);
   
-  if(is.null(fullSetBaserate)) {
-      fullSetBaserate = (sum(table[1,]))/(sum(table));
+  if(is.null(codeSetBaserate)) {
+      codeSetBaserate = (sum(table[1,]))/(sum(table));
   }
   
   return(list(
     rho = rho(
       kappa, 
-      fullSetBaserate,
+      codeSetBaserate,
       sum(table),
-      handSetBaserateInflation,
-      fullSetLength,
+      testSetBaserateInflation,
+      codeSetLength,
       runs,
-      kappaThreshold, kappaMin, precisionMin, precisionMax
+      kappaThreshold, nullHypMin, precisionMin, precisionMax
     ), 
     kappa = kappa
   ));

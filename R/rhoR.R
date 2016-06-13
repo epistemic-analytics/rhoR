@@ -23,8 +23,8 @@
 #' @section kappa: 
 #' Use \code{\link{kappa}}
 #' 
-#' @section rho.power: 
-#' Use \code{\link{rho.power}}
+#' @section rho.minTSLength: 
+#' Use \code{\link{rho.minTSLength}}
 #'   
 #' @docType package
 #' @name rhoR
