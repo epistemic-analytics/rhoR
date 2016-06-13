@@ -11,10 +11,10 @@
 #' 
 #' @examples
 #' # Given contingency Table and no threshold
-#' kappa(contingencyTable, isSet = FALSE, kappaThreshold = NULL)
+#' kappa.ct(contingencyTable, isSet = FALSE, kappaThreshold = NULL)
 #' 
 #' # Given contingency with threshold
-#' kappa(contingencyTable, isSet = FALSE, kappaThreshold = 0.65)
+#' kappa.ct(contingencyTable, isSet = FALSE, kappaThreshold = 0.65)
 #' 
 #' @return 
 #' If kappaThreshold is NULL: kappa as a double
@@ -22,5 +22,8 @@
 #' above the provided threshold.
 ###
 kappa.ct = function(ct, kappaThreshold = NULL) {
+  if(ncol(ct) != 2 || nrow(ct) != 2) {
+    stop("Incorrect number of dimensions: Contingency table must be 2x2")
+  }
   return(calcKappa(ct,isSet  = FALSE,kappaThreshold));
 }

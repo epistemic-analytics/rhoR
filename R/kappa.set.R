@@ -11,10 +11,10 @@
 #' 
 #' @examples
 #' # Given set and no threshold
-#' kappa(set, isSet = TRUE, kappaThreshold = NULL)
+#' kappa.set(set, isSet = TRUE, kappaThreshold = NULL)
 #' 
 #' # Given set and threshold
-#' kappa(set, isSet = TRUE, kappaThreshold = 0.65)
+#' kappa.set(set, isSet = TRUE, kappaThreshold = 0.65)
 #' 
 #' @return 
 #' If kappaThreshold is NULL: kappa as a double
@@ -22,5 +22,9 @@
 #' above the provided threshold.
 ###
 kappa.set = function(set, kappaThreshold = NULL) {
+  if(length(set[(set > 0 && set < 1) | set > 1]) != 0) {
+    stop("Each set must only consist of zeros and ones")
+  }
   return(calcKappa(set,isSet = TRUE,kappaThreshold));
 }
+
