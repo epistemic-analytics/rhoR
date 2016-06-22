@@ -45,6 +45,18 @@ rho = function(
   precisionMin = 0.6, 
   precisionMax = 1
 ){
+  if(observedKappa > 1 | observedKappa < 0)stop("Observed kappa must be between 0 and 1.")
+  if(codeSetBaserate < 0)stop("codeSetBaserate must be positive.")
+  if(testSetLength%%1 != 0) stop("testSetLength value must be a positive integer.")
+  if(codeSetLength%%1 != 0) stop("codeSetLength value must be a positive integer.")
+  if(runs%%1 != 0) stop("Runs value must be a positive integer.")
+  if(CSKappaMax < 0) stop("CSKappaMax must be positive.")
+  if(CSKappaMin < 0) stop("CSKappaMin must be positive.")
+  if(CSKappaMax < CSKappaMin) stop("CSKappaMax must be greater than CSKappaMin.")
+  if(precisionMin < 0 | precisionMin > 1) stop("precisionMin must be between 0 and 1.")
+  if(precisionMax < 0 | precisionMax > 1) stop("precisionMax must be between 0 and 1.")
+  if(precisionMax < precisionMin) stop("prcisionMax must be greater than precisionMin.")
+  
   return(calcRho(observedKappa, codeSetBaserate, testSetLength, testSetBaserateInflation, codeSetLength, runs, CSKappaMax, CSKappaMin, precisionMin, precisionMax))
   
 }

@@ -22,7 +22,7 @@
 #' rho.set(set, testSetBaserateInflation = 0.2)
 #' 
 #' # Given codeSetBaserate and testSetBaserateInflation
-#' rho.set(set, codeSetBaseate = 0.1, testSetBaserateInflation = 0.2)
+#' rho.set(set, codeSetBaserate = 0.1, testSetBaserateInflation = 0.2)
 #' 
 #' @return 
 #' A list containing rho and kappa

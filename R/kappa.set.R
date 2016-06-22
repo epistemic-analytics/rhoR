@@ -23,9 +23,11 @@
 #' above the provided threshold.
 ###
 kappa.set = function(set, CSKappaMax = NULL) {
-  if(length(set[(set > 0 && set < 1) | set > 1 | set < 0]) != 0) {
-    stop("Each set must only consist of zeros and ones")
+  if(length(set[(set > 0 && set < 1) | set > 1 | set < 0]) != 0) stop("Each set must only consist of zeros and ones.")
+  if(!is.null(CSKappaMax)) {
+    if(CSKappaMax < 0 | CSKappaMax > 1) stop("CSKappaMax must be between 0 and 1.")
   }
+  
   return(calcKappa(set,isSet = TRUE,CSKappaMax));
 }
 

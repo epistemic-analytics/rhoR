@@ -23,8 +23,15 @@
 #' above the provided threshold.
 ###
 kappa.ct = function(ct, CSKappaMax = NULL) {
-  if(ncol(ct) != 2 || nrow(ct) != 2) {
-    stop("Incorrect number of dimensions: Contingency table must be 2x2")
+  if(ncol(ct) != 2 || nrow(ct) != 2) stop("Incorrect number of dimensions: Contingency table must be 2x2.")
+  if(!is.null(CSKappaMax)) {
+    if(CSKappaMax < 0 | CSKappaMax >1) stop("CSKappaMax must be between 0 and 1.")
   }
-  return(calcKappa(ct,isSet  = FALSE,CSKappaMax));
+  for(i in 1:nrow(ct)) {
+    for(j in 1:ncol(ct)) {
+      if (ct[i,j]%%1 != 0) stop("Contingency table values must be positive integers.")
+    }  
+  }
+  
+  return(calcKappa(ct,isSet = FALSE,CSKappaMax));
 }

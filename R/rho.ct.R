@@ -22,7 +22,7 @@
 #' rho.ct(contingencyTable, testSetBaserateInflation = 0.2)
 #' 
 #' # Given codeSetBaserate and testSetBaserateInflation
-#' rho.ct(contingencyTable, codeSetBaseate = 0.1, testSetBaserateInflation = 0.2)
+#' rho.ct(contingencyTable, codeSetBaserate = 0.1, testSetBaserateInflation = 0.2)
 #' 
 #' @return 
 #' A list containing rho and kappa
