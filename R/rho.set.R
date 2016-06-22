@@ -1,4 +1,5 @@
 ###
+#' @include rho.R
 #' @title Rho (set)
 #' 
 #' @description 
@@ -6,14 +7,14 @@
 #' 
 #' @export
 #' @param set The \code{\link{set}} used to calculate rho 
-#' @param codeSetBaserate The frequency of one's for the first rater in the code set, if NULL, assume the baserate of the test set is the same as the code set
-#' @param testSetBaserateInflation The percent, as a decimal, of the test set that is gauranteed to be a positive for the first rater
+#' @param codeSetBaserate The frequency of ones for the first rater in the code set, if NULL, assume the baserate of the test set is the same as the code set
+#' @param testSetBaserateInflation The percent, as a decimal, of the test set that is guaranteed to be a positive for the first rater
 #' @param codeSetLength The length of the code set used to calculate rho
 #' @param runs The number of code sets to use in the null hypothesis distribution for rho
-#' @param kappaThreshold Threshold to compare against, as a double
-#' @param nullHypMin The minimum kappa in the null hypothesis distribution for rho
-#' @param precisionMin The minimum percision to be used for generation of sets in the null hypothesis distribution for rho
-#' @param precisionMax The maximum percision to be used for generation of sets in the null hypothesis distribution for rho
+#' @param CSKappaMax The maximum kappa value used to generate code sets in the null hypothesis distribution for rho
+#' @param CSKappaMin The minimum kappa value used to generate code sets in the null hypothesis distribution for rho
+#' @param precisionMin The minimum precision to be used for generation of code sets in the null hypothesis distribution for rho
+#' @param precisionMax The maximum precision to be used for generation of code sets in the null hypothesis distribution for rho
 #' @keywords rho.set
 #' 
 #' @examples
@@ -32,8 +33,8 @@ rho.set = function(
   testSetBaserateInflation = 0,
   codeSetLength = 10000,
   runs = 800,
-  kappaThreshold = .65,
-  nullHypMin = .40,
+  CSKappaMax = .65,
+  CSKappaMin = .40,
   precisionMin = 0.6,
   precisionMax = 1
 ){
@@ -51,7 +52,7 @@ rho.set = function(
       testSetBaserateInflation,
       codeSetLength,
       runs,
-      kappaThreshold, nullHypMin, precisionMin, precisionMax
+      CSKappaMax, CSKappaMin, precisionMin, precisionMax
     ), 
     kappa = kappa
   ));

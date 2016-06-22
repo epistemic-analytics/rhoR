@@ -8,7 +8,7 @@
 # @keywords kappa, calculate
 # @return This returns the kappa of the set given
 ###
-calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
+calcKappa = function(set, isSet = TRUE, CSKappaMax = NULL) {
   contTable = NULL
   if(!isSet){
     contTable = set
@@ -21,10 +21,10 @@ calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
   randomAgreement = baserate1 * baserate2 + (1 - baserate1) * (1 - baserate2);
   kappa = (agreement - randomAgreement) / (1 - randomAgreement);
 
-  if(is.null(kappaThreshold)){
+  if(is.null(CSKappaMax)){
     return(kappa);
   }else{
-    return(list(kappa = kappa, above = kappa > kappaThreshold));
+    return(list(kappa = kappa, above = kappa > CSKappaMax));
   }
   return(kappa);
 }

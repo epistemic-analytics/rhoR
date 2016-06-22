@@ -1,11 +1,14 @@
-#' set sample
+#' @include rho.minTSLength.R
+#' @title set sample
 #' 
-#' A sample set
+#' @description A sample set \cr
 #' gold = c(1,1,1,1,rep(0,36))
-#' silver = c(1,1,1,0,1,1,rep(0,34))
+#' silver = c(1,1,1,0,1,1,rep(0,34)) \cr
 #' set = cbind(gold,silver)
 #' testSetBaserateInflation = .1
 #' 
-#' A set can be any length of vectors that are bound using \code{\link{cbind}}
-#' the length of each of these vectors becomes the set length
+#' @format An object of class data.frame with 40 rows and 2 columns.
+#' 
+#' @details A set can be any length of vectors that are bound using \code{\link{cbind}}.
+#' The length of each of these vectors becomes the set length
 "set"

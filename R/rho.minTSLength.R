@@ -1,4 +1,5 @@
 ###
+#' @include kappa.ct.R
 #' @title Rho Min testSetLength
 #' 
 #' @description 
@@ -26,8 +27,8 @@
 rho.minTSLength = function(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...){
   rhoVal = 1
   testSetLength = 10
-  if(inc%%1!=0){
-    stop("Inc value must be an integer")
+  if(inc%%1!=0 | inc <= 0){
+    stop("Inc value must be a positive integer")
   }
   while(rhoVal > alpha){
     testSetLength = testSetLength + inc

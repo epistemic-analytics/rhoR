@@ -1,4 +1,5 @@
 ###
+#' @include rho.ct.R
 #' @title Calculate kappa (Set)
 #' 
 #' @description 
@@ -6,25 +7,25 @@
 #' 
 #' @export
 #' @param set A \code{\link{set}}
-#' @param kappaThreshold Optional Threshold to compare against, as a double
+#' @param CSKappaMax Optional. The maximum kappa value used to generate code sets in the null hypothesis distribution for rho
 #' @keywords kappa.set
 #' 
 #' @examples
-#' # Given set and no threshold
-#' kappa.set(set, isSet = TRUE, kappaThreshold = NULL)
+#' # Given set and no CSKappaMax
+#' kappa.set(set, CSKappaMax = NULL)
 #' 
-#' # Given set and threshold
-#' kappa.set(set, isSet = TRUE, kappaThreshold = 0.65)
+#' # Given set and CSKappaMax
+#' kappa.set(set, CSKappaMax = 0.65)
 #' 
 #' @return 
-#' If kappaThreshold is NULL: kappa as a double
-#' If kappathreshold is not NULL: a list containing both the kappa, as a double, and a boolen indicating if it is
+#' If CSKappaMax is NULL: kappa as a double.
+#' If CSKappaMax is not NULL: a list containing both the kappa, as a double, and a boolen indicating if it is
 #' above the provided threshold.
 ###
-kappa.set = function(set, kappaThreshold = NULL) {
-  if(length(set[(set > 0 && set < 1) | set > 1]) != 0) {
+kappa.set = function(set, CSKappaMax = NULL) {
+  if(length(set[(set > 0 && set < 1) | set > 1 | set < 0]) != 0) {
     stop("Each set must only consist of zeros and ones")
   }
-  return(calcKappa(set,isSet = TRUE,kappaThreshold));
+  return(calcKappa(set,isSet = TRUE,CSKappaMax));
 }
 
