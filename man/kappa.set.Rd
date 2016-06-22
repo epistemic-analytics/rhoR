@@ -4,27 +4,27 @@
 \alias{kappa.set}
 \title{Calculate kappa (Set)}
 \usage{
-\method{kappa}{set}(set, kappaThreshold = NULL)
+\method{kappa}{set}(set, CSKappaMax = NULL)
 }
 \arguments{
 \item{set}{A \code{\link{set}}}
 
-\item{kappaThreshold}{Optional Threshold to compare against, as a double}
+\item{CSKappaMax}{Optional. The maximum kappa value used to generate code sets in the null hypothesis distribution for rho}
 }
 \value{
-If kappaThreshold is NULL: kappa as a double
-If kappathreshold is not NULL: a list containing both the kappa, as a double, and a boolen indicating if it is
+If CSKappaMax is NULL: kappa as a double.
+If CSKappaMax is not NULL: a list containing both the kappa, as a double, and a boolen indicating if it is
 above the provided threshold.
 }
 \description{
 This function calculates kappa given a set and can evaluate if it is greater than a threshold
 }
 \examples{
-# Given set and no threshold
-kappa.set(set, isSet = TRUE, kappaThreshold = NULL)
+# Given set and no CSKappaMax
+kappa.set(set, CSKappaMax = NULL)
 
-# Given set and threshold
-kappa.set(set, isSet = TRUE, kappaThreshold = 0.65)
+# Given set and CSKappaMax
+kappa.set(set, CSKappaMax = 0.65)
 
 }
 \keyword{kappa.set}

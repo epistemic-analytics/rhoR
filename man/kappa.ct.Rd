@@ -4,27 +4,27 @@
 \alias{kappa.ct}
 \title{Calculate kappa (contingency Table)}
 \usage{
-\method{kappa}{ct}(ct, kappaThreshold = NULL)
+\method{kappa}{ct}(ct, CSKappaMax = NULL)
 }
 \arguments{
 \item{ct}{A \code{\link{contingencyTable}}}
 
-\item{kappaThreshold}{Optional Threshold to compare against, as a double}
+\item{CSKappaMax}{Optional. The maximum kappa value used to generate code sets in the null hypothesis distribution for rho}
 }
 \value{
-If kappaThreshold is NULL: kappa as a double
-If kappathreshold is not NULL: a list containing both the kappa, as a double, and a boolen indicating if it is
+If CSKappaMax is NULL: kappa as a double.
+If CSKappaMax is not NULL: a list containing both the kappa, as a double, and a boolen indicating if it is
 above the provided threshold.
 }
 \description{
 This function calculates kappa given a contingency table and can evaluate if it is greater than a threshold
 }
 \examples{
-# Given contingency Table and no threshold
-kappa.ct(contingencyTable, isSet = FALSE, kappaThreshold = NULL)
+# Given contingency Table and no CSKappaMax
+kappa.ct(contingencyTable, CSKappaMax = NULL)
 
 # Given contingency with threshold
-kappa.ct(contingencyTable, isSet = FALSE, kappaThreshold = 0.65)
+kappa.ct(contingencyTable, CSKappaMax = 0.65)
 
 }
 \keyword{kappa.ct}

@@ -4,20 +4,20 @@
 \name{set}
 \alias{set}
 \title{set sample}
-\format{An object of class \code{data.frame} with 10000 rows and 3 columns.}
+\format{An object of class data.frame with 40 rows and 2 columns.}
 \usage{
 set
 }
 \description{
-A sample set
+A sample set \cr
 gold = c(1,1,1,1,rep(0,36))
-silver = c(1,1,1,0,1,1,rep(0,34))
+silver = c(1,1,1,0,1,1,rep(0,34)) \cr
 set = cbind(gold,silver)
 testSetBaserateInflation = .1
 }
 \details{
-A set can be any length of vectors that are bound using \code{\link{cbind}}
-the length of each of these vectors becomes the set length
+A set can be any length of vectors that are bound using \code{\link{cbind}}.
+The length of each of these vectors becomes the set length
 }
 \keyword{datasets}
 

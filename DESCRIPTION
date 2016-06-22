@@ -20,3 +20,25 @@ LazyData: true
 RoxygenNote: 5.0.1
 Suggests:
     testthat
+Collate:
+    'calcKappa.R'
+    'calcRho.R'
+    'checkBRPKcombo.R'
+    'rhoR.R'
+    'rho.R'
+    'rho.set.R'
+    'rho.ct.R'
+    'kappa.set.R'
+    'kappa.ct.R'
+    'rho.minTSLength.R'
+    'set.R'
+    'contingencyTable.R'
+    'contingencyToSet.R'
+    'createRandomSet.R'
+    'genPKcombo.R'
+    'genPcombo.R'
+    'generateKPs.R'
+    'getBootPvalue.R'
+    'getHandSet.R'
+    'getR.R'
+    'prset.R'

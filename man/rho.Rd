@@ -6,35 +6,35 @@
 \usage{
 rho(observedKappa, codeSetBaserate, testSetLength,
   testSetBaserateInflation = 0, codeSetLength = 10000, runs = 800,
-  kappaThreshold = 0.65, nullHypMin = 0.4, precisionMin = 0.6,
+  CSKappaMax = 0.65, CSKappaMin = 0.4, precisionMin = 0.6,
   precisionMax = 1)
 }
 \arguments{
 \item{observedKappa}{The observed kappa value that will be tested with rho, as a double}
 
-\item{codeSetBaserate}{The frequency of one's for the first rater in the code set, if NULL, assume the baserate of the test set is the same as the code set}
+\item{codeSetBaserate}{The frequency of ones for the first rater in the code set, if NULL, assume the baserate of the test set is the same as the code set}
 
-\item{testSetLength}{The length of the test set for the observedKappa}
+\item{testSetLength}{The number of items evaluated by two raters to establish inter rater reliability}
 
-\item{testSetBaserateInflation}{The percent, as a decimal, of the test set that is gauranteed to be a positive for the first rater}
+\item{testSetBaserateInflation}{The percent, as a decimal, of the test set that is guaranteed to be a positive for the first rater}
 
-\item{codeSetLength}{The length of the code set used to calculate rho}
+\item{codeSetLength}{The length of the code sets used to calculate rho}
 
 \item{runs}{The number of code sets to use in the null hypothesis distribution for rho}
 
-\item{kappaThreshold}{Threshold to compare against, as a double}
+\item{CSKappaMax}{The maximum kappa value used to generate code sets in the null hypothesis distribution for rho}
 
-\item{nullHypMin}{The minimum kappa in the null hypothesis distribution for rho}
+\item{CSKappaMin}{The minimum kappa value used to generate code sets in the null hypothesis distribution for rho}
 
-\item{precisionMin}{The minimum percision to be used for generation of sets in the null hypothesis distribution for rho}
+\item{precisionMin}{The minimum precision to be used for generation of code sets in the null hypothesis distribution for rho}
 
-\item{precisionMax}{The maximum percision to be used for generation of sets in the null hypothesis distribution for rho}
+\item{precisionMax}{The maximum precision to be used for generation of code sets in the null hypothesis distribution for rho}
 }
 \value{
 The calcuated rho, as a double
 }
 \description{
-This function will calculate rho given the parameters of the initial set, which it returns as a double.
+This function will calculate rho given the parameters of the observed test set, which it returns as a double.
 }
 \examples{
 # Given only required parameters
