@@ -38,7 +38,7 @@ This function calculates rho and kappa for a given contingency table, and return
 rho.ct(contingencyTable, testSetBaserateInflation = 0.2)
 
 # Given codeSetBaserate and testSetBaserateInflation
-rho.ct(contingencyTable, codeSetBaseate = 0.1, testSetBaserateInflation = 0.2)
+rho.ct(contingencyTable, codeSetBaserate = 0.1, testSetBaserateInflation = 0.2)
 
 }
 \keyword{rho.ct}

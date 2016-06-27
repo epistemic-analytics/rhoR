@@ -38,7 +38,7 @@ This function calculates rho and kappa for a given set, and returns a list conta
 rho.set(set, testSetBaserateInflation = 0.2)
 
 # Given codeSetBaserate and testSetBaserateInflation
-rho.set(set, codeSetBaseate = 0.1, testSetBaserateInflation = 0.2)
+rho.set(set, codeSetBaserate = 0.1, testSetBaserateInflation = 0.2)
 
 }
 \keyword{rho.set}
