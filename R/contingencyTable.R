@@ -3,7 +3,7 @@
 #' 
 #' @description A sample contingencyTable \cr
 #' ct = as.data.frame(matrix(c(3,2,1,34), nrow = 2, ncol = 2)) \cr
-#' testSetBaserateInflation = .1 Displayed as: \preformatted{
+#' Displayed as: \preformatted{
 #' |---------|
 #' |  3 |  1 |
 #' |----|----|
@@ -16,7 +16,7 @@
 #' | PP | PN |
 #' |----|----|
 #' | NP | NN |
-#' |---------| }
-#' 
+#' |---------| } \cr
+#' The first rater values are represented by the first letter, and the second rater values are represented by the second letter. The baserate is calculated by (PP + PN)/(PP + PN + NP + NN).
 #' 
 "contingencyTable"
