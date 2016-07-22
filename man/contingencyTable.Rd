@@ -11,7 +11,7 @@ contingencyTable
 \description{
 A sample contingencyTable \cr
 ct = as.data.frame(matrix(c(3,2,1,34), nrow = 2, ncol = 2)) \cr
-testSetBaserateInflation = .1 Displayed as: \preformatted{
+Displayed as: \preformatted{
 |---------|
 |  3 |  1 |
 |----|----|

@@ -25,11 +25,11 @@ value where rho becomes mathematically possible
 This function calculates the minimum testSetLength where it is possible to get a rho less than alpha, which it returns as an integer.
 }
 \examples{
-#Add testSetBaserate as an additional parameter
-rho.minTSLength(0.2, testSetBaserate = 0.2)
+#Add testSetBaserateInflation as an additional parameter
+rho.minTSLength(0.2, testSetBaserateInflation = 0.2)
 
-#Add testSetBaserate as well as changing inc and selecting printInc
-rho.minTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserate = 0.2)
+#Add testSetBaserateInflation as well as changing inc and selecting printInc
+rho.minTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.2)
 
 }
 \keyword{rho.minTSLength}

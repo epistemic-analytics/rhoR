@@ -36,6 +36,9 @@ rho, as a double
 \description{
 This function will calculate rho given the parameters of an observed test set, which it returns as a double.
 }
+\note{
+replicates are similar to replicates in monte carlo.
+}
 \examples{
 # Given only required parameters
 rho(observedKappa = 0.88, codeSetBaserate = 0.2, testSetLength = 80)
