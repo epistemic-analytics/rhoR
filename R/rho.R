@@ -4,7 +4,7 @@
 #' 
 #' @description 
 #' This function will calculate rho given the parameters of an observed test set, which it returns as a double.
-#' 
+#'
 #' @export
 #'
 #' @param observedKappa The observed kappa value that will be tested with rho, as a double
