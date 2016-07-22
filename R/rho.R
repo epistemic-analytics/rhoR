@@ -8,9 +8,9 @@
 #' @export
 #'
 #' @param observedKappa The observed kappa value that will be tested with rho, as a double
-#' @param codeSetBaserate The frequency of ones for the first rater in the code set, if NULL, assume the baserate of the test set is the same as the code set
+#' @param codeSetBaserate The \code{\link{baserate}} of the code set, if NULL, assume the baserate of the test set is the same as the code set
 #' @param testSetLength The number of items evaluated by two raters to establish inter rater reliability
-#' @param testSetBaserateInflation The percent, as a decimal, of the test set that is guaranteed to be a positive for the first rater
+#' @param testSetBaserateInflation The minimum garunteed \code{\link{baserate}} for the first rater
 #' @param codeSetLength The length of the code sets used to calculate rho
 #' @param runs The number of code sets to use in the null hypothesis distribution for rho
 #' @param CSKappaMax The maximum kappa value used to generate code sets in the null hypothesis distribution for rho
