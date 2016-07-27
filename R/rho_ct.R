@@ -1,12 +1,12 @@
 ###
-#' @include rho.R
-#' @title Rho (set)
+#' @include rho_set.R
+#' @title Rho (contingency Table)
 #' 
 #' @description 
-#' This function calculates rho and kappa for a given set, and returns a list containing both values.
+#' This function calculates rho and kappa for a given contingency table, and returns a list containing both values.
 #' 
 #' @export
-#' @param set The test \code{\link{set}} used to calculate rho 
+#' @param table The \code{\link{contingencyTable}} used to calculate rho 
 #' @param SDSBaserate The \code{\link{baserate}} of a simulated data set, if NULL, assume the baserate of the simulated data set is the same as the test
 #' @param testSetBaserateInflation The percent, as a decimal, of the test set that is guaranteed to be a positive for the first rater
 #' @param SDSLength The length of the simulated data sets used to calculate rho
@@ -15,22 +15,22 @@
 #' @param SDSKappaMin The minimum kappa value used to generate simulated data sets in the null hypothesis distribution for rho
 #' @param SDSPrecisionMin The minimum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
 #' @param SDSPrecisionMax The maximum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
-#' 
+#'
 #' @note replicates as used in monte carlo studies.
-#' @keywords rho.set
+#' @keywords rho_ct
 #' 
 #' @examples
 #' # Given testSetBaserateInflation
-#' rho.set(set, testSetBaserateInflation = 0.2)
+#' rho_ct(contingencyTable, testSetBaserateInflation = 0.2)
 #' 
 #' # Given SDSBaserate and testSetBaserateInflation
-#' rho.set(set, SDSBaserate = 0.1, testSetBaserateInflation = 0.2)
+#' rho_ct(contingencyTable, SDSBaserate = 0.1, testSetBaserateInflation = 0.2)
 #' 
 #' @return 
 #' A list containing rho and kappa
 ###
-rho.set = function(
-  set,
+rho_ct = function(
+  table,
   SDSBaserate = NULL,
   testSetBaserateInflation = 0,
   SDSLength = 10000,
@@ -40,17 +40,17 @@ rho.set = function(
   SDSPrecisionMin = 0.6,
   SDSPrecisionMax = 1
 ){
-  kappa = kappa.set(set);
+  kappa = kappa_ct(table);
   
   if(is.null(SDSBaserate)) {
-    SDSBaserate = length(which(set[,1] == 1))/length(set);
+      SDSBaserate = (sum(table[1,]))/(sum(table));
   }
   
   return(list(
     rho = rho(
       kappa, 
       SDSBaserate,
-      length(set),
+      sum(table),
       testSetBaserateInflation,
       SDSLength,
       replicates,

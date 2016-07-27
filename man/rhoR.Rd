@@ -28,16 +28,16 @@ had they coded the rest of the data.
 }
 \section{rho}{
  
-Use \code{\link{rho.set}} \cr \code{\link{rho.ct}}
+Use \code{\link{rho_set}} \cr \code{\link{rho_ct}}
 }
 
 \section{kappa}{
  
-Use \code{\link{kappa.set}} \cr \code{\link{kappa.ct}}
+Use \code{\link{kappa_set}} \cr \code{\link{kappa_ct}}
 }
 
-\section{rho.minTSLength}{
+\section{rho_minTSLength}{
  
-Use \code{\link{rho.minTSLength}}
+Use \code{\link{rho_minTSLength}}
 }
 

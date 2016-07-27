@@ -17,17 +17,17 @@ Depends:
     R (>= 3.0.0)
 License: GPL-3  | file LICENSE
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.1.9000
 Suggests:
     testthat
 Collate:
     'rhoR.R'
     'rho.R'
-    'rho.set.R'
-    'rho.ct.R'
-    'kappa.set.R'
-    'kappa.ct.R'
-    'rho.minTSLength.R'
+    'rho_set.R'
+    'rho_ct.R'
+    'kappa_set.R'
+    'kappa_ct.R'
+    'rho_minTSLength.R'
     'baserate.R'
     'calcKappa.R'
     'calcRho.R'

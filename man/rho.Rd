@@ -45,7 +45,7 @@ rho(observedKappa = 0.88, SDSBaserate = 0.2, testSetLength = 80)
 # Given required parameters plus testSetBaserateInflation and runs
 rho(
  observedKappa = 0.88, SDSBaserate = 0.2, testSetLength = 80, 
- testSetBaserateInflation = 0.2, runs = 500
+ testSetBaserateInflation = 0.2, replicates = 500
 )
 
 

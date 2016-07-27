@@ -1,5 +1,5 @@
 ###
-#' @include kappa.ct.R
+#' @include kappa_ct.R
 #' @title Rho Min testSetLength
 #' 
 #' @description 
@@ -11,20 +11,20 @@
 #' @param inc An integer indicating by how much the testSetLength should increase each iteration
 #' @param printInc A boolean indicating whether to print out each increment value with it's corresponding significance for rho
 #' @param ... Any additional parameters passed into \code{\link{rho}}
-#' @keywords rho.minTSLength
+#' @keywords rho_minTSLength
 #' 
 #' @examples
 #' #Add testSetBaserateInflation as an additional parameter
-#' rho.minTSLength(0.2, testSetBaserateInflation = 0.33)
+#' rho_minTSLength(0.2, testSetBaserateInflation = 0.33)
 #' 
 #' #Add testSetBaserateInflation as well as changing inc and selecting printInc
-#' rho.minTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
+#' rho_minTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 #' 
 #' @return 
 #' An integer giving the minimum length of testSet, as a denomination of inc, that would give a
 #' value where rho becomes mathematically possible
 ###
-rho.minTSLength = function(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...){
+rho_minTSLength = function(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...){
   rhoVal = 1
   testSetLength = 10
   if(inc%%1 != 0 | inc <= 0) stop("Inc value must be a positive integer.")
