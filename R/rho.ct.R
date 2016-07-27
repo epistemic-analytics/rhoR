@@ -13,8 +13,8 @@
 #' @param replicates The number of simulated data sets to use in the null hypothesis distribution for rho
 #' @param kappaThreshold The maximum kappa value used to generate simulated data sets in the null hypothesis distribution for rho
 #' @param SDSKappaMin The minimum kappa value used to generate simulated data sets in the null hypothesis distribution for rho
-#' @param precisionMin The minimum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
-#' @param precisionMax The maximum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
+#' @param SDSPrecisionMin The minimum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
+#' @param SDSPrecisionMax The maximum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
 #'
 #' @note replicates as used in monte carlo studies.
 #' @keywords rho.ct
@@ -37,8 +37,8 @@ rho.ct = function(
   runs = 800,
   kappaThreshold = .65,
   SDSKappaMin = .40,
-  precisionMin = 0.6,
-  precisionMax = 1
+  SDSPrecisionMin = 0.6,
+  SDSPrecisionMax = 1
 ){
   kappa = kappa.ct(table);
   
@@ -54,7 +54,7 @@ rho.ct = function(
       testSetBaserateInflation,
       SDSLength,
       runs,
-      kappaThreshold, SDSKappaMin, precisionMin, precisionMax
+      kappaThreshold, SDSKappaMin, SDSPrecisionMin, SDSPrecisionMax
     ), 
     kappa = kappa
   ));

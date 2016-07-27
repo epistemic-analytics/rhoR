@@ -15,8 +15,8 @@
 #' @param replicates The number of simulated data sets to use in the null hypothesis distribution for rho
 #' @param kappaThreshold The maximum kappa value used to generate simulated data sets in the null hypothesis distribution for rho
 #' @param SDSKappaMin The minimum kappa value used to generate simulated data sets in the null hypothesis distribution for rho
-#' @param precisionMin The minimum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
-#' @param precisionMax The maximum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
+#' @param SDSPrecisionMin The minimum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
+#' @param SDSPrecisionMax The maximum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
 #'
 #' @note replicates as used in monte carlo studies.
 #' 
@@ -44,8 +44,8 @@ rho = function(
   runs = 800, 
   kappaThreshold = .65, 
   SDSKappaMin = .40, 
-  precisionMin = 0.6, 
-  precisionMax = 1
+  SDSPrecisionMin = 0.6, 
+  SDSPrecisionMax = 1
 ){
   if(observedKappa > 1 | observedKappa < 0)stop("Observed kappa must be between 0 and 1.")
   if(SDSBaserate < 0)stop("SDSBaserate must be positive.")
@@ -55,11 +55,11 @@ rho = function(
   if(kappaThreshold < 0) stop("kappaThreshold must be positive.")
   if(SDSKappaMin < 0) stop("CSKappaMin must be positive.")
   if(kappaThreshold < SDSKappaMin) stop("kappaThreshold must be greater than CSKappaMin.")
-  if(precisionMin < 0 | precisionMin > 1) stop("precisionMin must be between 0 and 1.")
-  if(precisionMax < 0 | precisionMax > 1) stop("precisionMax must be between 0 and 1.")
-  if(precisionMax < precisionMin) stop("prcisionMax must be greater than precisionMin.")
+  if(SDSPrecisionMin < 0 | SDSPrecisionMin > 1) stop("SDSPrecisionMin must be between 0 and 1.")
+  if(SDSPrecisionMax < 0 | SDSPrecisionMax > 1) stop("SDSPrecisionMax must be between 0 and 1.")
+  if(SDSPrecisionMax < SDSPrecisionMin) stop("SDSPrecisionMax must be greater than SDSPrecisionMin.")
   
-  return(calcRho(observedKappa, SDSBaserate, testSetLength, testSetBaserateInflation, SDSLength, runs, kappaThreshold, SDSKappaMin, precisionMin, precisionMax))
+  return(calcRho(observedKappa, SDSBaserate, testSetLength, testSetBaserateInflation, SDSLength, runs, kappaThreshold, SDSKappaMin, SDSPrecisionMin, SDSPrecisionMax))
   
 }
 

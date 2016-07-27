@@ -3,10 +3,10 @@
 #' rho is used to test the generalization of inter rater reliability (IRR)
 #' statistics, in this case Cohen's Kappa.
 #' 
-#' Rho starts with an observed kappa value, calculated on a subsample of data, known as an observed test set, and a \emph{kappa threshold} which indicates significant agreement between raters,.
+#' Rho starts with an observed kappa value, calculated on a subsample of data, known as an observed test set, and a \emph{kappa threshold} which indicates significant agreement between raters.
 #' 
 #' It then generates a collection of fully-coded, \emph{simulated 
-#' data sets}, all 
+#' data sets}, further described in \code{\link{createSet}}, all 
 #' of which have a kappa value below the kappa threshold.
 #' 
 #' Then kappa is calculated on a simulated \emph{test set} sampled from each of the code sets in the

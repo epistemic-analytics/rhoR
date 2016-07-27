@@ -1,4 +1,5 @@
 ###
+#' @include rho.ct.R
 #' @title Calculate Baserate
 #' 
 #' @description
