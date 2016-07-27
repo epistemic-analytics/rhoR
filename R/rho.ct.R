@@ -34,7 +34,7 @@ rho.ct = function(
   SDSBaserate = NULL,
   testSetBaserateInflation = 0,
   SDSLength = 10000,
-  runs = 800,
+  replicates = 800,
   kappaThreshold = .65,
   SDSKappaMin = .40,
   SDSPrecisionMin = 0.6,
@@ -53,7 +53,7 @@ rho.ct = function(
       sum(table),
       testSetBaserateInflation,
       SDSLength,
-      runs,
+      replicates,
       kappaThreshold, SDSKappaMin, SDSPrecisionMin, SDSPrecisionMax
     ), 
     kappa = kappa

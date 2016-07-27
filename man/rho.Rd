@@ -4,31 +4,30 @@
 \alias{rho}
 \title{Calculate rho}
 \usage{
-rho(observedKappa, codeSetBaserate, testSetLength,
-  testSetBaserateInflation = 0, codeSetLength = 10000, runs = 800,
-  kappaThreshold = 0.65, CSKappaMin = 0.4, precisionMin = 0.6,
-  precisionMax = 1)
+rho(observedKappa, SDSBaserate, testSetLength, testSetBaserateInflation = 0,
+  SDSLength = 10000, replicates = 800, kappaThreshold = 0.65,
+  SDSKappaMin = 0.4, SDSPrecisionMin = 0.6, SDSPrecisionMax = 1)
 }
 \arguments{
 \item{observedKappa}{The observed kappa value that will be tested with rho, as a double}
 
-\item{codeSetBaserate}{The percent, as a decimal, of the positive codes made by the first rater in the code set}
+\item{SDSBaserate}{The \code{\link{baserate}} for a simulated data set}
 
 \item{testSetLength}{The number of items evaluated by two raters to establish inter rater reliability}
 
 \item{testSetBaserateInflation}{The percent, as a decimal, of the test set that is guaranteed to be a positive for the first rater}
 
-\item{codeSetLength}{The length of the code sets used to calculate rho}
+\item{SDSLength}{The length of the simulated data sets used to calculate rho}
 
-\item{kappaThreshold}{The maximum kappa value used to generate code sets in the null hypothesis distribution for rho}
+\item{replicates}{The number of simulated data sets to use in the null hypothesis distribution for rho}
 
-\item{CSKappaMin}{The minimum kappa value used to generate code sets in the null hypothesis distribution for rho}
+\item{kappaThreshold}{The maximum kappa value used to generate simulated data sets in the null hypothesis distribution for rho}
 
-\item{precisionMin}{The minimum precision to be used for generation of code sets in the null hypothesis distribution for rho}
+\item{SDSKappaMin}{The minimum kappa value used to generate simulated data sets in the null hypothesis distribution for rho}
 
-\item{precisionMax}{The maximum precision to be used for generation of code sets in the null hypothesis distribution for rho}
+\item{SDSPrecisionMin}{The minimum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho}
 
-\item{replicates}{The number of code sets to use in the null hypothesis distribution for rho}
+\item{SDSPrecisionMax}{The maximum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho}
 }
 \value{
 rho, as a double
@@ -37,15 +36,15 @@ rho, as a double
 This function will calculate rho given the parameters of an observed test set, which it returns as a double.
 }
 \note{
-replicates are similar to replicates in monte carlo.
+replicates as used in monte carlo studies.
 }
 \examples{
 # Given only required parameters
-rho(observedKappa = 0.88, codeSetBaserate = 0.2, testSetLength = 80)
+rho(observedKappa = 0.88, SDSBaserate = 0.2, testSetLength = 80)
 
 # Given required parameters plus testSetBaserateInflation and runs
 rho(
- observedKappa = 0.88, codeSetBaserate = 0.2, testSetLength = 80, 
+ observedKappa = 0.88, SDSBaserate = 0.2, testSetLength = 80, 
  testSetBaserateInflation = 0.2, runs = 500
 )
 

@@ -1,4 +1,4 @@
-#' @include rho.minTSLength.R
+#' @include contingencyTable.R
 #' @title set sample
 #' 
 #' @description A sample test set \cr

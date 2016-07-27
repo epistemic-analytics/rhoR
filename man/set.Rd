@@ -16,7 +16,7 @@ set = cbind(gold,silver)
 }
 \details{
 A set can be any length of vectors that are bound using \code{\link{cbind}}.
-The length of each of these vectors becomes the set length
+The length of each of these vectors becomes the set length. The first column of the set is defaulted as the first rater.
 }
 \keyword{datasets}
 

@@ -2,6 +2,7 @@
 
 S3method(kappa,ct)
 S3method(kappa,set)
+export(baserate)
 export(rho)
 export(rho.ct)
 export(rho.minTSLength)

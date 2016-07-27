@@ -25,7 +25,8 @@ The contingency Table is represented as a data frame: as.data.frame(matrix(c(PP,
 | PP | PN |
 |----|----|
 | NP | NN |
-|---------| }
+|---------| } \cr
+The first rater values are represented by the first letter, and the second rater values are represented by the second letter. The baserate is calculated by (PP + PN)/(PP + PN + NP + NN).
 }
 \keyword{datasets}
 

@@ -1,5 +1,5 @@
 ###
-#' 
+#' @include set.R
 #' @title Create Set
 #' 
 #' @description
@@ -22,5 +22,5 @@
 ###
 
 createSet = function(length, baserate, kappaMin, kappaMax, precisionMin, precisionMax){
-  return(createRandomSet(setLength = length, baserate = baserate, kappa = runif(1, kappaMin, kappaMax), precisionMin = precisionMin, precisionMax = precisionMax))
+  return(createRandomSet(setLength = length, baserate = baserate, kappa = runif(1, kappaMin, kappaMax), minPrecision = precisionMin, maxPrecision = precisionMax))
 }

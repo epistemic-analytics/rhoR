@@ -21,9 +21,6 @@ RoxygenNote: 5.0.1
 Suggests:
     testthat
 Collate:
-    'calcKappa.R'
-    'calcRho.R'
-    'checkBRPKcombo.R'
     'rhoR.R'
     'rho.R'
     'rho.set.R'
@@ -31,10 +28,15 @@ Collate:
     'kappa.set.R'
     'kappa.ct.R'
     'rho.minTSLength.R'
-    'set.R'
+    'baserate.R'
+    'calcKappa.R'
+    'calcRho.R'
+    'checkBRPKcombo.R'
     'contingencyTable.R'
     'contingencyToSet.R'
     'createRandomSet.R'
+    'set.R'
+    'createSet.R'
     'genPKcombo.R'
     'genPcombo.R'
     'generateKPs.R'

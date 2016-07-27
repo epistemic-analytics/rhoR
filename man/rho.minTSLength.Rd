@@ -7,7 +7,7 @@
 rho.minTSLength(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...)
 }
 \arguments{
-\item{baserate}{A double indicating the frequency a code occurs for the first rater in the code set}
+\item{baserate}{A \code{\link{baserate}}}
 
 \item{alpha}{A double indicating the threshold of significance for rho (similar to an alpha level for a p value), defaulted to 0.05}
 
@@ -26,10 +26,10 @@ This function calculates the minimum testSetLength where it is possible to get a
 }
 \examples{
 #Add testSetBaserateInflation as an additional parameter
-rho.minTSLength(0.2, testSetBaserateInflation = 0.2)
+rho.minTSLength(0.2, testSetBaserateInflation = 0.33)
 
 #Add testSetBaserateInflation as well as changing inc and selecting printInc
-rho.minTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.2)
+rho.minTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 
 }
 \keyword{rho.minTSLength}

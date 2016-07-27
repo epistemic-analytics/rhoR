@@ -7,7 +7,7 @@
 #' 
 #' @export
 #' @param set The test \code{\link{set}} used to calculate rho 
-#'  @param SDSBaserate The \code{\link{baserate}} of a simulated data set, if NULL, assume the baserate of the simulated data set is the same as the test
+#' @param SDSBaserate The \code{\link{baserate}} of a simulated data set, if NULL, assume the baserate of the simulated data set is the same as the test
 #' @param testSetBaserateInflation The percent, as a decimal, of the test set that is guaranteed to be a positive for the first rater
 #' @param SDSLength The length of the simulated data sets used to calculate rho
 #' @param replicates The number of simulated data sets to use in the null hypothesis distribution for rho
@@ -34,7 +34,7 @@ rho.set = function(
   SDSBaserate = NULL,
   testSetBaserateInflation = 0,
   SDSLength = 10000,
-  runs = 800,
+  replicates = 800,
   kappaThreshold = .65,
   SDSKappaMin = .40,
   SDSPrecisionMin = 0.6,
@@ -53,7 +53,7 @@ rho.set = function(
       length(set),
       testSetBaserateInflation,
       SDSLength,
-      runs,
+      replicates,
       kappaThreshold, SDSKappaMin, SDSPrecisionMin, SDSPrecisionMax
     ), 
     kappa = kappa

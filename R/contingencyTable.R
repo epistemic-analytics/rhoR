@@ -1,4 +1,4 @@
-#' @include set.R
+#' @include baserate.R
 #' @title contingencyTable sample
 #' 
 #' @description A sample contingencyTable \cr

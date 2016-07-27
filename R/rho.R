@@ -41,7 +41,7 @@ rho = function(
   testSetLength, 
   testSetBaserateInflation = 0, 
   SDSLength = 10000, 
-  runs = 800, 
+  replicates = 800, 
   kappaThreshold = .65, 
   SDSKappaMin = .40, 
   SDSPrecisionMin = 0.6, 
@@ -51,7 +51,7 @@ rho = function(
   if(SDSBaserate < 0)stop("SDSBaserate must be positive.")
   if(testSetLength%%1 != 0) stop("testSetLength value must be a positive integer.")
   if(SDSLength%%1 != 0) stop("SDSLength value must be a positive integer.")
-  if(runs%%1 != 0) stop("Runs value must be a positive integer.")
+  if(replicates%%1 != 0) stop("Replicates value must be a positive integer.")
   if(kappaThreshold < 0) stop("kappaThreshold must be positive.")
   if(SDSKappaMin < 0) stop("CSKappaMin must be positive.")
   if(kappaThreshold < SDSKappaMin) stop("kappaThreshold must be greater than CSKappaMin.")
@@ -59,7 +59,7 @@ rho = function(
   if(SDSPrecisionMax < 0 | SDSPrecisionMax > 1) stop("SDSPrecisionMax must be between 0 and 1.")
   if(SDSPrecisionMax < SDSPrecisionMin) stop("SDSPrecisionMax must be greater than SDSPrecisionMin.")
   
-  return(calcRho(observedKappa, SDSBaserate, testSetLength, testSetBaserateInflation, SDSLength, runs, kappaThreshold, SDSKappaMin, SDSPrecisionMin, SDSPrecisionMax))
+  return(calcRho(observedKappa, SDSBaserate, testSetLength, testSetBaserateInflation, SDSLength, replicates, kappaThreshold, SDSKappaMin, SDSPrecisionMin, SDSPrecisionMax))
   
 }
 
