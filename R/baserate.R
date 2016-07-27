@@ -1,5 +1,5 @@
 ###
-#' @include rho_minTSLength.R
+#' @include rhoMinTSLength.R
 #' @title Calculate Baserate
 #' 
 #' @description
