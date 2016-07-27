@@ -7,52 +7,54 @@
 #' 
 #' @export
 #' @param table The \code{\link{contingencyTable}} used to calculate rho 
-#' @param codeSetBaserate The frequency of ones for the first rater in the code set, if NULL, assume the baserate of the test set is the same as the code set
+#' @param SDSBaserate The \code{\link{baserate}} of a simulated data set, if NULL, assume the baserate of the simulated data set is the same as the test
 #' @param testSetBaserateInflation The percent, as a decimal, of the test set that is guaranteed to be a positive for the first rater
-#' @param codeSetLength The length of the code set used to calculate rho
-#' @param runs The number of code sets to use in the null hypothesis distribution for rho
-#' @param CSKappaMax The maximum kappa value used to generate code sets in the null hypothesis distribution for rho
-#' @param CSKappaMin The minimum kappa value used to generate code sets in the null hypothesis distribution for rho
-#' @param precisionMin The minimum precision to be used for generation of code sets in the null hypothesis distribution for rho
-#' @param precisionMax The maximum precision to be used for generation of code sets in the null hypothesis distribution for rho
+#' @param SDSLength The length of the simulated data sets used to calculate rho
+#' @param replicates The number of simulated data sets to use in the null hypothesis distribution for rho
+#' @param kappaThreshold The maximum kappa value used to generate simulated data sets in the null hypothesis distribution for rho
+#' @param SDSKappaMin The minimum kappa value used to generate simulated data sets in the null hypothesis distribution for rho
+#' @param precisionMin The minimum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
+#' @param precisionMax The maximum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
+#'
+#' @note replicates as used in monte carlo studies.
 #' @keywords rho.ct
 #' 
 #' @examples
 #' # Given testSetBaserateInflation
 #' rho.ct(contingencyTable, testSetBaserateInflation = 0.2)
 #' 
-#' # Given codeSetBaserate and testSetBaserateInflation
-#' rho.ct(contingencyTable, codeSetBaserate = 0.1, testSetBaserateInflation = 0.2)
+#' # Given SDSBaserate and testSetBaserateInflation
+#' rho.ct(contingencyTable, SDSBaserate = 0.1, testSetBaserateInflation = 0.2)
 #' 
 #' @return 
 #' A list containing rho and kappa
 ###
 rho.ct = function(
   table,
-  codeSetBaserate = NULL,
+  SDSBaserate = NULL,
   testSetBaserateInflation = 0,
-  codeSetLength = 10000,
+  SDSLength = 10000,
   runs = 800,
-  CSKappaMax = .65,
-  CSKappaMin = .40,
+  kappaThreshold = .65,
+  SDSKappaMin = .40,
   precisionMin = 0.6,
   precisionMax = 1
 ){
   kappa = kappa.ct(table);
   
-  if(is.null(codeSetBaserate)) {
-      codeSetBaserate = (sum(table[1,]))/(sum(table));
+  if(is.null(SDSBaserate)) {
+      SDSBaserate = (sum(table[1,]))/(sum(table));
   }
   
   return(list(
     rho = rho(
       kappa, 
-      codeSetBaserate,
+      SDSBaserate,
       sum(table),
       testSetBaserateInflation,
-      codeSetLength,
+      SDSLength,
       runs,
-      CSKappaMax, CSKappaMin, precisionMin, precisionMax
+      kappaThreshold, SDSKappaMin, precisionMin, precisionMax
     ), 
     kappa = kappa
   ));

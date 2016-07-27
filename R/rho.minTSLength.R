@@ -6,7 +6,7 @@
 #' This function calculates the minimum testSetLength where it is possible to get a rho less than alpha, which it returns as an integer.
 #' 
 #' @export
-#' @param baserate A double indicating the frequency a code occurs for the first rater in the code set
+#' @param baserate A \code{\link{baserate}}
 #' @param alpha A double indicating the threshold of significance for rho (similar to an alpha level for a p value), defaulted to 0.05
 #' @param inc An integer indicating by how much the testSetLength should increase each iteration
 #' @param printInc A boolean indicating whether to print out each increment value with it's corresponding significance for rho
@@ -14,11 +14,11 @@
 #' @keywords rho.minTSLength
 #' 
 #' @examples
-#' #Add testSetBaserate as an additional parameter
-#' rho.minTSLength(0.2, testSetBaserate = 0.2)
+#' #Add testSetBaserateInflation as an additional parameter
+#' rho.minTSLength(0.2, testSetBaserateInflation = 0.33)
 #' 
-#' #Add testSetBaserate as well as changing inc and selecting printInc
-#' rho.minTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserate = 0.2)
+#' #Add testSetBaserateInflation as well as changing inc and selecting printInc
+#' rho.minTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 #' 
 #' @return 
 #' An integer giving the minimum length of testSet, as a denomination of inc, that would give a

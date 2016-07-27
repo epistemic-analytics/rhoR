@@ -3,35 +3,28 @@
 #' @title Calculate kappa (contingency Table)
 #' 
 #' @description 
-#' This function calculates kappa given a contingency table and can evaluate if it is greater than a threshold
+#' This function calculates kappa given a contingency table.
 #' 
 #' @export
 #' @param ct A \code{\link{contingencyTable}}
-#' @param CSKappaMax Optional. The maximum kappa value used to generate code sets in the null hypothesis distribution for rho
+#' 
 #' @keywords kappa.ct
 #' 
 #' @examples
-#' # Given contingency Table and no CSKappaMax
-#' kappa.ct(contingencyTable, CSKappaMax = NULL)
-#' 
-#' # Given contingency with threshold
-#' kappa.ct(contingencyTable, CSKappaMax = 0.65)
+#' #Given a contingency Table
+#' kappa.ct(contingencyTable)
 #' 
 #' @return 
-#' If CSKappaMax is NULL: kappa as a double.
-#' If CSKappaMax is not NULL: a list containing both the kappa, as a double, and a boolen indicating if it is
-#' above the provided threshold.
+#' Kappa as a double.
+#'
 ###
-kappa.ct = function(ct, CSKappaMax = NULL) {
+kappa.ct = function(ct) {
   if(ncol(ct) != 2 || nrow(ct) != 2) stop("Incorrect number of dimensions: Contingency table must be 2x2.")
-  if(!is.null(CSKappaMax)) {
-    if(CSKappaMax < 0 | CSKappaMax >1) stop("CSKappaMax must be between 0 and 1.")
-  }
   for(i in 1:nrow(ct)) {
     for(j in 1:ncol(ct)) {
       if (ct[i,j]%%1 != 0) stop("Contingency table values must be positive integers.")
     }  
   }
   
-  return(calcKappa(ct,isSet = FALSE,CSKappaMax));
+  return(calcKappa(ct,isSet = FALSE,kappaThreshold = NULL));
 }

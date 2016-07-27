@@ -9,11 +9,10 @@
 set
 }
 \description{
-A sample set \cr
+A sample test set \cr
 gold = c(1,1,1,1,rep(0,36))
 silver = c(1,1,1,0,1,1,rep(0,34)) \cr
 set = cbind(gold,silver)
-testSetBaserateInflation = .1
 }
 \details{
 A set can be any length of vectors that are bound using \code{\link{cbind}}.
