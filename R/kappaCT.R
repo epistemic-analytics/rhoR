@@ -1,23 +1,23 @@
 ###
-#' @include kappa_set.R
+#' @include kappaSet.R
 #' @title Calculate kappa (contingency Table)
 #' 
 #' @description 
 #' This function calculates kappa given a contingency table.
 #' 
-#' @export kappa_ct
+#' @export
 #' @param ct A \code{\link{contingencyTable}}
 #' 
-#' @keywords kappa_ct
+#' @keywords kappaCT
 #' 
 #' @examples
 #' #Given a contingency Table
-#' kappa_ct(contingencyTable)
+#' kappaCT(contingencyTable)
 #' 
 #' @return 
 #' Kappa as a double.
 ###
-kappa_ct = function(ct){
+kappaCT = function(ct){
   if(ncol(ct) != 2 || nrow(ct) != 2) stop("Incorrect number of dimensions: Contingency table must be 2x2.")
   for(i in 1:nrow(ct)) {
     for(j in 1:ncol(ct)) {
