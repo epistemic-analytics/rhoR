@@ -32,5 +32,5 @@ rho_minTSLength(0.2, testSetBaserateInflation = 0.33)
 rho_minTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 
 }
-\keyword{rho.minTSLength}
+\keyword{rho_minTSLength}
 

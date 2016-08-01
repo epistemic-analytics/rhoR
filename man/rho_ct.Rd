@@ -44,5 +44,5 @@ rho_ct(contingencyTable, testSetBaserateInflation = 0.2)
 rho_ct(contingencyTable, SDSBaserate = 0.1, testSetBaserateInflation = 0.2)
 
 }
-\keyword{rho.ct}
+\keyword{rho_ct}
 

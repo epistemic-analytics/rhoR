@@ -44,5 +44,5 @@ rho_set(set, testSetBaserateInflation = 0.2)
 rho_set(set, SDSBaserate = 0.1, testSetBaserateInflation = 0.2)
 
 }
-\keyword{rho.set}
+\keyword{rho_set}
 

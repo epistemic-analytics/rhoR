@@ -20,5 +20,5 @@ This function calculates kappa given a set.
 kappa_set(set)
 
 }
-\keyword{kappa.set}
+\keyword{kappa_set}
 
