@@ -6,9 +6,10 @@
 #' 
 #' @format The set is an object of class data.frame with n rows and two columns. 
 #' 
-#' @examples An example test set \cr
+#' @examples 
+#' #An example test set
 #' gold = c(1,1,1,1,rep(0,36))
-#' silver = c(1,1,1,0,1,1,rep(0,34)) \cr
-#' exampleSet = cbind(gold,silver) \cr
-#' This set is included in the package under the variable name "exampleSet".
-"exampleSet"
+#' silver = c(1,1,1,0,1,1,rep(0,34))
+#' exampleSet = cbind(gold,silver)
+#' #This set is included in the package under the variable name "set".
+"set"

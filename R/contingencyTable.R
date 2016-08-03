@@ -7,8 +7,9 @@
 #' 
 #' @format The contingency Table is an object of class data.frame: as.data.frame(matrix(c(PP, NP, PN, NN))).
 #' 
-#' @examples A example contingencyTable \cr
-#' ct = as.data.frame(matrix(c(3,2,1,34), nrow = 2, ncol = 2)) \cr
-#' This contingencyTable is included in the package under the variable name "exampleContingencyTable".
+#' @examples 
+#' #A example contingencyTable
+#' ct = as.data.frame(matrix(c(3,2,1,34), nrow = 2, ncol = 2))
+#' #This contingencyTable is included in the package under the variable name "contingencyTable".
 #' 
-"exampleContingencyTable"
+"contingencyTable"
