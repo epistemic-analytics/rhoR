@@ -36,7 +36,7 @@ Collate:
     'contingencyToSet.R'
     'createRandomSet.R'
     'set.R'
-    'createSet.R'
+    'createSDS.R'
     'genPKcombo.R'
     'genPcombo.R'
     'generateKPs.R'
