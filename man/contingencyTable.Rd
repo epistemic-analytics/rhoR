@@ -3,20 +3,21 @@
 \docType{data}
 \name{contingencyTable}
 \alias{contingencyTable}
-\title{contingencyTable sample}
-\format{An object of class \code{data.frame} with 2 rows and 2 columns.}
+\title{contingencyTable}
+\format{The contingency Table is an object of class data.frame: as.data.frame(matrix(c(PP, NP, PN, NN))).}
 \usage{
 contingencyTable
 }
 \description{
-A sample contingencyTable \cr
-ct = as.data.frame(matrix(c(3,2,1,34), nrow = 2, ncol = 2)) \cr
-}
-\details{
 A contingency Table is a 2x2 matrix that contains the counts of all combinations of positive and negative ratings made by two raters. \cr
-The contingency Table is represented as a data frame: as.data.frame(matrix(c(PP, NP, PN, NN))).
 
 The first rater values are represented by the first letter, and the second rater values are represented by the second letter. The baserate is calculated by (PP + PN)/(PP + PN + NP + NN).
+}
+\examples{
+A example contingencyTable \\cr
+ct = as.data.frame(matrix(c(3,2,1,34), nrow = 2, ncol = 2)) \\cr
+This contingencyTable is included in the package under the variable name "exampleContingencyTable".
+
 }
 \keyword{datasets}
 
