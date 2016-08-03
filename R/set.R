@@ -11,4 +11,4 @@
 #' silver = c(1,1,1,0,1,1,rep(0,34)) \cr
 #' exampleSet = cbind(gold,silver) \cr
 #' This set is included in the package under the variable name "exampleSet".
-"set"
+"exampleSet"

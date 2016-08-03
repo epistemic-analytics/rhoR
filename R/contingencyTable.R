@@ -11,4 +11,4 @@
 #' ct = as.data.frame(matrix(c(3,2,1,34), nrow = 2, ncol = 2)) \cr
 #' This contingencyTable is included in the package under the variable name "exampleContingencyTable".
 #' 
-"contingencyTable"
+"exampleContingencyTable"
