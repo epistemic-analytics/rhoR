@@ -32,9 +32,5 @@ rhoMinTSLength(0.2, testSetBaserateInflation = 0.33)
 rhoMinTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 
 }
-<<<<<<< HEAD:man/rho_minTSLength.Rd
-\keyword{rho_minTSLength}
-=======
 \keyword{rhoMinTSLength}
->>>>>>> a075ab6b259bbfc70e03a3ac0c00b32d52acfdce:man/rhoMinTSLength.Rd
 

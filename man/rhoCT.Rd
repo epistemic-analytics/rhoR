@@ -44,9 +44,5 @@ rhoCT(contingencyTable, testSetBaserateInflation = 0.2)
 rhoCT(contingencyTable, SDSBaserate = 0.1, testSetBaserateInflation = 0.2)
 
 }
-<<<<<<< HEAD:man/rho_ct.Rd
-\keyword{rho_ct}
-=======
 \keyword{rhoCT}
->>>>>>> a075ab6b259bbfc70e03a3ac0c00b32d52acfdce:man/rhoCT.Rd
 

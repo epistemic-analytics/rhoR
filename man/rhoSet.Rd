@@ -44,9 +44,5 @@ rhoSet(set, testSetBaserateInflation = 0.2)
 rhoSet(set, SDSBaserate = 0.1, testSetBaserateInflation = 0.2)
 
 }
-<<<<<<< HEAD:man/rho_set.Rd
-\keyword{rho_set}
-=======
 \keyword{rhoSet}
->>>>>>> a075ab6b259bbfc70e03a3ac0c00b32d52acfdce:man/rhoSet.Rd
 

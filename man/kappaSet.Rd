@@ -20,9 +20,5 @@ This function calculates kappa given a set.
 kappaSet(set)
 
 }
-<<<<<<< HEAD:man/kappa_set.Rd
-\keyword{kappa_set}
-=======
 \keyword{kappaSet}
->>>>>>> a075ab6b259bbfc70e03a3ac0c00b32d52acfdce:man/kappaSet.Rd
 
