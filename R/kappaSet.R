@@ -3,16 +3,18 @@
 #' @title Calculate kappa (Set)
 #' 
 #' @description 
-#' This function calculates kappa given a set.
+#' This function calculates Cohen's kappa for a given \code{\link{codeSet}}
 #' 
 #' @export
-#' @param set A \code{\link{set}}
+#' @param set A \code{\link{codeSet}}
 #' 
 #' @keywords kappaSet
 #' 
+#' @seealso \code{\link{kappaCT}}
+#' 
 #' @examples
 #' # Given set
-#' kappaSet(set)
+#' kappaSet(codeSet)
 #' 
 #' @return 
 #' Kappa as a double.

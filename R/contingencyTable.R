@@ -5,7 +5,7 @@
 #' 
 #' The first rater values are represented by the first letter, and the second rater values are represented by the second letter. The baserate is calculated by (PP + PN)/(PP + PN + NP + NN).
 #' 
-#' @format The contingency Table is an object of class data.frame: as.data.frame(matrix(c(PP, NP, PN, NN))).
+#' @format The contingency Table is an object of class data.frame: matrix(c(PP, NP, PN, NN), nrow = 2, ncol = 2).
 #' 
 #' @examples 
 #' #A example contingencyTable

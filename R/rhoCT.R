@@ -7,54 +7,55 @@
 #' 
 #' @export
 #' @param table The \code{\link{contingencyTable}} used to calculate rho 
-#' @param SDSBaserate The \code{\link{baserate}} of a simulated data set, if NULL, assume the baserate of the simulated data set is the same as the test
-#' @param testSetBaserateInflation The percent, as a decimal, of the test set that is guaranteed to be a positive for the first rater
-#' @param SDSLength The length of the simulated data sets used to calculate rho
-#' @param replicates The number of simulated data sets to use in the null hypothesis distribution for rho
-#' @param kappaThreshold The maximum kappa value used to generate simulated data sets in the null hypothesis distribution for rho
-#' @param SDSKappaMin The minimum kappa value used to generate simulated data sets in the null hypothesis distribution for rho
-#' @param SDSPrecisionMin The minimum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
-#' @param SDSPrecisionMax The maximum precision to be used for generation of simulated data sets in the null hypothesis distribution for rho
+#' @param ScSBaserate The \code{\link{baserate}} of a simulated \code{\link{codeSet}}, if NULL, the baserate of \emph{table} is used as the baserate of the simulated \code{\link{codeSet}}
+#' @param testSetBaserateInflation The minimum \code{\link{baserate}} gaurunteed for the \code{\link{testSet}}
+#' @param ScSLength The length of the simulated \code{\link{codeSet}}s used to calculate rho
+#' @param replicates The number of simulated \code{\link{codeSet}}s to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study
+#' @param kappaThreshold The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' @param ScSKappaMin The minimum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' @param ScSPrecisionMin The minimum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' @param ScSPrecisionMax The maximum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
 #'
-#' @note replicates as used in monte carlo studies.
 #' @keywords rhoCT
 #' 
 #' @examples
 #' # Given testSetBaserateInflation
 #' rhoCT(contingencyTable, testSetBaserateInflation = 0.2)
 #' 
-#' # Given SDSBaserate and testSetBaserateInflation
-#' rhoCT(contingencyTable, SDSBaserate = 0.1, testSetBaserateInflation = 0.2)
+#' # Given ScSBaserate and testSetBaserateInflation
+#' rhoCT(contingencyTable, ScSBaserate = 0.1, testSetBaserateInflation = 0.2)
 #' 
-#' @return 
-#' A list containing rho and kappa
+#' @return A list of the format:\describe{
+#' \item{rho}{The rho of the \emph{table}}
+#' \item{kappa}{The Cohen's Kappa of the \emph{table}}
+#' }
 ###
 rhoCT = function(
   table,
-  SDSBaserate = NULL,
+  ScSBaserate = NULL,
   testSetBaserateInflation = 0,
-  SDSLength = 10000,
+  ScSLength = 10000,
   replicates = 800,
   kappaThreshold = .65,
-  SDSKappaMin = .40,
-  SDSPrecisionMin = 0.6,
-  SDSPrecisionMax = 1
+  ScSKappaMin = .40,
+  ScSPrecisionMin = 0.6,
+  ScSPrecisionMax = 1
 ){
   kappa = kappaCT(table);
   
-  if(is.null(SDSBaserate)) {
-      SDSBaserate = (sum(table[1,]))/(sum(table));
+  if(is.null(ScSBaserate)) {
+      ScSBaserate = (sum(table[1,]))/(sum(table));
   }
   
   return(list(
     rho = rho(
       kappa, 
-      SDSBaserate,
+      ScSBaserate,
       sum(table),
       testSetBaserateInflation,
-      SDSLength,
+      ScSLength,
       replicates,
-      kappaThreshold, SDSKappaMin, SDSPrecisionMin, SDSPrecisionMax
+      kappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax
     ), 
     kappa = kappa
   ));

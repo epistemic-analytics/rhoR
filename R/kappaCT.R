@@ -3,12 +3,14 @@
 #' @title Calculate kappa (contingency Table)
 #' 
 #' @description 
-#' This function calculates kappa given a contingency table.
+#' This function calculates Cohen's kappa given a \code{\link{contingencyTable}}
 #' 
 #' @export
 #' @param ct A \code{\link{contingencyTable}}
 #' 
 #' @keywords kappaCT
+#' 
+#' @seealso \code{\link{kappaSet}}
 #' 
 #' @examples
 #' #Given a contingency Table
