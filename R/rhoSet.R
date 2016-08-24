@@ -20,10 +20,10 @@
 #' 
 #' @examples
 #' # Given testSetBaserateInflation
-#' rhoSet(set, testSetBaserateInflation = 0.2)
+#' rhoSet(codeSet, testSetBaserateInflation = 0.2)
 #' 
 #' # Given ScSBaserate and testSetBaserateInflation
-#' rhoSet(set, ScSBaserate = 0.1, testSetBaserateInflation = 0.2)
+#' rhoSet(codeSet, ScSBaserate = 0.1, testSetBaserateInflation = 0.2)
 #' 
 #' @return A list of the format:\describe{
 #' \item{rho}{The rho of the \emph{table}}

@@ -38,10 +38,10 @@ This function calculates rho and kappa for a given set, and returns a list conta
 }
 \examples{
 # Given testSetBaserateInflation
-rhoSet(set, testSetBaserateInflation = 0.2)
+rhoSet(codeSet, testSetBaserateInflation = 0.2)
 
 # Given ScSBaserate and testSetBaserateInflation
-rhoSet(set, ScSBaserate = 0.1, testSetBaserateInflation = 0.2)
+rhoSet(codeSet, ScSBaserate = 0.1, testSetBaserateInflation = 0.2)
 
 }
 \keyword{rhoSet}
