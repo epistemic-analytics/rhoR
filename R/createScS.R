@@ -1,5 +1,5 @@
 ###
-#' @include set.R
+#' @include codeSet.R
 #' @title Create Simulated codeSet
 #' 
 #' @description

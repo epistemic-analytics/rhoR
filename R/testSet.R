@@ -1,5 +1,5 @@
 ###
-#' @include rhoMinTSLength.R
+#' @include createScS.R
 #' @title Get Test Set
 #' 
 #' @description

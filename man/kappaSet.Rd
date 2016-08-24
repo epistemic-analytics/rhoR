@@ -7,18 +7,21 @@
 kappaSet(set)
 }
 \arguments{
-\item{set}{A \code{\link{set}}}
+\item{set}{A \code{\link{codeSet}}}
 }
 \value{
 Kappa as a double.
 }
 \description{
-This function calculates kappa given a set.
+This function calculates Cohen's kappa for a given \code{\link{codeSet}}
 }
 \examples{
 # Given set
-kappaSet(set)
+kappaSet(codeSet)
 
+}
+\seealso{
+\code{\link{kappaCT}}
 }
 \keyword{kappaSet}
 

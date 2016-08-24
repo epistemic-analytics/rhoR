@@ -1,4 +1,4 @@
-#' @include baserate.R
+#' @include baserateCT.R
 #' @title contingencyTable
 #' 
 #' @description A contingency Table is a 2x2 matrix that contains the counts of all combinations of positive and negative ratings made by two raters.

@@ -1,5 +1,5 @@
 ###
-#' @include rhoMinTSLength.R
+#' @include baserate.R
 #' @title Calculate Baserate (CT)
 #' 
 #' @description

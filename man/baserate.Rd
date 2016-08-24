@@ -2,21 +2,28 @@
 % Please edit documentation in R/baserate.R
 \name{baserate}
 \alias{baserate}
-\title{Calculate Baserate}
+\title{Calculate Baserate (Set)}
 \usage{
 baserate(set)
 }
 \arguments{
-\item{set}{The \code{\link{set}} for which the baserate is calculated}
+\item{set}{The \code{\link{codeSet}} for which the baserate is calculated}
 }
 \value{
-A list of baserates; first being the first rater's, second being the second rater's, and the third being the average of the two raters.
+A list of the format:\describe{
+\item{firstBaserate}{The percentage that a positive code, or a 1, appears in the first rater}
+\item{secondBaserate}{The percentage that a positive code, or a 1, appears in the second rater}
+\item{averageBasreate}{The average percentage that a positive code, or a 1, appears in either of the two raters}
+}
 }
 \description{
 This function will calculate the baserate of the first and second rater as well as the average of both the raters.
 }
 \details{
-A baserate is the percentage, as a decimal, that a positive code appears in a set for a given rater.  It is assumed that the first rater is more experienced and thus provides a better estimation of the actual baserate for a given code.  If the raters are assumed to have the same experience level, the average baserate may give a more accurate approximation.  If the second rater is more experienced, the second rater's baserate would be assumed to be a better estimation.  Functions assume that the first rater is the more experienced rater and thus uses the first rater's baserate as the overall baserate estimation.
+A baserate is the percentage, as a decimal, that a positive code appears in a \code{\link{codeSet}} for a given rater.  It is assumed that the first rater is more experienced and thus provides a better estimation of the actual baserate for a given code.  If the raters are assumed to have the same experience level, the average baserate may give a more accurate approximation.  If the second rater is more experienced, the second rater's baserate would be assumed to be a better estimation.  Functions assume that the first rater is the more experienced rater and thus uses the first rater's baserate as the overall baserate estimation.
+}
+\seealso{
+\code{\link{baserateCT}}
 }
 \keyword{baserate}
 

@@ -4,7 +4,7 @@
 \name{contingencyTable}
 \alias{contingencyTable}
 \title{contingencyTable}
-\format{The contingency Table is an object of class data.frame: as.data.frame(matrix(c(PP, NP, PN, NN))).}
+\format{The contingency Table is an object of class data.frame: matrix(c(PP, NP, PN, NN), nrow = 2, ncol = 2).}
 \usage{
 contingencyTable
 }

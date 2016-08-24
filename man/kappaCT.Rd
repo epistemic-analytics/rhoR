@@ -13,12 +13,15 @@ kappaCT(ct)
 Kappa as a double.
 }
 \description{
-This function calculates kappa given a contingency table.
+This function calculates Cohen's kappa given a \code{\link{contingencyTable}}
 }
 \examples{
 #Given a contingency Table
 kappaCT(contingencyTable)
 
+}
+\seealso{
+\code{\link{kappaSet}}
 }
 \keyword{kappaCT}
 
