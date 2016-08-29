@@ -17,7 +17,7 @@
 #' kappaCT(contingencyTable)
 #' 
 #' @return 
-#' Kappa as a double.
+#' The kappa of the \code{\link{contingencyTable}}
 ###
 kappaCT = function(ct){
   if(ncol(ct) != 2 || nrow(ct) != 2) stop("Incorrect number of dimensions: Contingency table must be 2x2.")

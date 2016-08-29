@@ -10,7 +10,7 @@ kappaCT(ct)
 \item{ct}{A \code{\link{contingencyTable}}}
 }
 \value{
-Kappa as a double.
+The kappa of the \code{\link{contingencyTable}}
 }
 \description{
 This function calculates Cohen's kappa given a \code{\link{contingencyTable}}

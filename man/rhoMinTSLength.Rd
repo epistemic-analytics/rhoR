@@ -9,7 +9,7 @@ rhoMinTSLength(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...)
 \arguments{
 \item{baserate}{A \code{\link{baserate}}}
 
-\item{alpha}{A double indicating the threshold of significance for rho (similar to an alpha level for a p value), defaulted to 0.05}
+\item{alpha}{The threshold of significance for rho (similar to an alpha level for a p value), defaulted to 0.05}
 
 \item{inc}{An integer indicating by how much the testSetLength should increase each iteration}
 
@@ -18,11 +18,11 @@ rhoMinTSLength(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...)
 \item{...}{Any additional parameters passed into \code{\link{rho}}}
 }
 \value{
-An integer giving the minimum length of testSet, as a denomination of inc, that would give a
+The minimum length of testSet, as a denomination of inc, that would give a
 value where rho becomes mathematically possible
 }
 \description{
-This function calculates the minimum testSetLength where it is possible to get a rho less than alpha, which it returns as an integer.
+This function calculates the minimum testSetLength where it is possible to get a rho less than alpha for the given parameters of rho.
 }
 \examples{
 #Add testSetBaserateInflation as an additional parameter

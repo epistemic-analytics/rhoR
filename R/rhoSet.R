@@ -7,11 +7,11 @@
 #' 
 #' @export
 #' @param set The test \code{\link{codeSet}} used to calculate rho 
-#' @param ScSBaserate The \code{\link{baserate}} of a simulated \code{\link{codeSet}}, if NULL, assume the baserate of the simulated \code{\link{codeSet}} is the same as the test
+#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}}
 #' @param testSetBaserateInflation The minimum \code{\link{baserate}} gaurunteed for the \code{\link{testSet}}
-#' @param ScSLength The length of the simulated \code{\link{codeSet}}s used to calculate rho
+#' @param OcSLength The length of the observed \code{\link{codeSet}}
 #' @param replicates The number of simulated \code{\link{codeSet}}s to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study
-#' @param kappaThreshold The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' @param ScSKappaThreshold The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
 #' @param ScSKappaMin The minimum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
 #' @param ScSPrecisionMin The minimum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
 #' @param ScSPrecisionMax The maximum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
@@ -23,39 +23,39 @@
 #' rhoSet(codeSet, testSetBaserateInflation = 0.2)
 #' 
 #' # Given ScSBaserate and testSetBaserateInflation
-#' rhoSet(codeSet, ScSBaserate = 0.1, testSetBaserateInflation = 0.2)
+#' rhoSet(codeSet, OcSBaserate = 0.1, testSetBaserateInflation = 0.2)
 #' 
 #' @return A list of the format:\describe{
-#' \item{rho}{The rho of the \emph{table}}
-#' \item{kappa}{The Cohen's Kappa of the \emph{table}}
+#' \item{rho}{The rho of the \code{\link{codeSet}}}
+#' \item{kappa}{The Cohen's Kappa of the \code{\link{codeSet}}}
 #' }
 ###
 rhoSet = function(
   set,
-  ScSBaserate = NULL,
+  OcSBaserate = NULL,
   testSetBaserateInflation = 0,
-  ScSLength = 10000,
+  OcSLength = 10000,
   replicates = 800,
-  kappaThreshold = .65,
+  ScSKappaThreshold = .65,
   ScSKappaMin = .40,
   ScSPrecisionMin = 0.6,
   ScSPrecisionMax = 1
 ){
   kappa = kappaSet(set);
   
-  if(is.null(ScSBaserate)) {
-    ScSBaserate = length(which(set[,1] == 1))/length(set);
+  if(is.null(OcSBaserate)) {
+    OcSBaserate = length(which(set[,1] == 1))/length(set);
   }
   
   return(list(
     rho = rho(
       kappa, 
-      ScSBaserate,
+      OcSBaserate,
       length(set),
       testSetBaserateInflation,
-      ScSLength,
+      OcSLength,
       replicates,
-      kappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax
+      ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax
     ), 
     kappa = kappa
   ));

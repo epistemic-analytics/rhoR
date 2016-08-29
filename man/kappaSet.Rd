@@ -10,13 +10,13 @@ kappaSet(set)
 \item{set}{A \code{\link{codeSet}}}
 }
 \value{
-Kappa as a double.
+The kappa of the \code{\link{codeSet}}
 }
 \description{
 This function calculates Cohen's kappa for a given \code{\link{codeSet}}
 }
 \examples{
-# Given set
+# Given a set
 kappaSet(codeSet)
 
 }

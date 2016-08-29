@@ -4,22 +4,22 @@
 \alias{rhoCT}
 \title{Rho (contingency Table)}
 \usage{
-rhoCT(table, ScSBaserate = NULL, testSetBaserateInflation = 0,
-  ScSLength = 10000, replicates = 800, kappaThreshold = 0.65,
+rhoCT(contingencyTable, OcSBaserate = NULL, testSetBaserateInflation = 0,
+  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.65,
   ScSKappaMin = 0.4, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1)
 }
 \arguments{
-\item{table}{The \code{\link{contingencyTable}} used to calculate rho}
+\item{contingencyTable}{The \code{\link{contingencyTable}} used to calculate rho}
 
-\item{ScSBaserate}{The \code{\link{baserate}} of a simulated \code{\link{codeSet}}, if NULL, the baserate of \emph{table} is used as the baserate of the simulated \code{\link{codeSet}}}
+\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}}}
 
 \item{testSetBaserateInflation}{The minimum \code{\link{baserate}} gaurunteed for the \code{\link{testSet}}}
 
-\item{ScSLength}{The length of the simulated \code{\link{codeSet}}s used to calculate rho}
+\item{OcSLength}{The length of the observed \code{\link{codeSet}}}
 
 \item{replicates}{The number of simulated \code{\link{codeSet}}s to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study}
 
-\item{kappaThreshold}{The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho}
+\item{ScSKappaThreshold}{The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho}
 
 \item{ScSKappaMin}{The minimum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho}
 
@@ -29,19 +29,19 @@ rhoCT(table, ScSBaserate = NULL, testSetBaserateInflation = 0,
 }
 \value{
 A list of the format:\describe{
-\item{rho}{The rho of the \emph{table}}
-\item{kappa}{The Cohen's Kappa of the \emph{table}}
+\item{rho}{The rho of the \code{\link{contingencyTable}}}
+\item{kappa}{The Cohen's Kappa of the \code{\link{contingencyTable}}}
 }
 }
 \description{
-This function calculates rho and kappa for a given contingency table, and returns a list containing both values.
+This function calculates rho and kappa for a given \code{\link{contingencyTable}}, and returns a list containing both values.
 }
 \examples{
 # Given testSetBaserateInflation
 rhoCT(contingencyTable, testSetBaserateInflation = 0.2)
 
 # Given ScSBaserate and testSetBaserateInflation
-rhoCT(contingencyTable, ScSBaserate = 0.1, testSetBaserateInflation = 0.2)
+rhoCT(contingencyTable, OcSBaserate = 0.1, testSetBaserateInflation = 0.2)
 
 }
 \keyword{rhoCT}

@@ -13,11 +13,11 @@
 #' @seealso \code{\link{kappaCT}}
 #' 
 #' @examples
-#' # Given set
+#' # Given a set
 #' kappaSet(codeSet)
 #' 
 #' @return 
-#' Kappa as a double.
+#' The kappa of the \code{\link{codeSet}}
 #' 
 ###
 kappaSet = function(set){

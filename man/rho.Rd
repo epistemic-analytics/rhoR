@@ -2,26 +2,26 @@
 % Please edit documentation in R/rho.R
 \name{rho}
 \alias{rho}
-\title{Rho (Set)}
+\title{Rho}
 \usage{
-rho(observedKappa, ScSBaserate, testSetLength, testSetBaserateInflation = 0,
-  ScSLength = 10000, replicates = 800, kappaThreshold = 0.65,
+rho(observedKappa, OcSBaserate, testSetLength, testSetBaserateInflation = 0,
+  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.65,
   ScSKappaMin = 0.4, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1)
 }
 \arguments{
-\item{observedKappa}{The observed kappa value that will be tested with rho, as a double}
+\item{observedKappa}{The observed kappa value that will be tested with rho}
 
-\item{ScSBaserate}{The \code{\link{baserate}} for a simulated \code{\link{codeSet}}}
+\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}}}
 
-\item{testSetLength}{The number of items evaluated by two raters to establish inter rater reliability}
+\item{testSetLength}{The length of the \code{\link{testSet}} the \emph{observedKappa} was calculated from}
 
-\item{testSetBaserateInflation}{The percent, as a decimal, of the \code{\link{testSet}} that is guaranteed to be a positive for the first rater}
+\item{testSetBaserateInflation}{The minimum \code{\link{baserate}} gaurunteed for the \code{\link{testSet}}}
 
-\item{ScSLength}{The length of the simulated \code{\link{codeSet}}s used to calculate rho}
+\item{OcSLength}{The length of the observed \code{\link{codeSet}}}
 
 \item{replicates}{The number of simulated \code{\link{codeSet}}s to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study}
 
-\item{kappaThreshold}{The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho}
+\item{ScSKappaThreshold}{The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho}
 
 \item{ScSKappaMin}{The minimum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho}
 
@@ -30,18 +30,18 @@ rho(observedKappa, ScSBaserate, testSetLength, testSetBaserateInflation = 0,
 \item{ScSPrecisionMax}{The maximum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho}
 }
 \value{
-rho, as a double
+rho for the given parameters
 }
 \description{
-This function will calculate rho given the parameters of an observed \code{\link{testSet}}, which it returns as a double.
+This function will calculate rho given the parameters of an observed \code{\link{testSet}}
 }
 \examples{
 # Given only required parameters
-rho(observedKappa = 0.88, ScSBaserate = 0.2, testSetLength = 80)
+rho(observedKappa = 0.88, OcSBaserate = 0.2, testSetLength = 80)
 
 # Given required parameters plus testSetBaserateInflation and runs
 rho(
- observedKappa = 0.88, ScSBaserate = 0.2, testSetLength = 80, 
+ observedKappa = 0.88, OcSBaserate = 0.2, testSetLength = 80, 
  testSetBaserateInflation = 0.2, replicates = 500
 )
 

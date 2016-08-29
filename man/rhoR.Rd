@@ -4,22 +4,22 @@
 \name{rhoR}
 \alias{rhoR}
 \alias{rhoR-package}
-\title{rhoR: A package for computating rho.}
+\title{rhoR: A package for computing rho.}
 \description{
 rho is used to test the generalization of inter rater reliability (IRR)
 statistics, in this case Cohen's Kappa.
 }
 \details{
-Rho starts with an observed kappa value, calculated on a subsample of data, known as an observed \code{\link{testSet}}, and a \emph{kappa threshold} which indicates significant agreement between raters.
+Rho starts with an observed kappa value, calculated on a subset of a \code{\link{codeSet}}, known as an observed \code{\link{testSet}}, and a \emph{kappa threshold} which indicates what is considered significant agreement between raters.
 
 It then generates a collection of fully-coded, simulated 
 \code{\link{codeSet}}s (ScS), further described in \code{\link{createScS}}, all 
-of which have a kappa value below the kappa threshold.
+of which have a kappa value below the kappa threshold and similar properties as the original \code{\link{codeSet}}.
 
-Then kappa is calculated on a simulated \code{\link{testSet}} sampled from each of the ScSs in the
-collection to create a null hypothesis distribution. These simulated \code{\link{testSet}}s mirror the observed \code{\link{testSet}} in their size and sampling method, which is futher described in \code{\link{testSet}}
+Then, kappa is calculated on a \code{\link{testSet}} sampled from each of the ScSs in the
+collection to create a null hypothesis distribution. These \code{\link{testSet}}s mirror the observed \code{\link{testSet}} in their size and sampling method.  How these \code{\link{testSet}}s are sampled is futher described in \code{\link{testSet}}
 
-The null hypothesis is that the observed \code{\link{testSet}}, was sampled from a ScS within a population of simulated \code{\link{codeSet}}s which have kappas less than ScS kappa max, or that the observed kappa is not representative of the level of agreement that would be reached if both raters were to code the entire \code{\link{codeSet}}.
+The null hypothesis is that the observed \code{\link{testSet}}, was sampled from a ScS within a population of simulated \code{\link{codeSet}}s which have kappas less than ScS kappa threshold, or that the observed kappa is not representative of the level of agreement that would be reached if both raters were to code the entire \code{\link{codeSet}}.
 
 Researchers can set their own alpha level. If alpha is greater than the percentage of the distribution of samples from the code
 sets that is greater than the observed kappa, the null hypothesis is 
