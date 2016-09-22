@@ -62,11 +62,7 @@ rho = function(data, OcSBaserate = NULL,
                ScSPrecisionMin = 0.6,
                ScSPrecisionMax = 1){
   if(is.numeric(data)){
-<<<<<<< HEAD
     return(rhoK(data, OcSBaserate,
-=======
-    return(rho(data, OcSBaserate,
->>>>>>> 2ffddd8ce732e2913c1699a2e3dba55ae060bc9e
                testSetLength,
                testSetBaserateInflation,
                OcSLength,

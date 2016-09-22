@@ -1,5 +1,5 @@
 ###
-#' @include rhoMinTSLength.R
+#' @include rhoMin.R
 #' @title Calculate Baserate (Set)
 #' 
 #' @description

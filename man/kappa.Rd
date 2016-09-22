@@ -17,10 +17,10 @@ This function calculates Cohen's kappa on a \code{\link{contingencyTable}} or a 
 }
 \examples{
 #Given a code set
-kappa(data = set)
+kappa(data = codeSet)
 
 #Given a contingency Table
-kappa(data = CT)
+kappa(data = contingencyTable)
 
 }
 \seealso{

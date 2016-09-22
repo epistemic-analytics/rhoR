@@ -24,10 +24,10 @@ A baserate is the percentage, as a decimal, that a positive code appears in data
 }
 \examples{
 #Given a code set
-baserate(data = set)
+baserate(data = codeSet)
 
 #Given a contingency Table
-baserate(data = CT)
+baserate(data = contingencyTable)
 
 }
 \seealso{

@@ -18,8 +18,7 @@ rhoMin(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...)
 \item{...}{Any additional parameters passed into \code{\link{rho}}}
 }
 \value{
-The minimum length of testSet, as a denomination of inc, that would give a
-value where rho becomes mathematically possible
+The minimum length of testSet, to the nearest multiple of inc, greater than the minimum length, that would give a value where rho less than alpha becomes mathematically possible.
 }
 \description{
 This function calculates the minimum testSetLength where it is possible to get a rho less than alpha for the given parameters of rho.

@@ -17,7 +17,7 @@ A list of the format:\describe{
 }
 }
 \description{
-This function calculates the baserate of the first rater, second rater, and the average of both the raters. Called by \code{\link{baserate}}.
+This function will calculate the baserate of the first rater, second rater, and the average of both the raters.
 }
 \seealso{
 \code{\link{baserate}} and \code{\link{baserateCT}}
