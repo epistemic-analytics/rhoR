@@ -17,18 +17,21 @@ Depends:
     R (>= 3.0.0)
 License: GPL-3  | file LICENSE
 LazyData: true
-RoxygenNote: 5.0.1.9000
+RoxygenNote: 5.0.1
 Suggests:
     testthat
 Collate:
     'rhoR.R'
     'rho.R'
+    'rhoK.R'
     'rhoSet.R'
     'rhoCT.R'
+    'kappa.R'
     'kappaSet.R'
     'kappaCT.R'
-    'rhoMinTSLength.R'
+    'rhoMin.R'
     'baserate.R'
+    'baserateSet.R'
     'baserateCT.R'
     'calcKappa.R'
     'calcRho.R'
@@ -37,12 +40,12 @@ Collate:
     'codeSet.R'
     'contingencyToSet.R'
     'createRandomSet.R'
-    'createScS.R'
+    'createSimulatedCodeSet.R'
     'genPKcombo.R'
     'genPcombo.R'
     'generateKPs.R'
     'getBootPvalue.R'
     'getHandSet.R'
     'getR.R'
+    'getTestSet.R'
     'prset.R'
-    'testSet.R'

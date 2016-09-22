@@ -13,15 +13,10 @@ kappaCT(ct)
 The kappa of the \code{\link{contingencyTable}}
 }
 \description{
-This function calculates Cohen's kappa given a \code{\link{contingencyTable}}
-}
-\examples{
-#Given a contingency Table
-kappaCT(contingencyTable)
-
+This function calculates Cohen's kappa on a \code{\link{contingencyTable}}. Called by \code{\link{kappa}}.
 }
 \seealso{
-\code{\link{kappaSet}}
+\code{\link{kappa}} and \code{\link{kappaSet}}
 }
 \keyword{kappaCT}
 

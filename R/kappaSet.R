@@ -1,20 +1,16 @@
 ###
-#' @include rhoCT.R
+#' @include kappa.R
 #' @title Calculate kappa (Set)
 #' 
 #' @description 
-#' This function calculates Cohen's kappa for a given \code{\link{codeSet}}
+#' This function calculates Cohen's kappa for a given \code{\link{codeSet}}. Called by \code{\link{kappa}}.
 #' 
 #' @export
 #' @param set A \code{\link{codeSet}}
 #' 
-#' @keywords kappaSet
+#' @keywords kapppaSet
 #' 
-#' @seealso \code{\link{kappaCT}}
-#' 
-#' @examples
-#' # Given a set
-#' kappaSet(codeSet)
+#' @seealso \code{\link{kappa}} and \code{\link{kappaCT}}
 #' 
 #' @return 
 #' The kappa of the \code{\link{codeSet}}

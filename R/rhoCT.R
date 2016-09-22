@@ -3,27 +3,23 @@
 #' @title Rho (contingency Table)
 #' 
 #' @description 
-#' This function calculates rho and kappa for a given \code{\link{contingencyTable}}, and returns a list containing both values.
+#' This function calculates rho and kappa for a given \code{\link{contingencyTable}}, and returns a list containing both values. Called by \code{\link{rho}}.
 #' 
 #' @export
 #' @param contingencyTable The \code{\link{contingencyTable}} used to calculate rho 
-#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}}
-#' @param testSetBaserateInflation The minimum \code{\link{baserate}} gaurunteed for the \code{\link{testSet}}
+#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})
+#' @param testSetLength The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)
+#' @param testSetBaserateInflation The minimum \code{\link{baserate}} from the sampling procedure
 #' @param OcSLength The length of the observed \code{\link{codeSet}}
-#' @param replicates The number of simulated \code{\link{codeSet}}s to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study
-#' @param ScSKappaThreshold The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
-#' @param ScSKappaMin The minimum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
-#' @param ScSPrecisionMin The minimum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
-#' @param ScSPrecisionMax The maximum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' @param replicates The number of simulated \code{\link[=getTestSet]{codeSets}} to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study
+#' @param ScSKappaThreshold The maximum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' @param ScSKappaMin The minimum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' @param ScSPrecisionMin The minimum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' @param ScSPrecisionMax The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
 #'
 #' @keywords rhoCT
 #' 
-#' @examples
-#' # Given testSetBaserateInflation
-#' rhoCT(contingencyTable, testSetBaserateInflation = 0.2)
-#' 
-#' # Given ScSBaserate and testSetBaserateInflation
-#' rhoCT(contingencyTable, OcSBaserate = 0.1, testSetBaserateInflation = 0.2)
+#' @seealso \code{\link{rho}} and \code{\link{rhoK}} and \code{\link{rhoSet}}
 #' 
 #' @return A list of the format:\describe{
 #' \item{rho}{The rho of the \code{\link{contingencyTable}}}
@@ -48,7 +44,7 @@ rhoCT = function(
   }
   
   return(list(
-    rho = rho(
+    rho = rhoK(
       kappa, 
       OcSBaserate,
       sum(contingencyTable),

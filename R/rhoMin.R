@@ -21,10 +21,9 @@
 #' rhoMinTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 #' 
 #' @return 
-#' The minimum length of testSet, as a denomination of inc, that would give a
-#' value where rho becomes mathematically possible
+#' The minimum length of testSet, to the nearest multiple of inc, greater than the minimum length, that would give a value where rho less than alpha becomes mathematically possible.
 ###
-rhoMinTSLength = function(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...){
+rhoMin = function(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...){
   rhoVal = 1
   testSetLength = 10
   if(inc%%1 != 0 | inc <= 0) stop("Inc value must be a positive integer.")

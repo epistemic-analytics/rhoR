@@ -3,61 +3,83 @@
 #' @title Rho
 #' 
 #' @description 
-#' This function will calculate rho given the parameters of an observed \code{\link{testSet}}
+#' This function calculates rho for a \code{\link[=getTestSet]{testSet}}, \code{\link{contingencyTable}}, or an observed kappa value with associated set parameters (testSetLength and OCSBaserate). 
+#' 
+#' @details 
+#' Rho is a monte carlo rejective method of interrater reliability statistics, implemented here for Cohen's Kappa. Rho constructs a collection of data sets in which kappa is below a specified threshold, and computes the empirical distribution on kappa based on the specified sampling procedure. Rho returns the percent of the empirical distribution greater than or equal to an observed kappa. As a result, Rho quantifies the type 1 error in generalizing from an observed test set to a true value of agreement between two raters.
+#' 
+#' Rho starts with an observed kappa value, calculated on a subset of a \code{\link{codeSet}}, known as an observed \code{\link[=getTestSet]{testSet}}, and a \emph{kappa threshold} which indicates what is considered significant agreement between raters.
+#' 
+#' It then generates a collection of fully-coded, simulated 
+#' \code{\link[=getTestSet]{codeSets}} (ScS), further described in \code{\link{createSimulatedCodeSet}}, all 
+#' of which have a kappa value below the kappa threshold and similar properties as the original \code{\link{codeSet}}.
+#' 
+#' Then, kappa is calculated on a \code{\link[=getTestSet]{testSet}} sampled from each of the ScSs in the
+#' collection to create a null hypothesis distribution. These \code{\link[=getTestSet]{testSets}} mirror the observed \code{\link[=getTestSet]{testSets}} in their size and sampling method.  How these \code{\link[=getTestSet]{testSets}} are sampled is futher described in \code{\link{getTestSet}}.
+#' 
+#' The null hypothesis is that the observed \code{\link[=getTestSet]{testSet}}, was sampled from a data set, which, if both raters were to code in its entirety, would result in a level of agreement below the kappa threshold.
+#' 
+#' For example, using an alpha level of 0.05, if the observed kappa is greater than 95 percent of the kappas in the null hypothesis distribution, the null hypothesis is rejected. Then one can conclude that the two raters would have acceptable agreement had they coded the entire data set.
 #'
 #' @export
 #'
-#' @param observedKappa The observed kappa value that will be tested with rho
-#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}}
-#' @param testSetLength The length of the \code{\link{testSet}} the \emph{observedKappa} was calculated from
-#' @param testSetBaserateInflation The minimum \code{\link{baserate}} gaurunteed for the \code{\link{testSet}}
+#' @param data The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho
+#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})
+#' @param testSetLength The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)
+#' @param testSetBaserateInflation The minimum \code{\link{baserate}} from the sampling procedure
 #' @param OcSLength The length of the observed \code{\link{codeSet}}
-#' @param replicates The number of simulated \code{\link{codeSet}}s to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study
-#' @param ScSKappaThreshold The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
-#' @param ScSKappaMin The minimum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
-#' @param ScSPrecisionMin The minimum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
-#' @param ScSPrecisionMax The maximum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' @param replicates The number of simulated \code{\link[=getTestSet]{codeSets}} to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study
+#' @param ScSKappaThreshold The maximum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' @param ScSKappaMin The minimum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' @param ScSPrecisionMin The minimum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' @param ScSPrecisionMax The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
 #' 
 #' @keywords rho
 #' 
-#' @examples
-#' # Given only required parameters
-#' rho(observedKappa = 0.88, OcSBaserate = 0.2, testSetLength = 80)
+#' @seealso \code{\link{rhoK}} and \code{\link{rhoSet}} and \code{\link{rhoCT}}
 #' 
-#' # Given required parameters plus testSetBaserateInflation and runs
-#' rho(
-#'  observedKappa = 0.88, OcSBaserate = 0.2, testSetLength = 80, 
-#'  testSetBaserateInflation = 0.2, replicates = 500
-#')
+#' @examples
+#' # Given an observed kappa value
+#' rho(data = 0.88, OcSBaserate = 0.2, testSetLength = 80)
+#' 
+#  # Given an test Set
+#' rho(data = set)
+#' 
+#' # Given a contingency Table
+#' rho(data = CT)
 #'
 #' 
-#' @return rho for the given parameters
+#' @return rho and kappa for the given data and parameters (unless kappa is given)
 ###
-rho = function(
-  observedKappa, 
-  OcSBaserate, 
-  testSetLength, 
-  testSetBaserateInflation = 0, 
-  OcSLength = 10000, 
-  replicates = 800, 
-  ScSKappaThreshold = .65, 
-  ScSKappaMin = .40, 
-  ScSPrecisionMin = 0.6, 
-  ScSPrecisionMax = 1
-){
-  if(observedKappa > 1 | observedKappa < 0)stop("Observed kappa must be between 0 and 1.")
-  if(OcSBaserate < 0)stop("OcSBaserate must be positive.")
-  if(testSetLength%%1 != 0) stop("testSetLength value must be a positive integer.")
-  if(OcSLength%%1 != 0) stop("OcSLength value must be a positive integer.")
-  if(replicates%%1 != 0) stop("Replicates value must be a positive integer.")
-  if(ScSKappaThreshold < 0) stop("ScSKappaThreshold must be positive.")
-  if(ScSKappaMin < 0) stop("ScSKappaMin must be positive.")
-  if(ScSKappaThreshold < ScSKappaMin) stop("ScSKappaThreshold must be greater than ScSKappaMin.")
-  if(ScSPrecisionMin < 0 | ScSPrecisionMin > 1) stop("ScSPrecisionMin must be between 0 and 1.")
-  if(ScSPrecisionMax < 0 | ScSPrecisionMax > 1) stop("ScSPrecisionMax must be between 0 and 1.")
-  if(ScSPrecisionMax < ScSPrecisionMin) stop("ScSPrecisionMax must be greater than ScSPrecisionMin.")
-  
-  return(calcRho(observedKappa, OcSBaserate, testSetLength, testSetBaserateInflation, OcSLength, replicates, ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
-  
+rho = function(data, OcSBaserate = NULL,
+               testSetLength = NULL,
+               testSetBaserateInflation = 0,
+               OcSLength = 10000,
+               replicates = 800,
+               ScSKappaThreshold = .65,
+               ScSKappaMin = .40,
+               ScSPrecisionMin = 0.6,
+               ScSPrecisionMax = 1){
+  if(is.numeric(data)){
+    return(rhoK(data, OcSBaserate,
+               testSetLength,
+               testSetBaserateInflation,
+               OcSLength,
+               replicates,
+               ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
+  }else if(nrow(data) != 2){
+    return(rhoSet(data, OcSBaserate,
+                  length(set),
+                  testSetBaserateInflation,
+                  OcSLength,
+                  replicates,
+                  ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
+  }else{
+    return(rhoCT(data, OcSBaserate,
+                 sum(data),
+                 testSetBaserateInflation,
+                 OcSLength,
+                 replicates,
+                 ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
+  }
 }
-

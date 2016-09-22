@@ -13,15 +13,10 @@ kappaSet(set)
 The kappa of the \code{\link{codeSet}}
 }
 \description{
-This function calculates Cohen's kappa for a given \code{\link{codeSet}}
-}
-\examples{
-# Given a set
-kappaSet(codeSet)
-
+This function calculates Cohen's kappa for a given \code{\link{codeSet}}. Called by \code{\link{kappa}}.
 }
 \seealso{
-\code{\link{kappaCT}}
+\code{\link{kappa}} and \code{\link{kappaCT}}
 }
-\keyword{kappaSet}
+\keyword{kapppaSet}
 
