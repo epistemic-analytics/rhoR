@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ###
 #' @include rhoCT.R
 #' @title Calculate kappa
@@ -24,8 +23,6 @@
 #' The kappa of the \code{\link{contingencyTable}} or \code{\link{codeSet}}
 ###
 
-=======
->>>>>>> 2ffddd8ce732e2913c1699a2e3dba55ae060bc9e
 kappa = function(data){
   if(nrow(data) != 2){
     return(kappaSet(data))

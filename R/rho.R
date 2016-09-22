@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ###
 #' @include rhoR.R
 #' @title Rho
@@ -52,8 +51,7 @@
 #' 
 #' @return rho and kappa for the given data and parameters (unless kappa is given)
 ###
-=======
->>>>>>> 2ffddd8ce732e2913c1699a2e3dba55ae060bc9e
+
 rho = function(data, OcSBaserate = NULL,
                testSetLength = NULL,
                testSetBaserateInflation = 0,
