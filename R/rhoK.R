@@ -1,4 +1,5 @@
 ###
+<<<<<<< HEAD
 #' @include rho.R
 #' @title RhoK
 #' 
@@ -22,6 +23,39 @@
 #' @keywords rhoK
 #' 
 #' @seealso \code{\link{rho}} and \code{\link{rhoSet}} and \code{\link{rhoCT}}
+=======
+#' @include rhoR.R
+#' @title Rho
+#' 
+#' @description 
+#' This function will calculate rho given the parameters of an observed \code{\link{testSet}}
+#'
+#' @export
+#'
+#' @param observedKappa The observed kappa value that will be tested with rho
+#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}}
+#' @param testSetLength The length of the \code{\link{testSet}} the \emph{observedKappa} was calculated from
+#' @param testSetBaserateInflation The minimum \code{\link{baserate}} gaurunteed for the \code{\link{testSet}}
+#' @param OcSLength The length of the observed \code{\link{codeSet}}
+#' @param replicates The number of simulated \code{\link{codeSet}}s to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study
+#' @param ScSKappaThreshold The maximum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' @param ScSKappaMin The minimum kappa value used to generate simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' @param ScSPrecisionMin The minimum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' @param ScSPrecisionMax The maximum precision to be used for generation of simulated \code{\link{codeSet}}s in the null hypothesis distribution for rho
+#' 
+#' @keywords rho
+#' 
+#' @examples
+#' # Given only required parameters
+#' rho(observedKappa = 0.88, OcSBaserate = 0.2, testSetLength = 80)
+#' 
+#' # Given required parameters plus testSetBaserateInflation and runs
+#' rho(
+#'  observedKappa = 0.88, OcSBaserate = 0.2, testSetLength = 80, 
+#'  testSetBaserateInflation = 0.2, replicates = 500
+#')
+#'
+>>>>>>> 2ffddd8ce732e2913c1699a2e3dba55ae060bc9e
 #' 
 #' @return rho for the given parameters
 ###

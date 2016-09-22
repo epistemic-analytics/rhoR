@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ###
 #' @include rhoMin.R
 #' @title Calculate Baserate
@@ -31,6 +32,8 @@
 #' 
 ###
 
+=======
+>>>>>>> 2ffddd8ce732e2913c1699a2e3dba55ae060bc9e
 baserate = function(data){
   if(nrow(data) != 2){
     return(baserateSet(data))

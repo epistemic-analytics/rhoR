@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ###
 #' @include rhoR.R
 #' @title Rho
@@ -51,6 +52,8 @@
 #' 
 #' @return rho and kappa for the given data and parameters (unless kappa is given)
 ###
+=======
+>>>>>>> 2ffddd8ce732e2913c1699a2e3dba55ae060bc9e
 rho = function(data, OcSBaserate = NULL,
                testSetLength = NULL,
                testSetBaserateInflation = 0,
@@ -61,7 +64,11 @@ rho = function(data, OcSBaserate = NULL,
                ScSPrecisionMin = 0.6,
                ScSPrecisionMax = 1){
   if(is.numeric(data)){
+<<<<<<< HEAD
     return(rhoK(data, OcSBaserate,
+=======
+    return(rho(data, OcSBaserate,
+>>>>>>> 2ffddd8ce732e2913c1699a2e3dba55ae060bc9e
                testSetLength,
                testSetBaserateInflation,
                OcSLength,
