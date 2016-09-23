@@ -1,6 +1,6 @@
 ###
 #' @include kappaCT.R
-#' @title Rho Min testSetLength
+#' @title Rho Min
 #' 
 #' @description 
 #' This function calculates the minimum testSetLength where it is possible to get a rho less than alpha for the given parameters of rho.
@@ -11,7 +11,7 @@
 #' @param inc An integer indicating by how much the testSetLength should increase each iteration
 #' @param printInc A boolean indicating whether to print out each increment value with it's corresponding significance for rho
 #' @param ... Any additional parameters passed into \code{\link{rho}}
-#' @keywords rhoMinTSLength
+#' @keywords rhoMin
 #' 
 #' @examples
 #' #Add testSetBaserateInflation as an additional parameter

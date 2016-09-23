@@ -1,9 +1,9 @@
 ###
 #' @include rho.R
-#' @title RhoK
+#' @title Rho (kappa)
 #' 
 #' @description 
-#' This function calculates rho for an observed kappa value with associated set parameters (testSetLength and OCSBaserate). Called by \code{\link{rho}}. 
+#' This function calculates rho for an observed kappa value with associated set parameters (testSetLength and OcSBaserate). Called by \code{\link{rho}}. 
 #' 
 #' @export
 #'

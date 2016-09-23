@@ -3,7 +3,7 @@
 #' @title Calculate Baserate (Set)
 #' 
 #' @description
-#' This function will calculate the baserate of the first rater, second rater, and the average of both the raters.
+#' This function will calculate the baserate of the first rater, second rater, and the average of both the raters. Called by \code{\link{baserate}}.
 #' 
 #' @export
 #' 

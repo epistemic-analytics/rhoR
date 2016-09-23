@@ -2,7 +2,7 @@
 % Please edit documentation in R/rhoK.R
 \name{rhoK}
 \alias{rhoK}
-\title{RhoK}
+\title{Rho (kappa)}
 \usage{
 rhoK(observedKappa, OcSBaserate, testSetLength, testSetBaserateInflation = 0,
   OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.65,
@@ -33,7 +33,7 @@ rhoK(observedKappa, OcSBaserate, testSetLength, testSetBaserateInflation = 0,
 rho for the given parameters
 }
 \description{
-This function calculates rho for an observed kappa value with associated set parameters (testSetLength and OCSBaserate). Called by \code{\link{rho}}.
+This function calculates rho for an observed kappa value with associated set parameters (testSetLength and OcSBaserate). Called by \code{\link{rho}}.
 }
 \seealso{
 \code{\link{rho}} and \code{\link{rhoSet}} and \code{\link{rhoCT}}

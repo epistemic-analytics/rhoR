@@ -2,7 +2,7 @@
 % Please edit documentation in R/rhoMin.R
 \name{rhoMin}
 \alias{rhoMin}
-\title{Rho Min testSetLength}
+\title{Rho Min}
 \usage{
 rhoMin(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...)
 }
@@ -31,5 +31,5 @@ rhoMin(0.2, testSetBaserateInflation = 0.33)
 rhoMin(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 
 }
-\keyword{rhoMinTSLength}
+\keyword{rhoMin}
 
