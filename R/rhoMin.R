@@ -15,10 +15,10 @@
 #' 
 #' @examples
 #' #Add testSetBaserateInflation as an additional parameter
-#' rhoMinTSLength(0.2, testSetBaserateInflation = 0.33)
+#' rhoMin(0.2, testSetBaserateInflation = 0.33)
 #' 
 #' #Add testSetBaserateInflation as well as changing inc and selecting printInc
-#' rhoMinTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
+#' rhoMin(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 #' 
 #' @return 
 #' The minimum length of testSet, to the nearest multiple of inc, greater than the minimum length, that would give a value where rho less than alpha becomes mathematically possible.

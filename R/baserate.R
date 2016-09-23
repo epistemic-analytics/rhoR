@@ -10,7 +10,7 @@
 #' 
 #' @export
 #' 
-#' @param data The \code{\link{testSet}} or \code{\link{contingencyTable}} for which the baserate is calculated
+#' @param data The \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} for which the baserate is calculated
 #' 
 #' @keywords baserate
 #' 

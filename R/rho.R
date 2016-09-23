@@ -43,10 +43,10 @@
 #' rho(data = 0.88, OcSBaserate = 0.2, testSetLength = 80)
 #' 
 #  # Given an test Set
-#' rho(data = set)
+#' rho(data = codeSet)
 #' 
 #' # Given a contingency Table
-#' rho(data = CT)
+#' rho(data = contingencyTable)
 #'
 #' 
 #' @return rho and kappa for the given data and parameters (unless kappa is given)
@@ -61,7 +61,9 @@ rho = function(data, OcSBaserate = NULL,
                ScSKappaMin = .40,
                ScSPrecisionMin = 0.6,
                ScSPrecisionMax = 1){
-  if(is.numeric(data)){
+  if(class(data) == "numeric"){
+    if(is.null(OcSBaserate)){stop("Must give a baserate when a kappa value is given")}
+    if(is.null(testSetLength)){stop("Must give a baserate when a kappa value is given")}
     return(rhoK(data, OcSBaserate,
                testSetLength,
                testSetBaserateInflation,
@@ -70,14 +72,12 @@ rho = function(data, OcSBaserate = NULL,
                ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
   }else if(nrow(data) != 2){
     return(rhoSet(data, OcSBaserate,
-                  length(set),
                   testSetBaserateInflation,
                   OcSLength,
                   replicates,
                   ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
   }else{
     return(rhoCT(data, OcSBaserate,
-                 sum(data),
                  testSetBaserateInflation,
                  OcSLength,
                  replicates,

@@ -11,7 +11,7 @@ rhoSet(set, OcSBaserate = NULL, testSetBaserateInflation = 0,
 \arguments{
 \item{set}{The \code{\link[=getTestSet]{testSet}} used to calculate rho}
 
-\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})}
+\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}})}
 
 \item{testSetBaserateInflation}{The minimum \code{\link{baserate}} from the sampling procedure}
 
@@ -26,8 +26,6 @@ rhoSet(set, OcSBaserate = NULL, testSetBaserateInflation = 0,
 \item{ScSPrecisionMin}{The minimum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
 
 \item{ScSPrecisionMax}{The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
-
-\item{testSetLength}{The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)}
 }
 \value{
 A list of the format:\describe{

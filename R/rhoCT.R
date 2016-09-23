@@ -7,8 +7,7 @@
 #' 
 #' @export
 #' @param contingencyTable The \code{\link{contingencyTable}} used to calculate rho 
-#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})
-#' @param testSetLength The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)
+#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of the \code{\link{contingencyTable}})
 #' @param testSetBaserateInflation The minimum \code{\link{baserate}} from the sampling procedure
 #' @param OcSLength The length of the observed \code{\link{codeSet}}
 #' @param replicates The number of simulated \code{\link[=getTestSet]{codeSets}} to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study

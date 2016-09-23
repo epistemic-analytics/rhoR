@@ -7,7 +7,7 @@
 baserate(data)
 }
 \arguments{
-\item{data}{The \code{\link{testSet}} or \code{\link{contingencyTable}} for which the baserate is calculated}
+\item{data}{The \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} for which the baserate is calculated}
 }
 \value{
 A list of the format:\describe{

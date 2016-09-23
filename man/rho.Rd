@@ -56,10 +56,10 @@ For example, using an alpha level of 0.05, if the observed kappa is greater than
 # Given an observed kappa value
 rho(data = 0.88, OcSBaserate = 0.2, testSetLength = 80)
 
-rho(data = set)
+rho(data = codeSet)
 
 # Given a contingency Table
-rho(data = CT)
+rho(data = contingencyTable)
 
 
 }

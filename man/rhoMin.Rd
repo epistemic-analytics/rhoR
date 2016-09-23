@@ -25,10 +25,10 @@ This function calculates the minimum testSetLength where it is possible to get a
 }
 \examples{
 #Add testSetBaserateInflation as an additional parameter
-rhoMinTSLength(0.2, testSetBaserateInflation = 0.33)
+rhoMin(0.2, testSetBaserateInflation = 0.33)
 
 #Add testSetBaserateInflation as well as changing inc and selecting printInc
-rhoMinTSLength(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
+rhoMin(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 
 }
 \keyword{rhoMinTSLength}
