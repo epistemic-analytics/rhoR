@@ -40,7 +40,7 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
   if(is.nan(handSetKappa)) {
     print(handSetLength);
     print(handSetBaserate);
-    View(handSet);
+    #View(handSet);
   }
 
   #if return set is true return set rather than kappa

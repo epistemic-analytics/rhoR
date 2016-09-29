@@ -7,7 +7,7 @@ generateKPs = function(numNeeded, baserate, kappaMin, kappaMax, precisionMin, pr
     kappaProbability = NULL
   }else if(distributionType == 'BELL'){
     #probability for a bell curve
-    kappaProbability = dnorm(kappaDistribution, mean = 0.65, sd = 0.1)
+    kappaProbability = stats::dnorm(kappaDistribution, mean = 0.65, sd = 0.1)
   }
 
   precisionDistribution = seq(precisionMin, precisionMax, length = 10000)

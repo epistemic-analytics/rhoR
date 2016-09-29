@@ -31,5 +31,5 @@ createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisio
   if(precisionMax < 0 | precisionMax > 1) stop("precisionMax must be between 0 and 1.")
   if(precisionMin > precisionMax){stop("precisionMin must be less than precisionMax")}
   
-  return(createRandomSet(setLength = length, baserate = baserate, kappa = runif(1, kappaMin, kappaMax), minPrecision = precisionMin, maxPrecision = precisionMax))
+  return(createRandomSet(setLength = length, baserate = baserate, kappa = stats::runif(1, kappaMin, kappaMax), minPrecision = precisionMin, maxPrecision = precisionMax))
 }
