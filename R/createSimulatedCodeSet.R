@@ -5,6 +5,8 @@
 #' @description
 #' Creates a simulated \code{\link{codeSet}} with the given parameters
 #' 
+#' @export
+#' 
 #' @param length the length of the simulated \code{\link{codeSet}} to be created
 #' @param baserate the \code{\link{baserate}} of the simulated \code{\link{codeSet}}
 #' @param kappaMin the minimum kappa of the simulated \code{\link{codeSet}}
