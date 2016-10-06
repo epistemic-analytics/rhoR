@@ -25,5 +25,6 @@
 getTestSet = function(set, testSetLength, testSetBaserateInflation){
   if(length(set) < testSetLength){stop("testSetLength must be less than the length of set")}
   if(testSetBaserateInflation < 0){stop("testSetBaserateInfation must be positive")}
+  if(testSetBaserateInflation >= 1){stop("testSetBaserateInflation must be below 1")}
   return(getHandSet(set = set, handSetLength = testSetLength, handSetBaserate = testSetBaserateInflation, returnSet = T))
 }

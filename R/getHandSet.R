@@ -13,7 +13,7 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
   #positives is the minimum number of positive pairs in the first rater
   positives = round(handSetLength * handSetBaserate, 0);
   handSetKappa = NaN;
-
+  if(positives > length(which(set[,1] == 1))){stop("Not enough positives in first rater to inflate to this level")}
   #if there is an inflated baserate positives will be > 0, so if handSetBaserate > 0, positives > 0
   if (positives > 0) {
     #goes through and picks a set that fits the number of positives first then randomly samples from the rest
