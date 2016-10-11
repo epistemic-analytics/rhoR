@@ -42,8 +42,9 @@ Rho is a Monte Carlo rejective method of interrater reliability statistics, impl
 Rho starts with an observed kappa value, calculated on a subset of a \code{\link{codeSet}}, known as an observed \code{\link[=getTestSet]{testSet}}, and a \emph{kappa threshold} which indicates what is considered significant agreement between raters.
 
 It then generates a collection of fully-coded, simulated 
-\code{\link[=getTestSet]{codeSets}} (ScS), further described in \code{\link{createSimulatedCodeSet}}, all 
-of which have a kappa value below the kappa threshold and similar properties as the original \code{\link{codeSet}}.
+\code{\link[=getTestSet]{codeSets}} (ScS), further described in 
+\code{\link{createSimulatedCodeSet}}, all of which have a kappa value below the kappa 
+threshold and similar properties as the original \code{\link{codeSet}}.
 
 Then, kappa is calculated on a \code{\link[=getTestSet]{testSet}} sampled from each of the ScSs in the
 collection to create a null hypothesis distribution. These \code{\link[=getTestSet]{testSets}} mirror the observed \code{\link[=getTestSet]{testSets}} in their size and sampling method.  How these \code{\link[=getTestSet]{testSets}} are sampled is futher described in \code{\link{getTestSet}}.
