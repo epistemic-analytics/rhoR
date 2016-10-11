@@ -37,7 +37,7 @@ rho and kappa for the given data and parameters (unless kappa is given)
 This function calculates rho for a \code{\link[=getTestSet]{testSet}}, \code{\link{contingencyTable}}, or an observed kappa value with associated set parameters (testSetLength and OcSBaserate).
 }
 \details{
-Rho is a monte carlo rejective method of interrater reliability statistics, implemented here for Cohen's Kappa. Rho constructs a collection of data sets in which kappa is below a specified threshold, and computes the empirical distribution on kappa based on the specified sampling procedure. Rho returns the percent of the empirical distribution greater than or equal to an observed kappa. As a result, Rho quantifies the type 1 error in generalizing from an observed test set to a true value of agreement between two raters.
+Rho is a Monte Carlo rejective method of interrater reliability statistics, implemented here for Cohen's Kappa. Rho constructs a collection of data sets in which kappa is below a specified threshold, and computes the empirical distribution on kappa based on the specified sampling procedure. Rho returns the percent of the empirical distribution greater than or equal to an observed kappa. As a result, Rho quantifies the type 1 error in generalizing from an observed test set to a true value of agreement between two raters.
 
 Rho starts with an observed kappa value, calculated on a subset of a \code{\link{codeSet}}, known as an observed \code{\link[=getTestSet]{testSet}}, and a \emph{kappa threshold} which indicates what is considered significant agreement between raters.
 
@@ -56,7 +56,7 @@ For example, using an alpha level of 0.05, if the observed kappa is greater than
 # Given an observed kappa value
 rho(data = 0.88, OcSBaserate = 0.2, testSetLength = 80)
 
-# Given an test Set
+# Given a test Set
 rho(data = codeSet)
 
 # Given a contingency Table

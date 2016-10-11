@@ -12,7 +12,7 @@ contingencyTable
 A contingency Table is a 2x2 matrix that contains the counts of all combinations of positive and negative ratings made by two raters.
 }
 \examples{
-#A example contingencyTable
+#An example contingencyTable
 ct = matrix(c(3,2,1,34), nrow = 2, ncol = 2)
 
 #This contingencyTable is included in the package under the variable name "contingencyTable".
