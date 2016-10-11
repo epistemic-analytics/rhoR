@@ -22,8 +22,8 @@
 ###
 
 baserateSet = function(set){
-  firstBaserate = length(which(set[,1] == 1))/length(set)
-  secondBaserate = length(which(set[,2] == 1))/length(set)
+  firstBaserate = length(which(set[,1] == 1))/nrow(set)
+  secondBaserate = length(which(set[,2] == 1))/nrow(set)
   averageBaserate = mean(c(firstBaserate,secondBaserate))
   return(list(firstBaserate = firstBaserate, secondBaserate = secondBaserate, averageBaserate = averageBaserate))
 }

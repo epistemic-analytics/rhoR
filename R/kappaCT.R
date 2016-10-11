@@ -16,6 +16,7 @@
 #' The kappa of the \code{\link{contingencyTable}}
 ###
 kappaCT = function(ct){
+  if(any(ct < 0)){stop("Values in Contingency Table must be positive")}
   if(ncol(ct) != 2 || nrow(ct) != 2) stop("Incorrect number of dimensions: Contingency table must be 2x2.")
   for(i in 1:nrow(ct)) {
     for(j in 1:ncol(ct)) {

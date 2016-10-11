@@ -12,7 +12,7 @@
 
 genPcombo = function(kappa, Pmin, Pmax, BR){
   #gets a random precision in the precision range
-  currPrecision = runif(1, Pmin, Pmax);
+  currPrecision = stats::runif(1, Pmin, Pmax);
   #checks is the combination of precision, kappa, and baserate is valid.  If it is vaid, return the precision, if not, recall the function until a valid precision is found
   if(!checkBRPKcombo(BR, currPrecision, kappa)){
     genPcombo(kappa, Pmin, Pmax, BR);

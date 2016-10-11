@@ -22,6 +22,7 @@
 ###
 
 baserateCT = function(CT){
+  if(any(CT < 0)){stop("Values in Contingency Table must be positive")}
   firstBaserate = sum(CT[1,])/sum(CT)
   secondBaserate = sum(CT[,1])/sum(CT)
   averageBaserate = mean(c(firstBaserate,secondBaserate))

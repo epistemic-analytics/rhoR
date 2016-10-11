@@ -32,10 +32,10 @@ rhoMin = function(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...){
   
   while(rhoVal > alpha){
     rhoVal = rho(1, baserate, testSetLength, ...)
+    testSetLength = testSetLength + inc
     if(printInc) {
       cat(testSetLength, rhoVal,"\n")
     }
-    testSetLength = testSetLength + inc
   }
   return(testSetLength)
   

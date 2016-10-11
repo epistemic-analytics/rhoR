@@ -36,7 +36,9 @@ rhoCT = function(
   ScSPrecisionMin = 0.6,
   ScSPrecisionMax = 1
 ){
+  if(any(contingencyTable < 0)){stop("Values in Contingency Table must be positive")}
   kappa = kappaCT(contingencyTable);
+  
   
   if(is.null(OcSBaserate)) {
       OcSBaserate = (sum(contingencyTable[1,]))/(sum(contingencyTable));
