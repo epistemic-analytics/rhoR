@@ -3,6 +3,7 @@
 export(baserate)
 export(baserateCT)
 export(baserateSet)
+export(createSimulatedCodeSet)
 export(getTestSet)
 export(kappa)
 export(kappaCT)

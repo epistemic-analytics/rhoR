@@ -36,7 +36,7 @@ rhoCT = function(
   ScSPrecisionMin = 0.6,
   ScSPrecisionMax = 1
 ){
-  if(any(contingencyTable < 0)){stop(Values in Contingency Table must be positive)}
+  if(any(contingencyTable < 0)){stop("Values in Contingency Table must be positive")}
   kappa = kappaCT(contingencyTable);
   
   
