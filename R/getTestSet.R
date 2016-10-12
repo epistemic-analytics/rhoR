@@ -26,5 +26,14 @@ getTestSet = function(set, testSetLength, testSetBaserateInflation){
   if(length(set) < testSetLength){stop("testSetLength must be less than the length of set")}
   if(testSetBaserateInflation < 0){stop("testSetBaserateInfation must be positive")}
   if(testSetBaserateInflation >= 1){stop("testSetBaserateInflation must be below 1")}
+  if(length(which(set[,1] == 1 & set[,2] == 1)) == nrow(set)){
+    return(set[1:testSetLength,])
+  }else if(length(which(set[,1] == 0 & set[,2] == 0)) == nrow(set)){
+    if(testSetBaserateInflation == 0){
+      return(set[1:testSetLength,])
+    }else{
+      stop("Not enough positives in first rater to inflate to this level")
+    }
+  }
   return(getHandSet(set = set, handSetLength = testSetLength, handSetBaserate = testSetBaserateInflation, returnSet = T))
 }

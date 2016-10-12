@@ -21,8 +21,8 @@ calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
   randomAgreement = baserate1 * baserate2 + (1 - baserate1) * (1 - baserate2);
   kappa = (agreement - randomAgreement) / (1 - randomAgreement);
 
-  if(is.nan(kappa)){stop("Kappa is undefined when both raters rate every item the same, meaning all 1's or all 0's.")
-  }
+  #if(is.nan(kappa)){stop("Kappa is undefined when both raters rate every item the same, meaning all 1's or all 0's.")}
+  
   if(is.null(kappaThreshold)){
     return(kappa);
   }else{
