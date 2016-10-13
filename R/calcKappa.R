@@ -14,6 +14,11 @@ calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
     contTable = set
     set = contingencyToSet(set[1,1],set[2,1],set[1,2],set[2,2])
   }
+  if(length(which(set[,1] == set[,2] & set[,1] == 1)) == nrow(set) | length(which(set[,1] == set[,2] & set[,1] == 0)) == nrow(set)){
+    return(1)
+  }
+  
+  
   #calculates kappa by calculating the agreement and the baserates and then creating the adjacenty matrix
   agreement = length(which(set[,1] == set[,2])) / nrow(set);
   baserate2 = length(which(1 == set[,2])) / nrow(set);

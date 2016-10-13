@@ -11,7 +11,6 @@ genPKcombo = function(kappaDistribution, kappaProbability, precisionDistribution
     }
     precisionDistribution = precisionDistribution[indicies]
     precisionProbability = precisionProbability[indicies]
-    print(paste(length(indicies), " ", currKappa))
     currPrecision = sample(precisionDistribution, 1, replace = FALSE, prob = precisionProbability)
     return(list(precision = currPrecision, kappa = currKappa))
   }else{

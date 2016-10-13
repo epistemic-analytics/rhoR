@@ -13,10 +13,16 @@ generateKPs = function(numNeeded, baserate, kappaMin, kappaMax, precisionMin, pr
   precisionDistribution = seq(precisionMin, precisionMax, length = 10000)
   precisionProbability = NULL
 
-  KPs = list()
-  for(i in 1:numNeeded){
-    KPs[[length(KPs) + 1]] = genPKcombo(kappaDistribution, kappaProbability, precisionDistribution, precisionProbability, baserate)
-  }
+  KPs = tryCatch({
+    KPs = list()
+    for(i in 1:numNeeded){
+      KPs[[length(KPs) + 1]] = genPKcombo(kappaDistribution, kappaProbability, precisionDistribution, precisionProbability, baserate)
+    }
+    KPs
+  },error=function(e){
+    NULL
+  })
+  if(is.null(KPs)){stop("Could not generate a valid set given ranges of kappa and precision")}
 
   return (KPs);
 }
