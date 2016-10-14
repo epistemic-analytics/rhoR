@@ -11,7 +11,7 @@
 # @return This returns a set with the given parameters
 ###
 createRandomSet = function(setLength, baserate, kappaMin, kappaMax, minPrecision = 0, maxPrecision = 1){
-  #generates a valid precision with the given kappa and baserat
+  #generates a valid precision with the given kappa and baserate
   KP = generateKPs(1, baserate, kappaMin, kappaMax, minPrecision, maxPrecision)
   kappa = KP$kappa
   precision = KP$precision
