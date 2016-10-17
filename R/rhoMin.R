@@ -25,14 +25,14 @@
 ###
 rhoMin = function(baserate, alpha = 0.05, inc = 10, printInc = FALSE, ...){
   rhoVal = 1
-  testSetLength = 10
+  testSetLength = 0
   if(inc%%1 != 0 | inc <= 0) stop("Inc value must be a positive integer.")
   if(alpha > 1 | alpha < 0) stop("Alpha must be between 0 and 1.")
   
   
   while(rhoVal > alpha){
-    rhoVal = rho(1, baserate, testSetLength, ...)
     testSetLength = testSetLength + inc
+    rhoVal = rho(1, baserate, testSetLength, ...)
     if(printInc) {
       cat(testSetLength, rhoVal,"\n")
     }
