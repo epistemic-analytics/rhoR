@@ -10,11 +10,13 @@
 # @keywords random, set, generation, kappa, ranges
 # @return This returns a set with the given parameters
 ###
-createRandomSet = function(setLength, baserate, kappa, minPrecision = 0, maxPrecision = 1){
-  #generates a valid precision with the given kappa and baserat
-  precision = genPcombo(kappa, minPrecision, maxPrecision, baserate);
-  #gets the correspoding recall from the kappa, baserate, and precision
-  recall = getR(kappa, baserate, precision);
+createRandomSet = function(setLength, baserate, kappaMin, kappaMax, minPrecision = 0, maxPrecision = 1){
+  #generates a valid precision with the given kappa and baserate
+  KP = generateKPs(1, baserate, kappaMin, kappaMax, minPrecision, maxPrecision)
+  kappa = KP$kappa
+  precision = KP$precision
+  recall = getR(kappa, baserate, precision)
+  fullSet = prset(precision = precision, recall = recall, length = setLength, baserate = baserate);
   #calls prset to generate the set
-  return(prset(precision, recall, setLength, baserate));
+  return(fullSet);
 }

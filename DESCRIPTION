@@ -1,8 +1,8 @@
 Package: rhoR
-Title: rho for inter rater reliability
-Version: 1.0.0.1
+Title: Rho for Inter Rater Reliability
+Version: 1.0.0
 Authors@R: c(person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")),person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut")))
-Description: rho is used to test the generalization of inter rater reliability
+Description: Rho is used to test the generalization of inter rater reliability
     (IRR) statistics. Calculating rho starts by generating a large number of
     simulated, fully-coded data sets: a sizable collection of hypothetical
     populations, all of which have a kappa value below a given threshold -- which
@@ -20,3 +20,32 @@ LazyData: true
 RoxygenNote: 5.0.1
 Suggests:
     testthat
+Collate:
+    'rhoR.R'
+    'rho.R'
+    'rhoK.R'
+    'rhoSet.R'
+    'rhoCT.R'
+    'kappa.R'
+    'kappaSet.R'
+    'kappaCT.R'
+    'rhoMin.R'
+    'baserate.R'
+    'baserateSet.R'
+    'baserateCT.R'
+    'calcKappa.R'
+    'calcRho.R'
+    'checkBRPKcombo.R'
+    'contingencyTable.R'
+    'codeSet.R'
+    'contingencyToSet.R'
+    'createRandomSet.R'
+    'createSimulatedCodeSet.R'
+    'genPKcombo.R'
+    'genPcombo.R'
+    'generateKPs.R'
+    'getBootPvalue.R'
+    'getHandSet.R'
+    'getR.R'
+    'getTestSet.R'
+    'prset.R'

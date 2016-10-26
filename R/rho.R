@@ -1,49 +1,87 @@
 ###
-#' @title Calculate rho
+#' @include rhoR.R
+#' @title Rho
 #' 
 #' @description 
-#' This function will calculate rho given the parameters of the initial set, which it returns as a double.
+#' This function calculates rho for a \code{\link[=getTestSet]{testSet}}, \code{\link{contingencyTable}}, or an observed kappa value with associated set parameters (testSetLength and OcSBaserate). 
 #' 
+#' @details 
+#' Rho is a Monte Carlo rejective method of interrater reliability statistics, implemented here for Cohen's Kappa. Rho constructs a collection of data sets in which kappa is below a specified threshold, and computes the empirical distribution on kappa based on the specified sampling procedure. Rho returns the percent of the empirical distribution greater than or equal to an observed kappa. As a result, Rho quantifies the type 1 error in generalizing from an observed test set to a true value of agreement between two raters.
+#' 
+#' Rho starts with an observed kappa value, calculated on a subset of a \code{\link{codeSet}}, known as an observed \code{\link[=getTestSet]{testSet}}, and a \emph{kappa threshold} which indicates what is considered significant agreement between raters.
+#' 
+#' It then generates a collection of fully-coded, simulated 
+#' \code{\link[=getTestSet]{codeSets}} (ScS), further described in 
+#' \code{\link{createSimulatedCodeSet}}, all of which have a kappa value below the kappa 
+#' threshold and similar properties as the original \code{\link{codeSet}}.
+#' 
+#' Then, kappa is calculated on a \code{\link[=getTestSet]{testSet}} sampled from each of the ScSs in the
+#' collection to create a null hypothesis distribution. These \code{\link[=getTestSet]{testSets}} mirror the observed \code{\link[=getTestSet]{testSets}} in their size and sampling method.  How these \code{\link[=getTestSet]{testSets}} are sampled is futher described in \code{\link{getTestSet}}.
+#' 
+#' The null hypothesis is that the observed \code{\link[=getTestSet]{testSet}}, was sampled from a data set, which, if both raters were to code in its entirety, would result in a level of agreement below the kappa threshold.
+#' 
+#' For example, using an alpha level of 0.05, if the observed kappa is greater than 95 percent of the kappas in the null hypothesis distribution, the null hypothesis is rejected. Then one can conclude that the two raters would have acceptable agreement had they coded the entire data set.
+#'
 #' @export
 #'
-#' @param observedKappa The kappa value that is used to determine rho, as a double
-#' @param fullSetBaserate The frequency of one's for the first rater in the full set, if NULL, assume the baserate of the hand set is the same as the full set
-#' @param handSetLength The length of the hand set chosen
-#' @param handSetBaserateInflation The percent, as a decimal, of the hand set that is gauranteed to be a positive for the first rater
-#' @param fullSetLength The length of the full set that the hand set was taken from
-#' @param runs The number of full sets to use in the null hypothesis distribution for rho
-#' @param kappaThreshold Threshold to compare against, as a double
-#' @param kappaMin The minimum kappa in the null hypothesis distribution for rho
-#' @param precisionMin The minimum percision to be used for generation of sets in null hypothesis distribution for rho
-#' @param precisionMax The maximum percision to be used for generation of sets in null hypothesis distribution for rho
-#'
+#' @param data The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho
+#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})
+#' @param testSetLength The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)
+#' @param testSetBaserateInflation The minimum \code{\link{baserate}} from the sampling procedure
+#' @param OcSLength The length of the observed \code{\link{codeSet}}
+#' @param replicates The number of simulated \code{\link[=getTestSet]{codeSets}} to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study
+#' @param ScSKappaThreshold The maximum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' @param ScSKappaMin The minimum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' @param ScSPrecisionMin The minimum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' @param ScSPrecisionMax The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
+#' 
 #' @keywords rho
 #' 
-#' @examples
-#' # Given only required parameters
-#' rho(observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80)
+#' @seealso \code{\link{rhoK}} and \code{\link{rhoSet}} and \code{\link{rhoCT}}
 #' 
-#' # Given required parameters plus handSetBaserateInflation and runs
-#' rho(
-#'  observedKappa = 0.88, fullSetBaserate = 0.2, handSetLength = 80, 
-#'  handSetBaserateInflation = 0.2, runs = 500
-#')
+#' @examples
+#' # Given an observed kappa value
+#' rho(data = 0.88, OcSBaserate = 0.2, testSetLength = 80)
+#' 
+#' # Given a test Set
+#' rho(data = codeSet)
+#' 
+#' # Given a contingency Table
+#' rho(data = contingencyTable)
 #'
 #' 
-#' @return The calcuated rho, as a double
+#' @return rho and kappa for the given data and parameters (unless kappa is given)
 ###
-rho = function(
-  observedKappa, 
-  fullSetBaserate, 
-  handSetLength, 
-  handSetBaserateInflation = 0, 
-  fullSetLength = 10000, 
-  runs = 800, 
-  kappaThreshold = .65, 
-  kappaMin = .40, 
-  precisionMin = 0.6, 
-  precisionMax = 1
-){
-  return(calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, fullSetLength, runs, kappaThreshold, kappaMin, precisionMin, precisionMax))
-  
+
+rho = function(data, OcSBaserate = NULL,
+               testSetLength = NULL,
+               testSetBaserateInflation = 0,
+               OcSLength = 10000,
+               replicates = 800,
+               ScSKappaThreshold = .65,
+               ScSKappaMin = .40,
+               ScSPrecisionMin = 0.6,
+               ScSPrecisionMax = 1){
+  if(class(data) == "numeric"){
+    if(is.null(OcSBaserate)){stop("Must give a baserate when a kappa value is given")}
+    if(is.null(testSetLength)){stop("Must give a baserate when a kappa value is given")}
+    return(rhoK(data, OcSBaserate,
+               testSetLength,
+               testSetBaserateInflation,
+               OcSLength,
+               replicates,
+               ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
+  }else if(nrow(data) != 2){
+    return(rhoSet(data, OcSBaserate,
+                  testSetBaserateInflation,
+                  OcSLength,
+                  replicates,
+                  ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
+  }else{
+    return(rhoCT(data, OcSBaserate,
+                 testSetBaserateInflation,
+                 OcSLength,
+                 replicates,
+                 ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
+  }
 }
