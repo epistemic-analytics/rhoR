@@ -2,7 +2,7 @@ Package: rhoR
 Title: rho for inter rater reliability
 Version: 1.0.0.1
 Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")),person("Rebecca","Pozen", email = "rpozen@wisc.edu"),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
-Description: rho is used to test the generalization of inter rater reliability
+Description: Rho is used to test the generalization of inter rater reliability
     (IRR) statistics. Calculating rho starts by generating a large number of
     simulated, fully-coded data sets: a sizable collection of hypothetical
     populations, all of which have a kappa value below a given threshold -- which
