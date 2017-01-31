@@ -12,8 +12,8 @@
 getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
   #positives is the minimum number of positive pairs in the first rater
   positives = ceiling(handSetLength * handSetBaserate);
-  posInd = set[which(set[,1] == 1),];
-  handSetKappa = NaN;
+  posInd = which(set[,1] == 1);
+
   if(positives > length(posInd)){stop("Not enough positives in first rater to inflate to this level")}
   #if there is an inflated baserate positives will be > 0, so if handSetBaserate > 0, positives > 0
   if (positives > 0) {
@@ -21,7 +21,7 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
     #if the set created is not a valid set, then it reruns the process until a valid set is found
       
       positiveIndices = posInd[sample.int(length(posInd),size=positives,replace=FALSE)];
-      others = set[!(1:nrow(set) %in% positiveIndices)];
+      others = set[!(1:nrow(set) %in% positiveIndices),];
       otherIndices = sample.int(nrow(others),size=(handSetLength - positives),replace=FALSE);
       this.set = rbind(set[positiveIndices,], others[otherIndices,]);
       #ORIGINAL CODE BEFORE THE SWITCH TO TOTAL RANDOM POST POSITIVE SAMPLING - BJR 10/10/16
@@ -37,15 +37,7 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
     while ((sum(this.set[,2]) == 0 | sum(this.set[,2]) == nrow(this.set))) {
       theseIndices = sample.int(nrow(set),size=handSetLength,replace=FALSE);
       this.set = set[theseIndices,];
-      handSetKappa = calcKappa(this.set);
     }
-  }
-
-  #if the set generation still fails, print results and exit
-  if(is.nan(handSetKappa)) {
-    print(handSetLength);
-    print(handSetBaserate);
-    #View(handSet);
   }
 
   #if return set is true return set rather than kappa
@@ -56,4 +48,4 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
   #otherwise return the kappa of the set
   handSetKappa = calcKappa(this.set);
   return(handSetKappa);
-};
+}
