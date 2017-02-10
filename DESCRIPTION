@@ -1,5 +1,6 @@
 Package: rhoR
 Title: rho for inter rater reliability
+Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")), person("Rebecca","Pozen", email = "rpozen@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
 Version: 1.1.0.0
 Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")), person("Rebecca","Pozen", email = "rpozen@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
 Description: Rho is used to test the generalization of inter rater reliability
