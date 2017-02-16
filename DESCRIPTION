@@ -21,11 +21,7 @@ LazyData: true
 RoxygenNote: 5.0.1
 Suggests:
     testthat
-Imports:
-    Rcpp
-LinkingTo: Rcpp
 Collate:
-    'RcppExports.R'
     'rhoR.R'
     'rho.R'
     'rhoK.R'
