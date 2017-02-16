@@ -1,8 +1,8 @@
 Package: rhoR
-Title: rho for inter rater reliability
+Title: Rho for Inter Rater Reliability
 Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")), person("Rebecca","Pozen", email = "rpozen@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
+Maintainer: Cody L Marquart <cody.marquart@wisc.edu>
 Version: 1.1.0.0
-Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")), person("Rebecca","Pozen", email = "rpozen@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
 Description: Rho is used to test the generalization of inter rater reliability
     (IRR) statistics. Calculating rho starts by generating a large number of
     simulated, fully-coded data sets: a sizable collection of hypothetical
