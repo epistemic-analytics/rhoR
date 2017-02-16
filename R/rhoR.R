@@ -30,6 +30,4 @@
 #'   
 #' @docType package
 #' @name rhoR
-#' @useDynLib rhoR
-#' @importFrom Rcpp sourceCpp
 NULL
