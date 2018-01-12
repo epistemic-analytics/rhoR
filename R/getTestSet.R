@@ -23,7 +23,7 @@
 ###
 
 getTestSet = function(set, testSetLength, testSetBaserateInflation){
-  if(length(set) < testSetLength){stop("testSetLength must be less than the length of set")}
+  if(length(unlist(set)) < testSetLength){stop("testSetLength must be less than the length of set")}
   if(testSetLength%%1 != 0) {stop("testSetLength value must be a positive integer.")}
   if(testSetBaserateInflation < 0){stop("testSetBaserateInfation must be positive")}
   if(testSetBaserateInflation >= 1){stop("testSetBaserateInflation must be below 1")}

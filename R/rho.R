@@ -61,7 +61,8 @@ rho = function(data, OcSBaserate = NULL,
                ScSKappaThreshold = .65,
                ScSKappaMin = .40,
                ScSPrecisionMin = 0.6,
-               ScSPrecisionMax = 1){
+               ScSPrecisionMax = 1
+){
   if(class(data) == "numeric"){
     if(is.null(OcSBaserate)){stop("Must give a baserate when a kappa value is given")}
     if(is.null(testSetLength)){stop("Must give a baserate when a kappa value is given")}

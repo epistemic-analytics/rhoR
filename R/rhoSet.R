@@ -39,7 +39,7 @@ rhoSet = function(
   kappa = kappaSet(set);
   
   if(is.null(OcSBaserate)) {
-    OcSBaserate = length(which(set[,1] == 1))/length(set);
+    OcSBaserate = length(which(set[,1] == 1))/length(unlist(set));
   }
   
   return(list(
