@@ -13,8 +13,8 @@
 createRandomSet = function(setLength, baserate, kappaMin, kappaMax, minPrecision = 0, maxPrecision = 1){
   #generates a valid precision with the given kappa and baserate
   KP = generateKPs(1, baserate, kappaMin, kappaMax, minPrecision, maxPrecision)
-  kappa = KP$kappa
-  precision = KP$precision
+  kappa = KP[[1]]$kappa
+  precision = KP[[1]]$precision
   recall = getR(kappa, baserate, precision)
   fullSet = prset(precision = precision, recall = recall, length = setLength, baserate = baserate);
   #calls prset to generate the set
