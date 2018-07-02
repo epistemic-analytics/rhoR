@@ -8,6 +8,7 @@
 # @param returnSet If TRUE, then return the handSet if FALSE, return the kappa of the handSet
 # @keywords handset, hand, inflation
 # @return The function returns the handSet if returnSet is TRUE or the kappa of the handSet if not
+#' @export
 ###
 getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
   #positives is the minimum number of positive pairs in the first rater
