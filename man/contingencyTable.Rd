@@ -19,4 +19,3 @@ ct = matrix(c(3,2,1,34), nrow = 2, ncol = 2)
 
 }
 \keyword{datasets}
-

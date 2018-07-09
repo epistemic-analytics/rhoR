@@ -27,4 +27,3 @@ kappa(data = contingencyTable)
 \code{\link{kappaSet}} and \code{\link{kappaCT}}
 }
 \keyword{kappa}
-

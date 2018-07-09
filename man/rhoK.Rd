@@ -39,4 +39,3 @@ This function calculates rho for an observed kappa value with associated set par
 \code{\link{rho}} and \code{\link{rhoSet}} and \code{\link{rhoCT}}
 }
 \keyword{rhoK}
-

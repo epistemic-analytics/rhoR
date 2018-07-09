@@ -40,4 +40,3 @@ This function calculates rho and kappa for a given \code{\link{contingencyTable}
 \code{\link{rho}} and \code{\link{rhoK}} and \code{\link{rhoSet}}
 }
 \keyword{rhoCT}
-

@@ -40,4 +40,3 @@ This function calculates rho and kappa for a given \code{\link[=getTestSet]{test
 \code{\link{rho}} and \code{\link{rhoK}} and \code{\link{rhoCT}}
 }
 \keyword{rhoSet}
-

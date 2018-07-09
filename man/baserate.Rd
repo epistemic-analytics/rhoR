@@ -34,4 +34,3 @@ baserate(data = contingencyTable)
 \code{\link{baserateSet}} and \code{\link{baserateCT}}
 }
 \keyword{baserate}
-

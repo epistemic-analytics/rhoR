@@ -20,4 +20,3 @@ exampleSet = cbind(firstRater,secondRater)
 #This set is included in the package under the variable name "codeSet".
 }
 \keyword{datasets}
-

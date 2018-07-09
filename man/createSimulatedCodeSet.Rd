@@ -31,4 +31,3 @@ Creates a simulated \code{\link{codeSet}} with the given parameters
 }
 \keyword{codeSet,}
 \keyword{create}
-
