@@ -28,6 +28,9 @@
 #' @section rhoMin: 
 #' Use \code{\link{rhoMin}}
 #'   
+#' @useDynLib rhoR
+#' @importFrom Rcpp sourceCpp
+#' 
 #' @docType package
 #' @name rhoR
 NULL

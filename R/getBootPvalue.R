@@ -10,11 +10,11 @@
 getBootPvalue = function(distribution, result) {
   #returns the percentage of the time that the distribution was greater or equal to the observed kappa
   N = length(distribution);
-  if(result < mean(distribution)) {
+  if(result < mean(distribution, na.rm = T)) {
     #if the result is less than the mean of the distribution, than the p value is 1
     return(1);
   } else {
     #return the number of times that the distribution is greater than the result as a percentage of the total number of items in the distribution
     return(length(which(distribution >= result)) / N);
   }
-};
+}

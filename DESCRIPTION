@@ -18,10 +18,14 @@ Depends:
     R (>= 3.0.0)
 License: GPL-3  | file LICENSE
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
+LinkingTo: Rcpp, RcppArmadillo
+Imports:
+    Rcpp
 Suggests:
     testthat
 Collate: 
+    'RcppExports.R'
     'rhoR.R'
     'rho.R'
     'rhoK.R'
@@ -36,6 +40,7 @@ Collate:
     'baserateCT.R'
     'calcKappa.R'
     'calcRho.R'
+    'calcRho2.R'
     'checkBRPKcombo.R'
     'contingencyTable.R'
     'codeSet.R'
@@ -51,3 +56,4 @@ Collate:
     'getR.R'
     'getTestSet.R'
     'prset.R'
+    'rho.file.R'

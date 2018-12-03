@@ -18,7 +18,6 @@ calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
     return(1)
   }
   
-  
   #calculates kappa by calculating the agreement and the baserates and then creating the adjacenty matrix
   agreement = length(which(set[,1] == set[,2])) / nrow(set);
   baserate2 = length(which(1 == set[,2])) / nrow(set);
@@ -34,4 +33,20 @@ calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
     return(list(kappa = kappa, above = kappa > kappaThreshold));
   }
   return(kappa);
+}
+
+#' @export
+ct.kappa <- function(ct) {
+  a = ct[1,1] # gold 1 & silver 1
+  c = ct[1,2] # gold 1 & silver 0
+  b = ct[2,1] # gold 0 & silver 1
+  d = ct[2,2] # gold 0 & silver 0
+  size = sum(ct)
+  
+  p0 = (a+d) / size
+  pYes = ((a + b) / size) * ((a + c) / size)
+  pNo =  ((c + d) / size) * ((b + d) / size)
+  pE = (pYes + pNo)
+  k = (p0 - pE) / (1 - pE)
+  return(k)
 }

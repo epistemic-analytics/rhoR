@@ -37,19 +37,57 @@ rhoK = function(
   ScSPrecisionMin = 0.6, 
   ScSPrecisionMax = 1
 ){
-  if(observedKappa > 1 | observedKappa < 0)stop("Observed kappa must be between 0 and 1.")
-  if(OcSBaserate < 0)stop("OcSBaserate must be positive.")
-  if(testSetLength%%1 != 0) stop("testSetLength value must be a positive integer.")
-  if(OcSLength%%1 != 0) stop("OcSLength value must be a positive integer.")
-  if(replicates%%1 != 0) stop("Replicates value must be a positive integer.")
-  if(ScSKappaThreshold < 0) stop("ScSKappaThreshold must be positive.")
-  if(ScSKappaMin < 0) stop("ScSKappaMin must be positive.")
-  if(ScSKappaThreshold < ScSKappaMin) stop("ScSKappaThreshold must be greater than ScSKappaMin.")
-  if(ScSPrecisionMin < 0 | ScSPrecisionMin > 1) stop("ScSPrecisionMin must be between 0 and 1.")
-  if(ScSPrecisionMax < 0 | ScSPrecisionMax > 1) stop("ScSPrecisionMax must be between 0 and 1.")
-  if(ScSPrecisionMax < ScSPrecisionMin) stop("ScSPrecisionMax must be greater than ScSPrecisionMin.")
+  err = F
+  if(observedKappa > 1 | observedKappa < 0){
+		warning("Observed kappa must be between 0 and 1.")
+    err=T
+  }
+  if(OcSBaserate < 0){
+		warning("OcSBaserate must be positive.")
+		err=T
+	}
+  if(testSetLength%%1 != 0) {
+		warning("testSetLength value must be a positive integer.")
+		err=T
+	}
+  if(OcSLength%%1 != 0) {
+		warning("OcSLength value must be a positive integer.")
+		err=T
+	}
+  if(replicates%%1 != 0) {
+		warning("Replicates value must be a positive integer.")
+		err=T
+	}
+  if(ScSKappaThreshold < 0) {
+		warning("ScSKappaThreshold must be positive.")
+		err=T
+	}
+  if(ScSKappaMin < 0) {
+		warning("ScSKappaMin must be positive.")
+		err=T
+	}
+  if(ScSKappaThreshold < ScSKappaMin) {
+		warning("ScSKappaThreshold must be greater than ScSKappaMin.")
+		err=T
+	}
+  if(ScSPrecisionMin < 0 | ScSPrecisionMin > 1) {
+		warning("ScSPrecisionMin must be between 0 and 1.")
+		err=T
+	}
+  if(ScSPrecisionMax < 0 | ScSPrecisionMax > 1) {
+		warning("ScSPrecisionMax must be between 0 and 1.")
+		err=T
+	}
+  if(ScSPrecisionMax < ScSPrecisionMin) {
+		warning("ScSPrecisionMax must be greater than ScSPrecisionMin.")
+		err=T
+	}
   
-  return(calcRho(observedKappa, OcSBaserate, testSetLength, testSetBaserateInflation, OcSLength, replicates, ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
+  if(err == F) {
+    return(calcRho2(observedKappa, OcSBaserate, testSetLength, testSetBaserateInflation, OcSLength, replicates, ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
+  } else {
+    return(list(kappa = NA, rho = NA))
+  }
   
 }
 

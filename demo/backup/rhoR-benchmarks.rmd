@@ -1,0 +1,34 @@
+---
+title: "rhoR CT Benchmarks"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+run.bench <- function(oK, fsb, hsl, fsl = 10000, times = 100) {
+  microbenchmark::microbenchmark(
+    rho.set = calcRho(observedKappa = oK, fullSetBaserate = fsb, handSetLength = hsl, fullSetLength = fsl),
+    rho.ct = calcRho2(observedKappa = oK, fullSetBaserate = fsb, handSetLength = hsl, fullSetLength = fsl),
+    times = times
+  )
+}
+```
+
+## R Markdown
+
+This is an R Markdown document.
+
+```{r }
+run.bench(0.8, 0.3, 20, 1000)
+```
+
+
+```{r }
+run.bench(0.8, 0.3, 200, 10000)
+```
+
+
+
+```{r }
+run.bench(0.8, 0.3, 20, 100000, times = 10)
+```

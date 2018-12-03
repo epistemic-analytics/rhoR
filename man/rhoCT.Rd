@@ -4,9 +4,10 @@
 \alias{rhoCT}
 \title{Rho (contingency Table)}
 \usage{
-rhoCT(contingencyTable, OcSBaserate = NULL, testSetBaserateInflation = 0,
-  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.65,
-  ScSKappaMin = 0.4, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1)
+rhoCT(contingencyTable, OcSBaserate = NULL,
+  testSetBaserateInflation = 0, OcSLength = 10000, replicates = 800,
+  ScSKappaThreshold = 0.65, ScSKappaMin = 0.4, ScSPrecisionMin = 0.6,
+  ScSPrecisionMax = 1)
 }
 \arguments{
 \item{contingencyTable}{The \code{\link{contingencyTable}} used to calculate rho}

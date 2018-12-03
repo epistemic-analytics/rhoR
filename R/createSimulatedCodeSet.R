@@ -23,7 +23,7 @@
 #' 
 ###
 
-createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisionMin, precisionMax){
+createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisionMin, precisionMax, ...){
   if(length <= 0){stop("length must be positive")}
   if(baserate < 0){stop("baserate must be positive")}
   if(kappaMin < 0 | kappaMin > 1) stop("kappaMin must be between 0 and 1.")
@@ -33,5 +33,5 @@ createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisio
   if(precisionMax < 0 | precisionMax > 1) stop("precisionMax must be between 0 and 1.")
   if(precisionMin > precisionMax){stop("precisionMin must be less than precisionMax")}
   
-  return(createRandomSet(setLength = length, baserate = baserate, kappaMin = kappaMin, kappaMax = kappaMax, minPrecision = precisionMin, maxPrecision = precisionMax))
+  return(createRandomSet(setLength = length, baserate = baserate, kappaMin = kappaMin, kappaMax = kappaMax, minPrecision = precisionMin, maxPrecision = precisionMax, ...))
 }

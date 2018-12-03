@@ -33,7 +33,7 @@ calcRho = function(
 
   #creates distribution from random kappa sets
   savedKappas = rep(0,runs);
-   KPs = generateKPs(runs, fullSetBaserate, kappaMin, kappaThreshold, precisionMin, precisionMax)
+  KPs = generateKPs(runs, fullSetBaserate, kappaMin, kappaThreshold, precisionMin, precisionMax)
   for (i in 1:runs) {
     KP = KPs[i]
     kappa = KP[[1]]$kappa
@@ -47,4 +47,4 @@ calcRho = function(
 
   # compare observedKappa to distribution
   return(getBootPvalue(savedKappas, observedKappa));
-};
+}
