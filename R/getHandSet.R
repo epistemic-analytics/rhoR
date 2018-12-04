@@ -41,15 +41,16 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
   handSetKappa = calcKappa(this.set);
   return(handSetKappa);
 }
+
 #' @export
 getHandCT = function(full.ct, handSetLength, handSetBaserate, returnSet=FALSE) {
   
   #positives is the minimum number of positive pairs in the first rater
   positives = ceiling(handSetLength * handSetBaserate);
   
-  if(positives > sum(full.ct[1,1])){
-  #   warning("Not enough positives in first rater to inflate to this level")
-    return(NULL)
+  if(positives > sum(full.ct[1,])){
+    warning("Not enough positives in first rater to inflate to this level")
+    return(NA)
   }
   
   #goes through and picks a set that fits the number of positives first then randomly samples from the rest

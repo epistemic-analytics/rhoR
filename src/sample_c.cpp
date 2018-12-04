@@ -29,13 +29,3 @@ NumericVector sample_weighted(SEXP x, int n) {
   
   return(ret + 1);
 }
-
-
-// You can include R code blocks in C++ files processed with sourceCpp
-// (useful for testing and development). The R code will be automatically 
-// run after the compilation.
-//
-
-/*** R
-sample_weighted(c(40,60), 4)
-*/

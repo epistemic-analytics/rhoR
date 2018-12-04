@@ -39,7 +39,7 @@ rhoCT = function(
   if(any(contingencyTable < 0)){
     warning("Values in Contingency Table must be positive")
   }
-  kappa = kappaCT(contingencyTable);
+  kappa = ct.kappa(contingencyTable);
   
   if(is.null(OcSBaserate)) {
       OcSBaserate = (sum(contingencyTable[1,]))/(sum(contingencyTable));

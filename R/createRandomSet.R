@@ -20,10 +20,9 @@ createRandomSet = function(setLength, baserate, kappaMin, kappaMax, minPrecision
   if(type == "ct") {
     fullSet = pr.ct(precision = precision, recall = recall, length = setLength, baserate = baserate);
   } 
-    
-  #calls prset to generate the set
   else {
     fullSet = prset(precision = precision, recall = recall, length = setLength, baserate = baserate);
   }
+  
   return(fullSet);
 }
