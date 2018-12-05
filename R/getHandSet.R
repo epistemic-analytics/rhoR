@@ -44,7 +44,7 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
 
 #' @export
 getHandCT = function(full.ct, handSetLength, handSetBaserate, returnSet=FALSE) {
-  
+  # browser()
   #positives is the minimum number of positive pairs in the first rater
   positives = ceiling(handSetLength * handSetBaserate);
   
@@ -74,7 +74,7 @@ getHandCT = function(full.ct, handSetLength, handSetBaserate, returnSet=FALSE) {
   
   this.ct = matrix(sapply(1:4, function(x) sum(allIndices == x)), ncol=2)
   if(returnSet){
-    return(this.ct)
+    return(t(this.ct))
   } 
   
   handSetKappa = ct.kappa(this.ct);
