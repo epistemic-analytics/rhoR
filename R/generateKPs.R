@@ -1,3 +1,4 @@
+#' @export
 generateKPs = function(numNeeded, baserate, kappaMin, kappaMax, precisionMin, precisionMax, distributionType = 'FLAT', distributionLength = 100000){
 
   kappaDistribution = seq(kappaMin, kappaMax, length = distributionLength)

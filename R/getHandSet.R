@@ -44,8 +44,6 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
 
 #' @export
 getHandCT = function(full.ct, handSetLength, handSetBaserate, returnSet=FALSE) {
-  # browser()
-  #positives is the minimum number of positive pairs in the first rater
   positives = ceiling(handSetLength * handSetBaserate);
   
   if(positives > sum(full.ct[1,])){
@@ -53,21 +51,12 @@ getHandCT = function(full.ct, handSetLength, handSetBaserate, returnSet=FALSE) {
     return(NA)
   }
   
-  #goes through and picks a set that fits the number of positives first then randomly samples from the rest
-  #if the set created is not a valid set, then it reruns the process until a valid set is found
-    
-  # browser()
-  
-  # pos.prob = full.ct[1,] / sum(full.ct[1,])
-  # positiveIndices = sample.int(2, size=positives, prob = pos.prob, replace = T)
   positiveIndices = sample_weighted(full.ct[1,], n=positives)
   
   other.ct = full.ct
   other.ct[1,1] = other.ct[1,1] - sum(positiveIndices == 1)
   other.ct[1,2] = other.ct[1,2] - sum(positiveIndices == 2)
   
-  # other.prob = as.vector(t(other.ct / sum(other.ct)))
-  # otherIndices = sample.int(4, handSetLength - positives, prob = other.prob, replace = T)
   otherIndices = sample_weighted(as.vector(other.ct), handSetLength - positives)
   
   allIndices = c(positiveIndices, otherIndices)

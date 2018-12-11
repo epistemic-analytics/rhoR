@@ -44,3 +44,4 @@ calcRho2 = function(
   # compare observedKappa to distribution
   return(getBootPvalue(savedKappas, observedKappa));
 }
+

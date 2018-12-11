@@ -58,3 +58,37 @@ rhoCT = function(
     kappa = kappa
   ));
 }
+
+rhoCT_useC = function(
+  contingencyTable,
+  OcSBaserate = NULL,
+  testSetBaserateInflation = 0,
+  OcSLength = 10000,
+  replicates = 800,
+  ScSKappaThreshold = .65,
+  ScSKappaMin = .40,
+  ScSPrecisionMin = 0.6,
+  ScSPrecisionMax = 1
+){
+  if(any(contingencyTable < 0)){
+    warning("Values in Contingency Table must be positive")
+  }
+  kappa = ct.kappa(contingencyTable);
+  
+  if(is.null(OcSBaserate)) {
+    OcSBaserate = (sum(contingencyTable[1,]))/(sum(contingencyTable));
+  }
+  
+  return(list(
+    rho = rhoK_useC(
+      kappa, 
+      OcSBaserate,
+      sum(contingencyTable),
+      testSetBaserateInflation,
+      OcSLength,
+      replicates,
+      ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax
+    ), 
+    kappa = kappa
+  ));
+}
