@@ -267,10 +267,11 @@ arma::imat getHand_ct(arma::imat ct, int handSetLength, double handSetBaserate) 
     // ct.print();
     arma::irowvec gold1s = ct.row(0);
     positiveIndices = sample_weighted3(gold1s, positives, false);
+    // positiveIndices.print();
   
     double sumOnes = sum(positiveIndices == 0);
     double sumTwos = sum(positiveIndices == 1);
-  
+    positiveIndices *= 2;
     otherCT(0,0) = otherCT(0,0) - sumOnes;
     otherCT(0,1) = otherCT(0,1) - sumTwos;
   }
@@ -413,5 +414,5 @@ bool run_rho_in_c(
 # ct = createRandomCT(1000, 0.2, 0.2, 0.8, 0.2, 1)
 # ct = createRandomCT(10000, 0.2, 0.2, 0.8, 0.4, 0.8)
 # rhoCT_c(ct, testSetBaserateInflation = 0, replicates = 800)
-run_rho_in_c(threshold = 0.65, infl = 0.2, handsetLength = 20, handsetBaserate = 0.2, replicates = 1)
+# run_rho_in_c(threshold = 0.65, infl = 0.2, handsetLength = 20, handsetBaserate = 0.2, replicates = 1)
 */
