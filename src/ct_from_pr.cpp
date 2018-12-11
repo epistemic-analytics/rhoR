@@ -204,8 +204,14 @@ arma::imat ct_from_pr(float precision, float recall, int length, float baserate)
   return(ct);
 }
 
-// @name sample_weighted
-// @title sample_weighted
+// @name createRandomCT
+// @title createRandomCT
+// @param setLength [TBD]
+// @param baserate [TBD]
+// @param kappaMin [TBD]
+// @param kappaMax [TBD]
+// @param minPrecision [TBD]
+// @param maxPrecision [TBD]
 // @export
 //' @export
 // [[Rcpp::export]]
@@ -243,6 +249,11 @@ double ct_kappa_c(arma::imat ct) {
   return(k);
 }
 
+// @name getHand_ct
+// @title getHand_ct
+// @param ct [TBD]
+// @param handSetLength [TBD]
+// @param handSetBaserate [TBD]
 //' @export
 // [[Rcpp::export]]
 arma::imat getHand_ct(arma::imat ct, int handSetLength, double handSetBaserate) {
@@ -285,6 +296,18 @@ double getHand_kappa(arma::imat ct, int handSetLength, double handSetBaserate) {
   return(k);
 }
 
+// @name calcRho_c
+// @title calcRho_c
+// @param observedKappa [TBD]
+// @param fullSetBaserate [TBD]
+// @param handSetLength [TBD]
+// @param handSetBaserateInflation [TBD]
+// @param fullSetLength [TBD]
+// @param runs [TBD]
+// @param kappaThreshold [TBD]
+// @param kappaMin [TBD]
+// @param precisionMin [TBD]
+// @param precisionMax [TBD]
 //' @export
 // [[Rcpp::export]]
 double calcRho_c(
@@ -324,8 +347,16 @@ double calcRho_c(
 }
 
 // @name rhoCT_c
-// @title rhoCT_c
-// @export
+// @title rhoCT_ct
+// @param contingencyTable [TBD]
+// @param testSetBaserateInflation [TBD]
+// @param replicates [TBD]
+// @param OcSLength [TBD]
+// @param OcSBaserate [TBD]
+// @param ScSKappaThreshold [TBD]
+// @param ScSKappaMin [TBD]
+// @param ScSPrecisionMin [TBD]
+// @param ScSPrecisionMax [TBD]
 //' @export
 // [[Rcpp::export]]
 arma::vec rhoCT_c(
