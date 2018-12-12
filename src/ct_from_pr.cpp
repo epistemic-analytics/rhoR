@@ -332,16 +332,10 @@ double calcRho_c(
     double precision = KP[1];
     double recall = getR_c(kappa, fullSetBaserate, precision);
     
-    // Rcpp::Rcout << "P: " << precision << std::endl;
-    // Rcpp::Rcout << "R: " << recall << std::endl;
-    // Rcpp::Rcout << "L: " << fullSetLength << std::endl;
-    // Rcpp::Rcout << "B: " << fullSetBaserate << std::endl; 
     arma::imat fullCT = ct_from_pr(precision, recall, fullSetLength, fullSetBaserate);
-    // fullCT.print();
     double kk = getHand_kappa(fullCT, handSetLength, handSetBaserateInflation);
     savedKappas[KProw] = kk;
   };
-  
   
   // compare observedKappa to distribution
   return(getBootPvalue_c(savedKappas, observedKappa));
@@ -362,7 +356,7 @@ double calcRho_c(
 // [[Rcpp::export]]
 arma::vec rhoCT_c(
   arma::imat contingencyTable,
-  double testSetBaserateInflation = 0,
+  double testSetBaserateInflation = 0.2,
   int replicates = 800,
   int OcSLength = 10000,
   double OcSBaserate = -1.0,
@@ -371,6 +365,7 @@ arma::vec rhoCT_c(
   double ScSPrecisionMin = 0.6,
   double ScSPrecisionMax = 1
 ){
+  // Observed kappa
   double kappa = ct_kappa_c(contingencyTable);
   double size = accu(contingencyTable);
   double gold1;
@@ -379,7 +374,6 @@ arma::vec rhoCT_c(
     gold1 = accu(contingencyTable.row(0));
     OcSBaserate = gold1 / size;
   }
-  // Rcpp::Rcout << "OCS: " << OcSBaserate << std::endl;
   
   double rho = calcRho_c(
     kappa, OcSBaserate,
@@ -401,11 +395,11 @@ bool run_rho_in_c(
     int replicates = 10000
 ) {
   arma::imat ct = createRandomCT(10000, infl, 0.4, threshold, 0.2, 0.8);
+  // handset --> testset
   arma::imat handset = getHand_ct(ct, handsetLength, handsetBaserate);
+  arma::vec res = rhoCT_c(handset, handsetBaserate, replicates, 10000, -1, 0.65, 0.4, 0.6, 1);
   
-  arma::vec res = rhoCT_c(ct, handsetBaserate, replicates, 10000, -1, 0.65, 0.4, 0.6, 1);
   return(res[0]>threshold);
-  // return(true);
 }
 
 /*** R
@@ -414,5 +408,5 @@ bool run_rho_in_c(
 # ct = createRandomCT(1000, 0.2, 0.2, 0.8, 0.2, 1)
 # ct = createRandomCT(10000, 0.2, 0.2, 0.8, 0.4, 0.8)
 # rhoCT_c(ct, testSetBaserateInflation = 0, replicates = 800)
-# run_rho_in_c(threshold = 0.65, infl = 0.2, handsetLength = 20, handsetBaserate = 0.2, replicates = 1)
+run_rho_in_c(threshold = 0.65, infl = 0.2, handsetLength = 20, handsetBaserate = 0.2, replicates = 1)
 */
