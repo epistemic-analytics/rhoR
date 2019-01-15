@@ -55,6 +55,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// getBootPvalue_c
+double getBootPvalue_c(arma::vec distribution, double result);
+RcppExport SEXP _rhoR_getBootPvalue_c(SEXP distributionSEXP, SEXP resultSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type distribution(distributionSEXP);
+    Rcpp::traits::input_parameter< double >::type result(resultSEXP);
+    rcpp_result_gen = Rcpp::wrap(getBootPvalue_c(distribution, result));
+    return rcpp_result_gen;
+END_RCPP
+}
 // checkBRPKcombo_c
 bool checkBRPKcombo_c(float BR, float P, float K);
 RcppExport SEXP _rhoR_checkBRPKcombo_c(SEXP BRSEXP, SEXP PSEXP, SEXP KSEXP) {
@@ -241,6 +253,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_rhoR_sample_weighted", (DL_FUNC) &_rhoR_sample_weighted, 2},
     {"_rhoR_sample_weighted2", (DL_FUNC) &_rhoR_sample_weighted2, 3},
     {"_rhoR_sample_weighted3", (DL_FUNC) &_rhoR_sample_weighted3, 3},
+    {"_rhoR_getBootPvalue_c", (DL_FUNC) &_rhoR_getBootPvalue_c, 2},
     {"_rhoR_checkBRPKcombo_c", (DL_FUNC) &_rhoR_checkBRPKcombo_c, 3},
     {"_rhoR_getR_c", (DL_FUNC) &_rhoR_getR_c, 3},
     {"_rhoR_genPKcombo_c", (DL_FUNC) &_rhoR_genPKcombo_c, 5},

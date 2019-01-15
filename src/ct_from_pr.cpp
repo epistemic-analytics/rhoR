@@ -96,6 +96,8 @@ arma::ivec sample_weighted3(arma::imat xx, int n, bool forR = true) {
 }
 
 // returns the percentage of the time that the distribution was greater or equal to the observed kappa
+// ' @export
+// [[Rcpp::export]]
 double getBootPvalue_c(arma::vec distribution, double result) {
   // if the result is less than the mean of the distribution, than the p value is 1
   if(result < mean(distribution)) {
@@ -132,12 +134,19 @@ NumericVector genPKcombo_c(
 ) {
   IntegerVector kappaRng = seq(0, kappaDistribution.size()-1);
   NumericVector kappaProbs = NumericVector(kappaProbability.begin(), kappaProbability.end());
-  IntegerVector whKappa = sample(kappaRng, 1, false,  kappaProbs);
+  
+  IntegerVector whKappa;
+  if(kappaProbability.size() > 0) {
+    whKappa = sample(kappaRng, 1, false, kappaProbs);
+  } else {
+    whKappa = sample(kappaRng, 1, false);
+  }
   float currKappa = kappaDistribution[whKappa[0]];
 
   IntegerVector precRng = seq(0, precisionDistribution.size()-1);
   NumericVector precProbs; 
-  IntegerVector whPrec = sample(precRng, 1, false); //  precProbs);
+  
+  IntegerVector whPrec = sample(precRng, 1, false); //precProbs);
   float currPrec = precisionDistribution[whPrec[0]];
 
   if(!checkBRPKcombo_c(baserate, currPrec, currKappa)) {
@@ -166,18 +175,18 @@ Rcpp::NumericMatrix generateKPs_c(
     int numNeeded, float baserate, 
     float kappaMin, float kappaMax, 
     float precisionMin, float precisionMax, 
-    int distributionType = 1, long distributionLength = 100
+    int distributionType = 0, long distributionLength = 10000
 ){
-  float kappaStep = ((kappaMax - kappaMin) / distributionLength);
-  colvec kappaDistribution = regspace(kappaMin, kappaStep, kappaMax+kappaStep);
+  float kappaStep = ((kappaMax - kappaMin) / (distributionLength - 1));
+  colvec kappaDistribution = regspace(kappaMin, kappaStep, kappaMax);
 
   arma::vec kappaProbability;
   if(distributionType == 1) {
     kappaProbability = normpdf(kappaDistribution, 0.65, 0.1);
   }
 
-  float precStep = (precisionMax - precisionMin) / 10000;
-  colvec precisionDistribution = regspace(precisionMin, precStep, precisionMax+precStep);
+  float precStep = (precisionMax - precisionMin) / (10000 - 1);
+  colvec precisionDistribution = regspace(precisionMin, precStep, precisionMax);
 
   arma::vec precisionProbability;
   Rcpp::NumericMatrix KPs(numNeeded,2);

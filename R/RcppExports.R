@@ -18,6 +18,10 @@ sample_weighted3 <- function(xx, n, forR = TRUE) {
     .Call('_rhoR_sample_weighted3', PACKAGE = 'rhoR', xx, n, forR)
 }
 
+getBootPvalue_c <- function(distribution, result) {
+    .Call('_rhoR_getBootPvalue_c', PACKAGE = 'rhoR', distribution, result)
+}
+
 checkBRPKcombo_c <- function(BR, P, K) {
     .Call('_rhoR_checkBRPKcombo_c', PACKAGE = 'rhoR', BR, P, K)
 }
@@ -30,7 +34,7 @@ genPKcombo_c <- function(kappaDistribution, kappaProbability, precisionDistribut
     .Call('_rhoR_genPKcombo_c', PACKAGE = 'rhoR', kappaDistribution, kappaProbability, precisionDistribution, precisionProbability, baserate)
 }
 
-generateKPs_c <- function(numNeeded, baserate, kappaMin, kappaMax, precisionMin, precisionMax, distributionType = 1L, distributionLength = 100L) {
+generateKPs_c <- function(numNeeded, baserate, kappaMin, kappaMax, precisionMin, precisionMax, distributionType = 0L, distributionLength = 10000L) {
     .Call('_rhoR_generateKPs_c', PACKAGE = 'rhoR', numNeeded, baserate, kappaMin, kappaMax, precisionMin, precisionMax, distributionType, distributionLength)
 }
 
@@ -64,7 +68,7 @@ calcRho_c <- function(observedKappa, fullSetBaserate, handSetLength, handSetBase
 }
 
 #' @export
-rhoCT_c <- function(contingencyTable, testSetBaserateInflation = 0, replicates = 800L, OcSLength = 10000L, OcSBaserate = -1.0, ScSKappaThreshold = 0.65, ScSKappaMin = 0.40, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1) {
+rhoCT_c <- function(contingencyTable, testSetBaserateInflation = 0.2, replicates = 800L, OcSLength = 10000L, OcSBaserate = -1.0, ScSKappaThreshold = 0.65, ScSKappaMin = 0.40, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1) {
     .Call('_rhoR_rhoCT_c', PACKAGE = 'rhoR', contingencyTable, testSetBaserateInflation, replicates, OcSLength, OcSBaserate, ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax)
 }
 

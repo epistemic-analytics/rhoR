@@ -64,9 +64,9 @@ duration = system.time({
 
 res.df = MakeFrame(res)
 res.dt = data.table::data.table(res.df)
-data.table::setorderv(res.dt, c("infl","handset.length"))
+data.table::setorderv(res.dt, c("baserate","handset.length"))
 
-# res.summed = res.dt[,lapply(.SD, sum) ,by = c("handset.length", "infl"), .SDcols = c("decision")]
+2# res.summed = res.dt[,lapply(.SD, sum) ,by = c("handset.length", "infl"), .SDcols = c("decision")]
 # res.summed$percent = res.summed$decision / res$meta$nrep
 # res.mat = matrix(res.summed$percent)
 # dim(res.mat) = c(length(unique(res.summed$handset.length)), length(unique(res.summed$infl)))

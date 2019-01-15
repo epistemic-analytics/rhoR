@@ -40,7 +40,7 @@ calcRho = function(
     precision = KP[[1]]$precision
     recall = getR(kappa, fullSetBaserate, precision)
     fullSet = prset(precision = precision, recall = recall, length = fullSetLength, baserate = fullSetBaserate);
-
+    
     #computes kappa of handset to add to distribution
     savedKappas[i] = getHandSet(set = fullSet, handSetLength = handSetLength, handSetBaserate = handSetBaserateInflation);
   }
