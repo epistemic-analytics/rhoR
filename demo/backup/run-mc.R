@@ -1,7 +1,7 @@
 # rm(list = ls())
 # remove.packages("rhoR")
 # devtools::clean_dll()
-# devtools::install(quick = T, dependencies = F, reload = T)
+devtools::install(quick = T, dependencies = F, reload = T)
 # library(rhoR)
 # library(snow)
 # library(MonteCarlo)

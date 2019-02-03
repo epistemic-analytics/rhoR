@@ -1,7 +1,7 @@
 remove.packages("rhoR")
 rm(list = ls())
 # devtools::install_git(url = "https://git.doit.wisc.edu/clmarquart/rhoR/", ref="feature/ct-usage", force = T, quiet = F, build = T, quick = T, dependencies = F, reload = T)
-devtools::load_all(".")
+# devtools::load_all(".")
 library(rhoR)
 library(snow)
 library(MonteCarlo)
@@ -33,8 +33,8 @@ run.rho_c <- function(
 }
 
 run.mc <- function(
-  handsetLength = c(20, 100),
-  inflations = c(0.01, 0.5), #, 0.2, 0.3, 0.5),
+  handsetLength, # = c(90),
+  inflations, # = c(0.5), #, 0.2, 0.3, 0.5),
   thresholds = c(0.65), #, 0.70), 
   replicates = 800,
   nrep = 1,
@@ -56,8 +56,10 @@ run.mc <- function(
 
 duration = system.time({
   res = run.mc(
+    handsetLength = 90,
+    inflations = 0.5,
     ncpus = future::availableCores() - 1, 
-    nrep = 1
+    nrep = 1000
   )
 });
 
