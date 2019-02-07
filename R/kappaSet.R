@@ -17,7 +17,7 @@
 #' 
 ###
 kappaSet = function(set){
-  if(length(set[(set > 0 && set < 1) | set > 1 | set < 0]) != 0) {
+  if(any(set != 1 & set != 0)) {
     stop("Each set must only consist of zeros and ones.")
   }
   
