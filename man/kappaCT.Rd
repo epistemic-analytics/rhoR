@@ -19,4 +19,3 @@ This function calculates Cohen's kappa on a \code{\link{contingencyTable}}. Call
 \code{\link{kappa}} and \code{\link{kappaSet}}
 }
 \keyword{kappaCT}
-

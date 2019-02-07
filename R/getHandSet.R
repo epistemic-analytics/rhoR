@@ -1,13 +1,13 @@
 ###
-# Get Handset
-#
-# This function is to get a handset of a set and calculate the kappa
-# @param set This is the set to take a handset of
-# @param handSetLength This is the length of the handset to take
-# @param handSetBaserate This is the minimum baserate to inflate the handset to
-# @param returnSet If TRUE, then return the handSet if FALSE, return the kappa of the handSet
-# @keywords handset, hand, inflation
-# @return The function returns the handSet if returnSet is TRUE or the kappa of the handSet if not
+#' @title Get Handset
+#' @description This function is to get a handset of a set and calculate the kappa
+#' @param set This is the set to take a handset of
+#' @param handSetLength This is the length of the handset to take
+#' @param handSetBaserate This is the minimum baserate to inflate the handset to
+#' @param returnSet If TRUE, then return the handSet if FALSE, return the kappa of the handSet
+#' @keywords handset, hand, inflation
+#' @return The function returns the handSet if returnSet is TRUE or the kappa of the handSet if not
+#' @export
 ###
 getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
   #positives is the minimum number of positive pairs in the first rater

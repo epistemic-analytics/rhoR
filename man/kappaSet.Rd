@@ -19,4 +19,3 @@ This function calculates Cohen's kappa for a given \code{\link{codeSet}}. Called
 \code{\link{kappa}} and \code{\link{kappaCT}}
 }
 \keyword{kapppaSet}
-

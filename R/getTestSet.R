@@ -14,7 +14,7 @@
 #' 
 #' @param set The \code{\link{codeSet}} from which the \emph{testSet} is taken
 #' @param testSetLength The length of the \emph{testSet} to be taken
-#' @param testSetBaserateInflation The minimum guaranteed \code{\link{baserate}} of the \emph{testSet}
+#' @param testSetBaserateInflation The minimum guaranteed \code{\link{baserate}} of the \emph{testSet}. Default to 0
 #' 
 #' @keywords testSet
 #' 
@@ -22,8 +22,8 @@
 #' 
 ###
 
-getTestSet = function(set, testSetLength, testSetBaserateInflation){
-  if(length(set) < testSetLength){stop("testSetLength must be less than the length of set")}
+getTestSet = function(set, testSetLength, testSetBaserateInflation = 0){
+  if(length(unlist(set)) < testSetLength){stop("testSetLength must be less than the length of set")}
   if(testSetLength%%1 != 0) {stop("testSetLength value must be a positive integer.")}
   if(testSetBaserateInflation < 0){stop("testSetBaserateInfation must be positive")}
   if(testSetBaserateInflation >= 1){stop("testSetBaserateInflation must be below 1")}

@@ -69,4 +69,3 @@ rho(data = contingencyTable)
 \code{\link{rhoK}} and \code{\link{rhoSet}} and \code{\link{rhoCT}}
 }
 \keyword{rho}
-
