@@ -4,9 +4,10 @@
 \alias{rhoK}
 \title{Rho (kappa)}
 \usage{
-rhoK(observedKappa, OcSBaserate, testSetLength, testSetBaserateInflation = 0,
-  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.65,
-  ScSKappaMin = 0.4, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1)
+rhoK(observedKappa, OcSBaserate, testSetLength,
+  testSetBaserateInflation = 0, OcSLength = 10000, replicates = 800,
+  ScSKappaThreshold = 0.65, ScSKappaMin = 0.4, ScSPrecisionMin = 0.6,
+  ScSPrecisionMax = 1)
 }
 \arguments{
 \item{observedKappa}{The observed kappa value used to calculate rho}
