@@ -37,19 +37,19 @@ variables:
 
 # Check Steps
 check:r-devel:
-  image: egruw/rhoR-r-devel:latest
+  image: egruw/rhor-r-devel:latest
   only:
     - master
   <<: *check_template
   
 check:r-oldrelease:
-  image: egruw/rhoR-r-oldrelease:latest
+  image: egruw/rhor-r-oldrelease:latest
   only:
     - master
   <<: *check_template
   
 check:r-release:
-  image: egruw/rhoR-r-release:latest
+  image: egruw/rhor-r-release:latest
   <<: *check_template
   
 check:r-winbuilder:
