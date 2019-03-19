@@ -5,7 +5,7 @@
 \title{Create Simulated codeSet}
 \usage{
 createSimulatedCodeSet(length, baserate, kappaMin, kappaMax, precisionMin,
-  precisionMax)
+  precisionMax, tries = 50, round = NULL)
 }
 \arguments{
 \item{length}{the length of the simulated \code{\link{codeSet}} to be created}
@@ -19,6 +19,10 @@ createSimulatedCodeSet(length, baserate, kappaMin, kappaMax, precisionMin,
 \item{precisionMin}{the minimum precision of the simulated \code{\link{codeSet}}}
 
 \item{precisionMax}{the maximum precision of the simulated \code{\link{codeSet}}}
+
+\item{tries}{the maximum number of tries to generate a valid set, smaller set lengths may require an increased number of tries}
+
+\item{round}{the digits to round kappa when checking set validity. Defaults to NULL and doesn't round. This may be userful for smaller set lengths.}
 }
 \value{
 A \code{\link{codeSet}} that fulfills the given parameters
