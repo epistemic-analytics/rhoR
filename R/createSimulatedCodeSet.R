@@ -14,7 +14,6 @@
 #' @param precisionMin the minimum precision of the simulated \code{\link{codeSet}}
 #' @param precisionMax the maximum precision of the simulated \code{\link{codeSet}}
 #' @param tries the maximum number of tries to generate a valid set, smaller set lengths may require an increased number of tries
-#' @param round the digits to round kappa when checking set validity. Defaults to NULL and doesn't round. This may be userful for smaller set lengths.
 #' 
 #' @keywords codeSet, create
 #' 
@@ -25,7 +24,7 @@
 #' 
 ###
 
-createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisionMin, precisionMax, tries = 50, round = NULL){
+createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisionMin, precisionMax, tries = 50){
   if(length <= 0){stop("length must be positive")}
   if(baserate < 0){stop("baserate must be positive")}
   if(kappaMin < 0 | kappaMin > 1) stop("kappaMin must be between 0 and 1.")
@@ -42,9 +41,7 @@ createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisio
   while(!validSet && triesLeft > 0) {
     set = createRandomSet(setLength = length, baserate = baserate, kappaMin = kappaMin, kappaMax = kappaMax, minPrecision = precisionMin, maxPrecision = precisionMax)
     k = kappa(set)
-    if(!is.null(round) && is.numeric(round)) {
-      k = round(x = k, digits = round)
-    }
+    
     if(k >= kappaMin && k <= kappaMax) {
       setFound = set
       validSet = T
@@ -62,13 +59,12 @@ createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisio
     } else {
       closest = kappaMax + Kdist.to.max
     }
-    if(!is.null(round) && is.numeric(round)) {
-      closest = round(x = closest, digits = round)
-    } else {
-      closest = round(x = closest, digits = 5)
-    }
+    
     stop(paste0(
-      "Unable to create a set of the provided length (", length, ") in the provided kappa range (", kappaMin, "\U2014", kappaMax, "). The closest kappa obtained after ", tries, " tries was: ", closest, "\n",
+      "Unable to create a set of the provided length (", length, ") ",
+        "in the provided kappa range (", kappaMin, "\U2014", kappaMax, "). ",
+        "The closest kappa obtained after ", tries, " tries was: ", 
+        round(x = closest, digits = 5), "\n",
         "\tTry increasing the set length or the range of valid kappas"
     ))
   }
