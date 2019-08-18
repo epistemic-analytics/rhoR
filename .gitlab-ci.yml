@@ -10,7 +10,7 @@ variables:
   VERSION: "1.2.1.1"
   PKG: "rhoR"
   PKGL: "rhor"
-  REG_URL: "${CI_REGISTRY}/epistemic-analytics/qe-packages/${PKGL}"
+  REG_URL: "${CI_REGISTRY}/epistemic-analytics/qe-packages/rhoR"
 
 # Templates
 .build_definition: &build_template
