@@ -7,7 +7,7 @@ library(rvest)
 args <- commandArgs(trailingOnly = TRUE)
 
 perc <- sub(
-    pattern = "rENA coverage - ",
+    pattern = "rhoR coverage - ",
     replacement = "",
     x = html_text(html_nodes(read_html(
             paste0(
