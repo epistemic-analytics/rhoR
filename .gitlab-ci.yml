@@ -1,71 +1,90 @@
 stages:
+  - docker
   - check
+  - test
+  - docs
   - checkWindows
   - release
-  - buildAPI
 
 variables:
   VERSION: "1.2.1.1"
+  PKG: "rhoR"
+  PKGL: "rhor"
+  REG_URL: "${CI_REGISTRY}/epistemic-analytics/qe-packages/${PKGL}"
 
 # Templates
 .build_definition: &build_template
   before_script:
     - export _R_CHECK_CRAN_INCOMING_=FALSE
     - export _R_CHECK_FORCE_SUGGESTS_=TRUE
-    - mkdir -p build/
+    - mkdir -p archive/
+    - rm -f ./R/RcppExports.R
+    - mkdir -p ~/.R/
+    - rm -f ~/.R/Makevars
+    - cp demo/backup/Makevars ~/.R/
+    - Rscript -e 'Rcpp::compileAttributes()'
     - Rscript -e 'update(devtools::dev_package_deps("."))'
-    - cd ..; R CMD build --resave-data --no-manual --log rhoR || true
-    
+    - cd ..; R CMD build --log ${PKG} || true
 .check_definition: &check_template
   stage: check
   artifacts:
     paths:
       - build/
+      - archive/
+      - doc/
+      - inst/doc/
     expire_in: 1 week
   <<: *build_template
   script:
-    - R --no-site-file --no-environ --no-save --no-restore --quiet CMD check rhoR_$VERSION.tar.gz --as-cran --no-manual
-    - ls -al ./
-    - ls -al ./rhoR.Rcheck/
-    - mv ./rhoR-00build.log rhoR/build/ || true
-    - mv ./rhoR.Rcheck/00check.log rhoR/build/ || true
-    - mv ./rhoR.Rcheck/00install.out rhoR/build/ || true
-    - mv ./rhoR_$VERSION.tar.gz rhoR/build/
+    - R --no-site-file --no-environ --no-save --no-restore --quiet CMD check ${PKG}_$VERSION.tar.gz --as-cran --no-manual
+    - mv ./${PGK}-00build.log ${PKG}/archive/ || true
+    - mv ./${PGK}.Rcheck/00check.log ${PKG}/archive/ || true
+    - mv ./${PGK}.Rcheck/00install.out ${PKG}/archive/ || true
+    - mv ./${PGK}_*.tar.gz ${PKG}/archive/ || true
   tags:
     - docker
   allow_failure: false
 
 # Check Steps
 check:r-devel:
-  image: egruw/rhor-r-devel:latest
+  image: $REG_URL/devel:current
   only:
     - master
   <<: *check_template
-  
 check:r-oldrelease:
-  image: egruw/rhor-r-oldrelease:latest
+  image: $REG_URL/old-release:current
   only:
     - master
   <<: *check_template
-  
 check:r-release:
-  image: egruw/rhor-r-release:latest
+  image: $REG_URL/release:current
   <<: *check_template
-  
 check:r-winbuilder:
   stage: checkWindows
   image: egruw/r-ftp
-  only:
-    - master
-  <<: *build_template
+  when: manual
   script:
-    - curl -v -T rhoR_$VERSION.tar.gz ftp://win-builder.r-project.org/R-oldrelease/rhoR_$VERSION.tar.gz
-    - curl -v -T rhoR_$VERSION.tar.gz ftp://win-builder.r-project.org/R-release/rhoR_$VERSION.tar.gz
-    - curl -v -T rhoR_$VERSION.tar.gz ftp://win-builder.r-project.org/R-devel/rhoR_$VERSION.tar.gz
-    - mv ./rhoR_$VERSION.tar.gz rhoR/build/
+    - curl -v -T archive/${PKG}_${VERSION}.tar.gz ftp://win-builder.r-project.org/R-oldrelease/${PKG}_${VERSION}.tar.gz
+    - curl -v -T archive/${PKG}_${VERSION}.tar.gz ftp://win-builder.r-project.org/R-release/${PKG}_${VERSION}.tar.gz
+    - curl -v -T archive/${PKG}_${VERSION}.tar.gz ftp://win-builder.r-project.org/R-devel/${PKG}_${VERSION}.tar.gz
   tags:
     - docker
   allow_failure: false
+
+
+test:r-release:
+  stage: test
+  image: $REG_URL/release:current
+  before_script:
+    - Rscript -e 'install.packages(c("covr", "DT"), repos="http://cran.rstudio.com")'
+    - Rscript -e 'install.packages(c("aws.s3","aws.signature"), repos="http://cran.rstudio.com")'
+  script:
+    - 'Rscript -e "Rcpp::compileAttributes()"'
+    - 'Rscript -e "rep <- covr::report( x = covr::package_coverage(quiet = T), file = \"inst/coverage/${CI_COMMIT_REF_NAME}/index.html\" )"'
+    - 'Rscript -e "setwd(\"inst/coverage/${CI_COMMIT_REF_NAME}\"); res = lapply(dir(\".\", full.names = F, recursive = T), function(f) { aws.s3::put_object(file = f, object = paste0(\"coverage/${CI_COMMIT_REF_NAME}/\", f), bucket = \"${PKGL}.qe-libs.org\", acl = \"public-read\") })"'
+    - 'Rscript --vanilla demo/backup/coverage-report.R ${CI_COMMIT_REF_NAME}'
+  dependencies:
+    - check:r-release
 
 release:cran:
   stage: release
@@ -83,3 +102,57 @@ release:cran:
   tags:
     - docker
   allow_failure: false
+  
+
+docs:build-site:
+  stage: docs
+  image: $REG_URL/release:current
+  before_script:
+    - Rscript -e 'install.packages(c("pkgdown"), repos="http://cran.rstudio.com")'
+    - Rscript -e 'install.packages(c("aws.s3","aws.signature"), repos="http://cran.rstudio.com")'
+  script:
+    - rm -rf src/RcppExports*
+    - rm -rf R/RcppExports*
+    - 'Rscript -e "Rcpp::compileAttributes()"'
+    - 'Rscript -e "devtools::install(\".\", quick = T, build = T, dependencies = F, upgrade = F)"'
+    - 'Rscript -e "pkgdown::build_site(preview = F, document = F, lazy = T, new_process = T)"'
+    - 'Rscript -e "setwd(\"docs\"); res = lapply(dir(\".\", full.names = F, recursive = T), function(f) { aws.s3::put_object(file = f, object = f, bucket = \"${PKGL}.qe-libs.org\", acl = \"public-read\") })"'
+  dependencies:
+    - test:r-release
+
+.docker_definition: &docker_template
+  stage: docker
+  image: docker:19.03.1
+  services:
+    - docker:19.03.1-dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker build -t $REG_URL/$TAG:current -f inst/docker/${PKG}-$FILE inst/docker/
+    - docker push $REG_URL/$TAG:current
+  only:
+    refs:
+      - develop
+    changes:
+      - "inst/docker/rhoR-$FILE"
+docker:release:
+  variables:
+    TAG: "release"
+    FILE: "release"
+    DOCKER_HOST: tcp://localhost:2375/
+    DOCKER_DRIVER: overlay2
+  <<: *docker_template
+docker:old-release:
+  variables:
+    TAG: "old-release"
+    FILE: "oldrelease"
+    DOCKER_HOST: tcp://localhost:2375/
+    DOCKER_DRIVER: overlay2
+  <<: *docker_template
+docker:devel:
+  variables:
+    TAG: "devel"
+    FILE: "devel"
+    DOCKER_HOST: tcp://localhost:2375/
+    DOCKER_DRIVER: overlay2
+  <<: *docker_template
