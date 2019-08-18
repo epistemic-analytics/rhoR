@@ -134,7 +134,8 @@ docs:build-site:
     refs:
       - develop
     changes:
-      - "inst/docker/rhoR-$FILE"
+      - ".gitlab-ci.yml"
+      - "inst/docker/${PKGL}-$FILE"
 docker:release:
   variables:
     TAG: "release"
