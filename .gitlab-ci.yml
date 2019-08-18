@@ -128,7 +128,7 @@ docs:build-site:
   before_script:
     - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
   script:
-    - docker build -t $REG_URL/$TAG:current -f inst/docker/${PKG}-$FILE inst/docker/
+    - docker build -t $REG_URL/$TAG:current -f inst/docker/$PKG-$FILE inst/docker/
     - docker push $REG_URL/$TAG:current
   only:
     refs:
