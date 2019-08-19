@@ -19,7 +19,7 @@ Depends:
 License: GPL-3  | file LICENSE
 LazyData: true
 RoxygenNote: 6.1.1
-BugReports: https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR
+BugReports: https://gitlab.com/epistemic-analytics/qe-packages/rhor/issues
 Suggests:
     testthat
 Collate: 
