@@ -3,7 +3,7 @@
 [![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://cran.r-project.org/web/packages/rhoR/index.html) 
 [![cran downloads](https://cranlogs.r-pkg.org/badges/grand-total/rhoR)](https://cranlogs.r-pkg.org/badges/grand-total/rhoR) 
 [![build status](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/badges/master/build.svg)](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/commits/master)
-[![coverage](https://s3-us-west-2.amazonaws.com/rhoR.qe-libs.org/coverage-master.svg)](http://rhoR.qe-libs.org/coverage/master/index.html)
+[![coverage](https://s3-us-west-2.amazonaws.com/rhor.qe-libs.org/coverage-master.svg)](http://rhor.qe-libs.org/coverage/master/index.html)
 
 ## What is Rho
 Rho is used to test the generalization of inter rater reliability
@@ -26,14 +26,14 @@ threshold).
 [![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://cran.r-project.org/web/packages/rhoR/index.html) 
 [![cran downloads](https://cranlogs.r-pkg.org/badges/grand-total/rhoR)](https://cranlogs.r-pkg.org/badges/grand-total/rhoR) 
 [![build status](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/badges/master/build.svg)](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/commits/master)
-[![coverage](https://s3-us-west-2.amazonaws.com/rhoR.qe-libs.org/coverage-master.svg)](http://rhoR.qe-libs.org/coverage/master/index.html)
+[![coverage](https://s3-us-west-2.amazonaws.com/rhor.qe-libs.org/coverage-master.svg)](http://rhor.qe-libs.org/coverage/master/index.html)
 
 ```
 install.packages("rhoR")
 ```
 
 ### Install development version
-[![coverage](https://s3-us-west-2.amazonaws.com/rhoR.qe-libs.org/coverage-develop.svg)](http://rhoR.qe-libs.org/coverage/develop/index.html)
+[![coverage](https://s3-us-west-2.amazonaws.com/rhor.qe-libs.org/coverage-develop.svg)](http://rhor.qe-libs.org/coverage/develop/index.html)
 [![build status](https://git.doit.wisc.edu/clmarquart/rhoR/badges/develop/build.svg)](https://git.doit.wisc.edu/clmarquart/rhoR/commits/develop)
 
 ```
