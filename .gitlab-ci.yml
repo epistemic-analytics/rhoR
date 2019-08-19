@@ -73,7 +73,7 @@ check:r-winbuilder:
 
 test:r-release:
   stage: test
-  image: $REG_URL/release:current
+  image: $REG_URL/release-test:current
   before_script:
     - Rscript -e 'install.packages(c("covr", "DT"), repos="http://cran.rstudio.com")'
     - Rscript -e 'install.packages(c("aws.s3","aws.signature"), repos="http://cran.rstudio.com")'
@@ -104,7 +104,7 @@ release:cran:
   
 docs:build-site:
   stage: docs
-  image: $REG_URL/release:current
+  image: $REG_URL/release-test:current
   before_script:
     - Rscript -e 'install.packages(c("pkgdown"), repos="http://cran.rstudio.com")'
     - Rscript -e 'install.packages(c("aws.s3","aws.signature"), repos="http://cran.rstudio.com")'
@@ -128,18 +128,31 @@ docs:build-site:
   script:
     - docker build -t $REG_URL/$TAG:current -f inst/docker/rhor-$FILE inst/docker/
     - docker push $REG_URL/$TAG:current
-  only:
-    refs:
-      - develop
-    changes:
-      #- ".gitlab-ci.yml"
-      - "inst/docker/${PKGL}-$FILE"
 docker:release:
   variables:
     TAG: "release"
     FILE: "release"
     DOCKER_HOST: tcp://localhost:2375/
     DOCKER_DRIVER: overlay2
+  only:
+    refs:
+      - develop
+    changes:
+      #- ".gitlab-ci.yml"
+      - "inst/docker/${PKGL}-$FILE"
+  <<: *docker_template
+docker:release-test:
+  variables:
+    TAG: "release-test"
+    FILE: "release-test"
+    DOCKER_HOST: tcp://localhost:2375/
+    DOCKER_DRIVER: overlay2
+  only:
+    refs:
+      - develop
+    changes:
+      #- ".gitlab-ci.yml"
+      - "inst/docker/${PKGL}-$FILE"
   <<: *docker_template
 docker:old-release:
   variables:
@@ -147,6 +160,12 @@ docker:old-release:
     FILE: "oldrelease"
     DOCKER_HOST: tcp://localhost:2375/
     DOCKER_DRIVER: overlay2
+  only:
+    refs:
+      - develop
+    changes:
+      #- ".gitlab-ci.yml"
+      - "inst/docker/${PKGL}-$FILE"
   <<: *docker_template
 docker:devel:
   variables:
@@ -154,4 +173,12 @@ docker:devel:
     FILE: "devel"
     DOCKER_HOST: tcp://localhost:2375/
     DOCKER_DRIVER: overlay2
+  only:
+    refs:
+      - develop
+    changes:
+      #- ".gitlab-ci.yml"
+      - "inst/docker/${PKGL}-$FILE"
   <<: *docker_template
+  
+  
