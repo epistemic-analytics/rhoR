@@ -151,7 +151,7 @@ docker:release-test:
     refs:
       - develop
     changes:
-      #- ".gitlab-ci.yml"
+      - ".gitlab-ci.yml"
       - "inst/docker/${PKGL}-$FILE"
   <<: *docker_template
 docker:old-release:
