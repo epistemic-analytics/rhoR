@@ -53,7 +53,7 @@ aws.s3::put_object(
                     ".svg")
     )),
     object = obj_name,
-    bucket = "rena.qe-libs.org",
+    bucket = "rhor.qe-libs.org",
     acl = "public-read",
     serialize = TRUE,
     headers = list("Content-Type" = "image/svg+xml")
