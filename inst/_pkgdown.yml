@@ -1,5 +1,5 @@
 navbar:
-  title: "rENA"
+  title: "rhoR"
   type: inverse
   left:
     - text: "Home"

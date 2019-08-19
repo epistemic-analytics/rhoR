@@ -71,7 +71,6 @@ check:r-winbuilder:
     - docker
   allow_failure: false
 
-
 test:r-release:
   stage: test
   image: $REG_URL/release:current
@@ -103,7 +102,6 @@ release:cran:
     - docker
   allow_failure: false
   
-
 docs:build-site:
   stage: docs
   image: $REG_URL/release:current

@@ -1,6 +1,6 @@
 Package: rhoR
 Title: Rho for Inter Rater Reliability
-Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")), person("Rebecca","Pozen", email = "rpozen@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
+Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")), person("Rebecca","Pozen", email = "rpozen@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut"), comment = c(ORCID = "0000-0002-3387-6792")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
 Maintainer: Cody L Marquart <cody.marquart@wisc.edu>
 Version: 1.2.1.1
 Description: Rho is used to test the generalization of inter rater reliability
@@ -19,6 +19,7 @@ Depends:
 License: GPL-3  | file LICENSE
 LazyData: true
 RoxygenNote: 6.1.1
+BugReports: https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR
 Suggests:
     testthat
 Collate: 

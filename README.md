@@ -34,7 +34,7 @@ install.packages("rhoR")
 
 ### Install development version
 [![coverage](https://s3-us-west-2.amazonaws.com/rhor.qe-libs.org/coverage-develop.svg)](http://rhor.qe-libs.org/coverage/develop/index.html)
-[![build status](https://git.doit.wisc.edu/clmarquart/rhoR/badges/develop/build.svg)](https://git.doit.wisc.edu/clmarquart/rhoR/commits/develop)
+[![build status](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/badges/develop/build.svg)](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/commits/develop)
 
 ```
 devtools::install_git(url = "https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR", ref="develop")
