@@ -152,7 +152,7 @@ docker:release-test:
       - develop
     changes:
       - ".gitlab-ci.yml"
-      - "inst/docker/${PKGL}-$FILE"
+      - "inst/docker/$PKGL-$FILE"
   <<: *docker_template
 docker:old-release:
   variables:
