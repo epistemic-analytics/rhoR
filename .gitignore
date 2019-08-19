@@ -6,4 +6,5 @@
 *.so
 \.DS_Store
 
-inst/coverage
+inst/coverage/
+docs/
