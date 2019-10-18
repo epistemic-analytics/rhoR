@@ -11,6 +11,8 @@ variables:
   PKG: "rhoR"
   PKGL: "rhor"
   REG_URL: "${CI_REGISTRY}/epistemic-analytics/qe-packages/rhor"
+  DOCKER_HOST: tcp://localhost:2375/
+  DOCKER_DRIVER: overlay2
 
 # Templates
 .build_definition: &build_template
