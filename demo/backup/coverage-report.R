@@ -32,7 +32,7 @@ ranges <- data.frame(
     color = c("green", "orange", "red"),
     stringsAsFactors = F
 )
-color <- ranges$color[[tail(which(ranges$scale > numb), 1)]]
+color <- ranges$color[[head(which(numb > ranges$scale), 1)]]
 
 obj_name <- paste0(
                 "coverage",
