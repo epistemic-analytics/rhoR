@@ -2,10 +2,11 @@ generateKPs = function(numNeeded, baserate, kappaMin, kappaMax, precisionMin, pr
 
   kappaDistribution = seq(kappaMin, kappaMax, length = distributionLength)
 
-  if(distributionType == 'FLAT'){
+  if (distributionType == 'FLAT') {
     #probability for a flat distribution
     kappaProbability = NULL
-  }else if(distributionType == 'BELL'){
+  }
+  else if (distributionType == 'BELL') {
     #probability for a bell curve
     kappaProbability = stats::dnorm(kappaDistribution, mean = 0.65, sd = 0.1)
   }

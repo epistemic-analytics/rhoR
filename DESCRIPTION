@@ -21,7 +21,7 @@ LazyData: true
 RoxygenNote: 6.1.1
 BugReports: https://gitlab.com/epistemic-analytics/qe-packages/rhor/issues
 Suggests:
-    testthat
+    testthat (>= 2.1.0)
 Collate: 
     'rhoR.R'
     'rho.R'

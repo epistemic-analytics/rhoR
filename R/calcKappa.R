@@ -32,6 +32,4 @@ calcKappa <- function(set, isSet = TRUE, kappaThreshold = NULL) {
   } else {
     return(list(kappa = kappa, above = kappa > kappaThreshold))
   }
-
-  return(kappa)
 }

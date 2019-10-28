@@ -13,7 +13,7 @@ kappa(data)
 The kappa of the \code{\link{contingencyTable}} or \code{\link{codeSet}}
 }
 \description{
-This function calculates Cohen's kappa on a \code{\link{contingencyTable}} or a \code{\link{codeSet}}.
+This function calculates Cohen's kappa on a \code{\link{contingencyTable}} or a \code{\link{codeSet}}
 }
 \examples{
 #Given a code set
