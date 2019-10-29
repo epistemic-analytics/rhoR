@@ -7,7 +7,7 @@ stages:
   - release
 
 variables:
-  VERSION: "1.2.1.1"
+  VERSION: "1.2.1.2"
   PKG: "rhoR"
   PKGL: "rhor"
   REG_URL: "${CI_REGISTRY}/epistemic-analytics/qe-packages/rhor"
