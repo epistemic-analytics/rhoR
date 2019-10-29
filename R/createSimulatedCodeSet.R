@@ -1,3 +1,7 @@
+any.equal <- function(target, current, tolerance = sqrt(.Machine$double.eps)) {
+  any(sapply(target, function(targ) abs(current - targ) < tolerance ))
+}
+
 ###
 #' @include codeSet.R
 #' @title Create Simulated codeSet
@@ -13,6 +17,7 @@
 #' @param kappaMax the maximum kappa of the simulated \code{\link{codeSet}}
 #' @param precisionMin the minimum precision of the simulated \code{\link{codeSet}}
 #' @param precisionMax the maximum precision of the simulated \code{\link{codeSet}}
+#' @param tries the maximum number of tries to generate a valid set, smaller set lengths may require an increased number of tries
 #' 
 #' @keywords codeSet, create
 #' 
@@ -32,6 +37,7 @@ createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisio
   if(precisionMin < 0 | precisionMin > 1) stop("precisionMin must be between 0 and 1.")
   if(precisionMax < 0 | precisionMax > 1) stop("precisionMax must be between 0 and 1.")
   if(precisionMin > precisionMax){stop("precisionMin must be less than precisionMax")}
+  if(tries < 1){stop("tries must be greater than 1")}
   
   return(createRandomSet(setLength = length, baserate = baserate, kappaMin = kappaMin, kappaMax = kappaMax, minPrecision = precisionMin, maxPrecision = precisionMax, ...))
 }

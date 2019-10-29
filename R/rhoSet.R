@@ -38,15 +38,15 @@ rhoSet = function(
 ){
   kappa = kappaSet(set);
   
+  row.count = nrow(set);
   if(is.null(OcSBaserate)) {
-    OcSBaserate = length(which(set[,1] == 1))/length(unlist(set));
+    OcSBaserate = length(which(set[,1] == 1)) / row.count;
   }
-  
   return(list(
     rho = rhoK(
       kappa, 
       OcSBaserate,
-      length(set),
+      row.count,
       testSetBaserateInflation,
       OcSLength,
       replicates,

@@ -65,7 +65,7 @@ rho = function(data, OcSBaserate = NULL,
 ){
   if(class(data) == "numeric"){
     if(is.null(OcSBaserate)){stop("Must give a baserate when a kappa value is given")}
-    if(is.null(testSetLength)){stop("Must give a baserate when a kappa value is given")}
+    if(is.null(testSetLength)){stop("Must give a testSetLength when a kappa value is given")}
     return(rhoK(data, OcSBaserate,
                testSetLength,
                testSetBaserateInflation,

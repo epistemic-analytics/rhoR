@@ -1,0 +1,184 @@
+stages:
+  - docker
+  - check
+  - test
+  - docs
+  - checkWindows
+  - release
+
+variables:
+  VERSION: "1.2.1.2"
+  PKG: "rhoR"
+  PKGL: "rhor"
+  REG_URL: "${CI_REGISTRY}/epistemic-analytics/qe-packages/rhor"
+  DOCKER_HOST: tcp://localhost:2375/
+  DOCKER_DRIVER: overlay2
+
+# Templates
+.build_definition: &build_template
+  before_script:
+    - export _R_CHECK_CRAN_INCOMING_=FALSE
+    - export _R_CHECK_FORCE_SUGGESTS_=TRUE
+    - mkdir -p archive/
+    - rm -f ./R/RcppExports.R
+    - mkdir -p ~/.R/
+    - rm -f ~/.R/Makevars
+    - cp demo/backup/Makevars ~/.R/ || true
+    #- Rscript -e 'Rcpp::compileAttributes()'
+    - Rscript -e 'update(devtools::dev_package_deps("."))'
+    - cd ..; R CMD build --log ${PKG} || true
+.check_definition: &check_template
+  stage: check
+  artifacts:
+    paths:
+      - build/
+      - archive/
+      - doc/
+      - inst/doc/
+    expire_in: 1 week
+  <<: *build_template
+  script:
+    - R --no-site-file --no-environ --no-save --no-restore --quiet CMD check ${PKG}_$VERSION.tar.gz --as-cran --no-manual
+    - mv ./${PKG}-00build.log ${PKG}/archive/ || true
+    - mv ./${PKG}.Rcheck/00check.log ${PKG}/archive/ || true
+    - mv ./${PKG}.Rcheck/00install.out ${PKG}/archive/ || true
+    - mv ./${PKG}_*.tar.gz ${PKG}/archive/ || true
+  tags:
+    - docker
+  allow_failure: false
+
+# Check Steps
+check:r-devel:
+  image: $REG_URL/devel:current
+  only:
+    - master
+  <<: *check_template
+check:r-oldrelease:
+  image: $REG_URL/old-release:current
+  only:
+    - master
+  <<: *check_template
+check:r-release:
+  image: $REG_URL/release:current
+  <<: *check_template
+check:r-winbuilder:
+  stage: checkWindows
+  image: egruw/r-ftp
+  when: manual
+  only:
+    - master
+  script:
+    - curl -v -T archive/${PKG}_${VERSION}.tar.gz ftp://win-builder.r-project.org/R-oldrelease/${PKG}_${VERSION}.tar.gz
+    - curl -v -T archive/${PKG}_${VERSION}.tar.gz ftp://win-builder.r-project.org/R-release/${PKG}_${VERSION}.tar.gz
+    - curl -v -T archive/${PKG}_${VERSION}.tar.gz ftp://win-builder.r-project.org/R-devel/${PKG}_${VERSION}.tar.gz
+  tags:
+    - docker
+  allow_failure: false
+
+test:r-release:
+  stage: test
+  image: $REG_URL/release-test:current
+  script:
+    - 'Rscript -e "Rcpp::compileAttributes()"'
+    #- 'Rscript -e "install.packages(\"lintr\")"'
+    #- 'Rscript -e "print(1 + 1)"'
+    #- 'Rscript -e "lintr:::checkstyle_output(lintr::lint_package())"'
+    - 'Rscript -e "rep <- covr::report( x = covr::package_coverage(quiet = T), file = \"inst/coverage/${CI_COMMIT_REF_NAME}/index.html\" )"'
+    - 'Rscript -e "setwd(\"inst/coverage/${CI_COMMIT_REF_NAME}\"); res = lapply(dir(\".\", full.names = F, recursive = T), function(f) { aws.s3::put_object(file = f, object = paste0(\"coverage/${CI_COMMIT_REF_NAME}/\", f), bucket = \"${PKGL}.qe-libs.org\", acl = \"public-read\") })"'
+    - 'Rscript --vanilla demo/backup/coverage-report.R ${CI_COMMIT_REF_NAME}'
+  dependencies:
+    - check:r-release
+
+release:cran:
+  stage: release
+  image: egruw/r-ftp
+  dependencies:
+    - check:r-release
+  only:
+    - tags
+  except:
+    - branches
+  when: manual
+  script:
+    - cat cran-comments.md
+    - Rscript -e "devtools:::upload_cran(devtools::as.package('.'), './build/rhoR_$VERSION.tar.gz')"
+  tags:
+    - docker
+  allow_failure: false
+  
+docs:build-site:
+  stage: docs
+  image: $REG_URL/release-test:current
+  script:
+    - rm -rf src/RcppExports*
+    - rm -rf R/RcppExports*
+    - 'Rscript -e "Rcpp::compileAttributes()"'
+    - 'Rscript -e "devtools::install(\".\", quick = T, build = T, dependencies = F, upgrade = F)"'
+    - 'Rscript -e "pkgdown::build_site(preview = F, document = F, lazy = T, new_process = T)"'
+    - 'Rscript -e "setwd(\"docs\"); res = lapply(dir(\".\", full.names = F, recursive = T), function(f) { aws.s3::put_object(file = f, object = f, bucket = \"${PKGL}.qe-libs.org\", acl = \"public-read\") })"'
+  dependencies:
+    - test:r-release
+
+.docker_definition: &docker_template
+  stage: docker
+  image: docker:19.03.1
+  services:
+    - docker:19.03.1-dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker build -t $REG_URL/$TAG:current -f inst/docker/rhor-$FILE inst/docker/
+    - docker push $REG_URL/$TAG:current
+docker:release:
+  variables:
+    TAG: "release"
+    FILE: "release"
+    DOCKER_HOST: tcp://localhost:2375/
+    DOCKER_DRIVER: overlay2
+  only:
+    refs:
+      - develop
+    changes:
+      #- ".gitlab-ci.yml"
+      - "inst/docker/${PKGL}-$FILE"
+  <<: *docker_template
+docker:release-test:
+  variables:
+    TAG: "release-test"
+    FILE: "release-test"
+    DOCKER_HOST: tcp://localhost:2375/
+    DOCKER_DRIVER: overlay2
+  only:
+    refs:
+      - develop
+    changes:
+      - "inst/docker/$PKGL-$FILE"
+  <<: *docker_template
+docker:old-release:
+  variables:
+    TAG: "old-release"
+    FILE: "oldrelease"
+    DOCKER_HOST: tcp://localhost:2375/
+    DOCKER_DRIVER: overlay2
+  only:
+    refs:
+      - develop
+    changes:
+      #- ".gitlab-ci.yml"
+      - "inst/docker/${PKGL}-$FILE"
+  <<: *docker_template
+docker:devel:
+  variables:
+    TAG: "devel"
+    FILE: "devel"
+    DOCKER_HOST: tcp://localhost:2375/
+    DOCKER_DRIVER: overlay2
+  only:
+    refs:
+      - develop
+    changes:
+      #- ".gitlab-ci.yml"
+      - "inst/docker/${PKGL}-$FILE"
+  <<: *docker_template
+  
+  
