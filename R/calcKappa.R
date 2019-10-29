@@ -8,30 +8,28 @@
 # @keywords kappa, calculate
 # @return This returns the kappa of the set given
 ###
-calcKappa = function(set, isSet = TRUE, kappaThreshold = NULL) {
-  contTable = NULL
-  if(!isSet){
-    contTable = set
-    set = contingencyToSet(set[1,1],set[2,1],set[1,2],set[2,2])
+calcKappa <- function(set, isSet = TRUE, kappaThreshold = NULL) {
+  if (!isSet) {
+    set <- contingencyToSet(set[1, 1], set[2, 1], set[1, 2], set[2, 2])
   }
-  if(length(which(set[,1] == set[,2] & set[,1] == 1)) == nrow(set) | length(which(set[,1] == set[,2] & set[,1] == 0)) == nrow(set)){
+
+  if (
+    length(which(set[, 1] == set[, 2] & set[, 1] == 1)) == nrow(set) |
+    length(which(set[, 1] == set[, 2] & set[, 1] == 0)) == nrow(set)
+  ) {
     return(1)
   }
-  
-  
-  #calculates kappa by calculating the agreement and the baserates and then creating the adjacenty matrix
-  agreement = length(which(set[,1] == set[,2])) / nrow(set);
-  baserate2 = length(which(1 == set[,2])) / nrow(set);
-  baserate1 = length(which(1 == set[,1])) / nrow(set);
-  randomAgreement = baserate1 * baserate2 + (1 - baserate1) * (1 - baserate2);
-  kappa = (agreement - randomAgreement) / (1 - randomAgreement);
 
-  #if(is.nan(kappa)){stop("Kappa is undefined when both raters rate every item the same, meaning all 1's or all 0's.")}
-  
-  if(is.null(kappaThreshold)){
+  #calculates kappa by calculating the agreement and the baserates and then creating the adjacenty matrix
+  agreement <- length(which(set[, 1] == set[, 2])) / nrow(set);
+  baserate2 <- length(which(1 == set[, 2])) / nrow(set);
+  baserate1 <- length(which(1 == set[, 1])) / nrow(set);
+  randomAgreement <- baserate1 * baserate2 + (1 - baserate1) * (1 - baserate2);
+  kappa <- (agreement - randomAgreement) / (1 - randomAgreement);
+
+  if (is.null(kappaThreshold)) {
     return(kappa);
-  }else{
-    return(list(kappa = kappa, above = kappa > kappaThreshold));
+  } else {
+    return(list(kappa = kappa, above = kappa > kappaThreshold))
   }
-  return(kappa);
 }

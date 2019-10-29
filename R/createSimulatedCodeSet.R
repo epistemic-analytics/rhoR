@@ -1,3 +1,7 @@
+any.equal <- function(target, current, tolerance = sqrt(.Machine$double.eps)) {
+  any(sapply(target, function(targ) abs(current - targ) < tolerance ))
+}
+
 ###
 #' @include codeSet.R
 #' @title Create Simulated codeSet
@@ -23,8 +27,7 @@
 #' @return A \code{\link{codeSet}} that fulfills the given parameters
 #' 
 ###
-
-createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisionMin, precisionMax, tries = 50){
+createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisionMin, precisionMax, tries = 50) {
   if(length <= 0){stop("length must be positive")}
   if(baserate < 0){stop("baserate must be positive")}
   if(kappaMin < 0 | kappaMin > 1) stop("kappaMin must be between 0 and 1.")
@@ -33,6 +36,7 @@ createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisio
   if(precisionMin < 0 | precisionMin > 1) stop("precisionMin must be between 0 and 1.")
   if(precisionMax < 0 | precisionMax > 1) stop("precisionMax must be between 0 and 1.")
   if(precisionMin > precisionMax){stop("precisionMin must be less than precisionMax")}
+  if(tries < 1){stop("tries must be greater than 1")}
   
   setFound = NULL
   validSet = F
@@ -42,23 +46,29 @@ createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisio
     set = createRandomSet(setLength = length, baserate = baserate, kappaMin = kappaMin, kappaMax = kappaMax, minPrecision = precisionMin, maxPrecision = precisionMax)
     k = kappa(set)
     
-    if(k >= kappaMin && k <= kappaMax) {
+    if ((k > kappaMin && k < kappaMax) || any.equal(k, c(kappaMin, kappaMax))) {
       setFound = set
       validSet = T
-    } else {
-      Ks = c(Ks, k)
-      triesLeft = triesLeft - 1
     }
+    
+    Ks = c(Ks, k)
+    triesLeft = triesLeft - 1
   }
   
-  if(is.null(setFound)) {
-    Kdist.to.min = min(kappaMin - Ks[Ks < kappaMin])
-    Kdist.to.max = min(Ks[Ks > kappaMax] - kappaMax)
-    if(Kdist.to.min < Kdist.to.max) {
-      closest = kappaMin - Kdist.to.min
-    } else {
-      closest = kappaMax + Kdist.to.max
-    }
+  if (is.null(setFound)) {
+    Ks_under_min <- Ks[which(Ks < kappaMin)]
+    Kdist.to.min <- kappaMin - Ks_under_min
+    Kdist.to.min.low <- ifelse(length(Ks_under_min) > 0, min(Kdist.to.min), NA)
+    
+    Ks_over_min  <- Ks[which(Ks > kappaMax)]
+    Kdist.to.max <- Ks_over_min - kappaMax
+    Kdist.to.max.low <- ifelse(length(Ks_over_min) > 0, min(Kdist.to.max), NA)
+    
+    Kdist.all_mins <- c(Kdist.to.min, Kdist.to.max)
+    
+    both_mins <- c(Kdist.to.min.low, Kdist.to.max.low)
+    both_mins <- both_mins[!is.na(both_mins)]
+    closest <- c(Ks_under_min, Ks_over_min) [which(Kdist.all_mins == min(both_mins))][1]
     
     stop(paste0(
       "Unable to create a set of the provided length (", length, ") ",

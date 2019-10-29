@@ -1,8 +1,8 @@
 Package: rhoR
 Title: Rho for Inter Rater Reliability
-Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")), person("Rebecca","Pozen", email = "rpozen@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
+Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")), person("Rebecca","Pozen", email = "rpozen@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut"), comment = c(ORCID = "0000-0002-3387-6792")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
 Maintainer: Cody L Marquart <cody.marquart@wisc.edu>
-Version: 1.2.1.1
+Version: 1.2.1.2
 Description: Rho is used to test the generalization of inter rater reliability
     (IRR) statistics. Calculating rho starts by generating a large number of
     simulated, fully-coded data sets: a sizable collection of hypothetical
@@ -18,9 +18,10 @@ Depends:
     R (>= 3.0.0)
 License: GPL-3  | file LICENSE
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
+BugReports: https://gitlab.com/epistemic-analytics/qe-packages/rhor/issues
 Suggests:
-    testthat
+    testthat (>= 2.1.0)
 Collate: 
     'rhoR.R'
     'rho.R'
