@@ -3,7 +3,8 @@
 .RData
 
 *.o
-
 *.so
-
 \.DS_Store
+
+inst/coverage/
+docs/
