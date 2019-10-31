@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -268,7 +269,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -342,18 +342,6 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -380,18 +368,18 @@ $(document).ready(function () {
 
 <p>The first versions of the rhoR package calculated rho using a matrix of two columns, referred to as a codeset. Even the methods that accepted a contingency table, actually converted that table to a codeset and off-loaded the work to the functions accepting a codeset. This was all well and good until the codesets became large. A critical step in the calculation of rho is the sampling, and then re-sampling, a high number of times (default: 800). It is at this point that passing a matrix of say 10,000 rows and sampling numerous times, becomes a burden.</p>
 <p>The alternative, as being introduced in version 1.3.0 of the rhoR package, is to convert sets to contingency tables and sample from that. The motivation here is that even as the size grows, the contingency table still only consists of four numbers:</p>
-<pre class="r"><code>rhoR::createRandomCT(setLength=100,   baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)</code></pre>
+<pre class="r"><code>rhoR::random_contingency_table(setLength=100,   baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)</code></pre>
 <pre><code>##      [,1] [,2]
-## [1,]   29    1
-## [2,]   10   60</code></pre>
-<pre class="r"><code>rhoR::createRandomCT(setLength=1000,  baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)</code></pre>
+## [1,]   22    8
+## [2,]    1   69</code></pre>
+<pre class="r"><code>rhoR::random_contingency_table(setLength=1000,  baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)</code></pre>
 <pre><code>##      [,1] [,2]
-## [1,]  207   93
-## [2,]  118  582</code></pre>
-<pre class="r"><code>rhoR::createRandomCT(setLength=10000, baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)</code></pre>
+## [1,]  183  117
+## [2,]   16  684</code></pre>
+<pre class="r"><code>rhoR::random_contingency_table(setLength=10000, baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)</code></pre>
 <pre><code>##      [,1] [,2]
-## [1,] 1658 1342
-## [2,]  401 6599</code></pre>
+## [1,] 2411  589
+## [2,]  281 6719</code></pre>
 <p>The important piece to note is that for each contingency table the corresponding codeset is setLength * 2 in size.</p>
 <p>So in regards to the size of the matrices, it’s clear the contingency tables are much smaller, but the tricky piece comes in to play when updating the rho operations themselves. A main component of rho is generating samples that contain a minimum number of positive matches from the first-rater and kappa agreement within a desired range. DOing so with a codeset, we are able to sample directly from the corresponding rows of the codeset that meet certain criteria (e.g. both raters agree.)</p>
 <pre class="r"><code>baserate = 0.3
@@ -405,19 +393,19 @@ kappa.precision.combos = rhoR::generateKPs(numNeeded = 800, baserate, kappaMin, 
 <pre><code>##       gold silver
 ##  [1,]    1      1
 ##  [2,]    1      1
-##  [3,]    1      0
+##  [3,]    1      1
 ##  [4,]    0      1
-##  [5,]    0      0
+##  [5,]    0      1
 ##  [6,]    0      0
 ##  [7,]    0      0
 ##  [8,]    0      0
 ##  [9,]    0      0
 ## [10,]    0      0</code></pre>
 <pre><code>## $precision
-## [1] 0.9889989
+## [1] 0.8486849
 ## 
 ## $kappa
-## [1] 0.6097981</code></pre>
+## [1] 0.6926069</code></pre>
 <pre class="r"><code>curr.kappa = kappa.precision.combos[[1]]$kappa
 curr.precision = kappa.precision.combos[[1]]$precision
 
@@ -426,28 +414,28 @@ simulated.set = prset(precision = curr.precision, recall = curr.recall, length =
 <p>Given a simulated set, we now get to the point where we generate a sampled handset, matching the minimum desired baserate, and calculate the kappa agreement. NOTE: this step, along with the previous, is what happens, by default 800 times and we will see slows downs significantly when running on larger codesets.</p>
 <pre class="r"><code>handset = getHandSet(set = simulated.set, handSetLength = 20, handSetBaserate = baserate, returnSet = T);</code></pre>
 <pre><code>##       gold silver
-##  [1,]    1      0
+##  [1,]    1      1
 ##  [2,]    1      1
-##  [3,]    1      0
+##  [3,]    1      1
 ##  [4,]    1      1
-##  [5,]    1      0
-##  [6,]    1      1
+##  [5,]    1      1
+##  [6,]    1      0
 ##  [7,]    0      0
-##  [8,]    1      0
+##  [8,]    0      0
 ##  [9,]    0      0
 ## [10,]    0      0
-## [11,]    1      1
+## [11,]    0      0
 ## [12,]    0      0
-## [13,]    1      0
+## [13,]    1      1
 ## [14,]    0      0
-## [15,]    0      0
+## [15,]    1      1
 ## [16,]    0      0
-## [17,]    1      0
-## [18,]    1      0
-## [19,]    1      0
+## [17,]    0      0
+## [18,]    0      1
+## [19,]    0      0
 ## [20,]    0      0</code></pre>
 <pre class="r"><code>calcKappa(handset)</code></pre>
-<pre><code>## [1] 0.2857143</code></pre>
+<pre><code>## [1] 0.7916667</code></pre>
 <div id="where-is-it-slow" class="section level1">
 <h1>Where is it slow?</h1>
 <pre class="r"><code>library(microbenchmark)
@@ -459,12 +447,12 @@ microbenchmark(
 )</code></pre>
 <pre><code>## Unit: milliseconds
 ##   expr      min       lq     mean   median       uq      max neval cld
-##  kps.r 43.80503 45.05356 51.89588 50.00306 54.34655 70.23297    10   a
-##  kps.c 49.00118 51.19598 60.01713 54.42628 68.38596 83.95321    10   a</code></pre>
+##  kps.r 45.06487 46.67495 49.50887 48.73819 52.40435 54.52137    10   b
+##  kps.c 17.36404 18.18673 18.36917 18.37064 18.71605 19.22127    10  a</code></pre>
 <pre><code>## Unit: milliseconds
-##  expr      min       lq      mean   median       uq      max neval cld
-##  kp.r 0.050139 0.051886 0.0714674 0.054364 0.055955 0.220089    10   a
-##  kp.c 0.061583 0.065109 0.0713278 0.066714 0.080365 0.090212    10   a</code></pre>
+##  expr      min       lq      mean    median       uq      max neval cld
+##  kp.r 0.051149 0.058769 0.0888845 0.0801445 0.097031 0.173652    10   a
+##  kp.c 0.069832 0.080798 0.1705617 0.0931820 0.185334 0.701289    10   a</code></pre>
 </div>
 <div id="create-sets-from-a-precision-and-kappa" class="section level1">
 <h1>Create Sets From a Precision and Kappa</h1>
@@ -475,31 +463,31 @@ recall = getR(kappa, baserate, precision)
 
 microbenchmark(
   fullSet.r = prset(precision = precision, recall = recall, length = 10000, baserate = baserate),
-  fullSet.c = ct_from_pr(precision = precision, recall = recall, length = 10000, baserate = baserate),
+  fullSet.c = contingency_table(precision = precision, recall = recall, length = 10000, baserate = baserate),
   times = 10, unit = &quot;ms&quot;
 )</code></pre>
 <pre><code>## Unit: milliseconds
 ##       expr      min       lq      mean   median       uq      max neval
-##  fullSet.r 0.364539 0.450668 0.7122532 0.811516 0.854257 1.135102    10
-##  fullSet.c 0.002978 0.003867 0.0134604 0.014081 0.023784 0.024800    10
+##  fullSet.r 0.325200 0.336136 0.3509523 0.343360 0.362609 0.386388    10
+##  fullSet.c 0.002617 0.003009 0.0090903 0.004205 0.007240 0.030534    10
 ##  cld
 ##    b
 ##   a</code></pre>
 </div>
-<div id="calculate-kappa-on-codeset-vs.contingency-table" class="section level1">
+<div id="calculate-kappa-on-codeset-vs.-contingency-table" class="section level1">
 <h1>Calculate Kappa on Codeset vs. Contingency Table</h1>
 <pre class="r"><code>codeset = prset(precision = precision, recall = recall, length = 10000, baserate = baserate)
-ctset = ct_from_pr(precision = precision, recall = recall, length = 10000, baserate = baserate)
+ctset = contingency_table(precision = precision, recall = recall, length = 10000, baserate = baserate)
 
 microbenchmark(
   kappa.cs = kappaSet(codeset),
-  kappa.ct = ct_kappa_c(ctset),
+  kappa.ct = kappa_ct(ctset),
   times = 100, unit = &quot;ms&quot;
 )</code></pre>
 <pre><code>## Unit: milliseconds
-##      expr      min       lq       mean    median        uq       max neval
-##  kappa.cs 1.270128 1.401124 2.05055473 1.4583175 1.5813525 19.386065   100
-##  kappa.ct 0.001239 0.001685 0.00544246 0.0038125 0.0077695  0.045012   100
+##      expr      min        lq       mean   median        uq      max neval
+##  kappa.cs 1.131216 1.2241695 1.65177405 1.293007 1.3845420 8.657673   100
+##  kappa.ct 0.001201 0.0015815 0.00539746 0.002398 0.0088465 0.017602   100
 ##  cld
 ##    b
 ##   a</code></pre>
@@ -528,6 +516,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

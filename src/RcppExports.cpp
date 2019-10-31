@@ -6,27 +6,16 @@
 
 using namespace Rcpp;
 
-// toArmaVec
-arma::ivec toArmaVec(arma::imat m);
-RcppExport SEXP _rhoR_toArmaVec(SEXP mSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::imat >::type m(mSEXP);
-    rcpp_result_gen = Rcpp::wrap(toArmaVec(m));
-    return rcpp_result_gen;
-END_RCPP
-}
-// sample_weighted3
-arma::ivec sample_weighted3(arma::imat xx, int n, bool forR);
-RcppExport SEXP _rhoR_sample_weighted3(SEXP xxSEXP, SEXP nSEXP, SEXP forRSEXP) {
+// sample_contingency_table
+arma::ivec sample_contingency_table(arma::imat xx, int n, bool forR);
+RcppExport SEXP _rhoR_sample_contingency_table(SEXP xxSEXP, SEXP nSEXP, SEXP forRSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::imat >::type xx(xxSEXP);
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< bool >::type forR(forRSEXP);
-    rcpp_result_gen = Rcpp::wrap(sample_weighted3(xx, n, forR));
+    rcpp_result_gen = Rcpp::wrap(sample_contingency_table(xx, n, forR));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -42,35 +31,35 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// checkBRPKcombo_c
-bool checkBRPKcombo_c(double BR, double P, double K);
-RcppExport SEXP _rhoR_checkBRPKcombo_c(SEXP BRSEXP, SEXP PSEXP, SEXP KSEXP) {
+// check_BRK_combo
+bool check_BRK_combo(double BR, double P, double K);
+RcppExport SEXP _rhoR_check_BRK_combo(SEXP BRSEXP, SEXP PSEXP, SEXP KSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< double >::type BR(BRSEXP);
     Rcpp::traits::input_parameter< double >::type P(PSEXP);
     Rcpp::traits::input_parameter< double >::type K(KSEXP);
-    rcpp_result_gen = Rcpp::wrap(checkBRPKcombo_c(BR, P, K));
+    rcpp_result_gen = Rcpp::wrap(check_BRK_combo(BR, P, K));
     return rcpp_result_gen;
 END_RCPP
 }
-// getR_c
-double getR_c(double kappa, double BR, double P);
-RcppExport SEXP _rhoR_getR_c(SEXP kappaSEXP, SEXP BRSEXP, SEXP PSEXP) {
+// recall
+double recall(double kappa, double BR, double P);
+RcppExport SEXP _rhoR_recall(SEXP kappaSEXP, SEXP BRSEXP, SEXP PSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< double >::type kappa(kappaSEXP);
     Rcpp::traits::input_parameter< double >::type BR(BRSEXP);
     Rcpp::traits::input_parameter< double >::type P(PSEXP);
-    rcpp_result_gen = Rcpp::wrap(getR_c(kappa, BR, P));
+    rcpp_result_gen = Rcpp::wrap(recall(kappa, BR, P));
     return rcpp_result_gen;
 END_RCPP
 }
-// genPKcombo_c
-NumericVector genPKcombo_c(arma::colvec kappaDistribution, arma::vec kappaProbability, arma::colvec precisionDistribution, arma::vec precisionProbability, double baserate);
-RcppExport SEXP _rhoR_genPKcombo_c(SEXP kappaDistributionSEXP, SEXP kappaProbabilitySEXP, SEXP precisionDistributionSEXP, SEXP precisionProbabilitySEXP, SEXP baserateSEXP) {
+// find_valid_pk
+NumericVector find_valid_pk(arma::colvec kappaDistribution, arma::vec kappaProbability, arma::colvec precisionDistribution, arma::vec precisionProbability, double baserate);
+RcppExport SEXP _rhoR_find_valid_pk(SEXP kappaDistributionSEXP, SEXP kappaProbabilitySEXP, SEXP precisionDistributionSEXP, SEXP precisionProbabilitySEXP, SEXP baserateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -79,13 +68,13 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::colvec >::type precisionDistribution(precisionDistributionSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type precisionProbability(precisionProbabilitySEXP);
     Rcpp::traits::input_parameter< double >::type baserate(baserateSEXP);
-    rcpp_result_gen = Rcpp::wrap(genPKcombo_c(kappaDistribution, kappaProbability, precisionDistribution, precisionProbability, baserate));
+    rcpp_result_gen = Rcpp::wrap(find_valid_pk(kappaDistribution, kappaProbability, precisionDistribution, precisionProbability, baserate));
     return rcpp_result_gen;
 END_RCPP
 }
-// generateKPs_c
-Rcpp::NumericMatrix generateKPs_c(int numNeeded, double baserate, double kappaMin, double kappaMax, double precisionMin, double precisionMax, int distributionType, long distributionLength);
-RcppExport SEXP _rhoR_generateKPs_c(SEXP numNeededSEXP, SEXP baserateSEXP, SEXP kappaMinSEXP, SEXP kappaMaxSEXP, SEXP precisionMinSEXP, SEXP precisionMaxSEXP, SEXP distributionTypeSEXP, SEXP distributionLengthSEXP) {
+// generate_kp_list
+Rcpp::NumericMatrix generate_kp_list(int numNeeded, double baserate, double kappaMin, double kappaMax, double precisionMin, double precisionMax, int distributionType, long distributionLength);
+RcppExport SEXP _rhoR_generate_kp_list(SEXP numNeededSEXP, SEXP baserateSEXP, SEXP kappaMinSEXP, SEXP kappaMaxSEXP, SEXP precisionMinSEXP, SEXP precisionMaxSEXP, SEXP distributionTypeSEXP, SEXP distributionLengthSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -97,27 +86,27 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type precisionMax(precisionMaxSEXP);
     Rcpp::traits::input_parameter< int >::type distributionType(distributionTypeSEXP);
     Rcpp::traits::input_parameter< long >::type distributionLength(distributionLengthSEXP);
-    rcpp_result_gen = Rcpp::wrap(generateKPs_c(numNeeded, baserate, kappaMin, kappaMax, precisionMin, precisionMax, distributionType, distributionLength));
+    rcpp_result_gen = Rcpp::wrap(generate_kp_list(numNeeded, baserate, kappaMin, kappaMax, precisionMin, precisionMax, distributionType, distributionLength));
     return rcpp_result_gen;
 END_RCPP
 }
-// ct_from_pr
-arma::imat ct_from_pr(double precision, double recall, int length, double baserate);
-RcppExport SEXP _rhoR_ct_from_pr(SEXP precisionSEXP, SEXP recallSEXP, SEXP lengthSEXP, SEXP baserateSEXP) {
+// contingency_table
+arma::imat contingency_table(double precision, double rec, int length, double baserate);
+RcppExport SEXP _rhoR_contingency_table(SEXP precisionSEXP, SEXP recSEXP, SEXP lengthSEXP, SEXP baserateSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< double >::type precision(precisionSEXP);
-    Rcpp::traits::input_parameter< double >::type recall(recallSEXP);
+    Rcpp::traits::input_parameter< double >::type rec(recSEXP);
     Rcpp::traits::input_parameter< int >::type length(lengthSEXP);
     Rcpp::traits::input_parameter< double >::type baserate(baserateSEXP);
-    rcpp_result_gen = Rcpp::wrap(ct_from_pr(precision, recall, length, baserate));
+    rcpp_result_gen = Rcpp::wrap(contingency_table(precision, rec, length, baserate));
     return rcpp_result_gen;
 END_RCPP
 }
-// createRandomCT
-arma::imat createRandomCT(int setLength, double baserate, double kappaMin, double kappaMax, double minPrecision, double maxPrecision);
-RcppExport SEXP _rhoR_createRandomCT(SEXP setLengthSEXP, SEXP baserateSEXP, SEXP kappaMinSEXP, SEXP kappaMaxSEXP, SEXP minPrecisionSEXP, SEXP maxPrecisionSEXP) {
+// random_contingency_table
+arma::imat random_contingency_table(int setLength, double baserate, double kappaMin, double kappaMax, double minPrecision, double maxPrecision);
+RcppExport SEXP _rhoR_random_contingency_table(SEXP setLengthSEXP, SEXP baserateSEXP, SEXP kappaMinSEXP, SEXP kappaMaxSEXP, SEXP minPrecisionSEXP, SEXP maxPrecisionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -127,18 +116,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type kappaMax(kappaMaxSEXP);
     Rcpp::traits::input_parameter< double >::type minPrecision(minPrecisionSEXP);
     Rcpp::traits::input_parameter< double >::type maxPrecision(maxPrecisionSEXP);
-    rcpp_result_gen = Rcpp::wrap(createRandomCT(setLength, baserate, kappaMin, kappaMax, minPrecision, maxPrecision));
+    rcpp_result_gen = Rcpp::wrap(random_contingency_table(setLength, baserate, kappaMin, kappaMax, minPrecision, maxPrecision));
     return rcpp_result_gen;
 END_RCPP
 }
-// ct_kappa_c
-double ct_kappa_c(arma::imat ct);
-RcppExport SEXP _rhoR_ct_kappa_c(SEXP ctSEXP) {
+// kappa_ct
+double kappa_ct(arma::imat ct);
+RcppExport SEXP _rhoR_kappa_ct(SEXP ctSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::imat >::type ct(ctSEXP);
-    rcpp_result_gen = Rcpp::wrap(ct_kappa_c(ct));
+    rcpp_result_gen = Rcpp::wrap(kappa_ct(ct));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -169,38 +158,37 @@ BEGIN_RCPP
 END_RCPP
 }
 // calcRho_c
-double calcRho_c(double observedKappa, double fullSetBaserate, int handSetLength, double handSetBaserateInflation, int fullSetLength, int runs, double kappaThreshold, double kappaMin, double precisionMin, double precisionMax, NumericMatrix KPs);
-RcppExport SEXP _rhoR_calcRho_c(SEXP observedKappaSEXP, SEXP fullSetBaserateSEXP, SEXP handSetLengthSEXP, SEXP handSetBaserateInflationSEXP, SEXP fullSetLengthSEXP, SEXP runsSEXP, SEXP kappaThresholdSEXP, SEXP kappaMinSEXP, SEXP precisionMinSEXP, SEXP precisionMaxSEXP, SEXP KPsSEXP) {
+double calcRho_c(double x, double OcSBaserate, int testSetLength, double testSetBaserateInflation, int OcSLength, int replicates, double ScSKappaThreshold, double ScSKappaMin, double ScSPrecisionMin, double ScSPrecisionMax, NumericMatrix KPs);
+RcppExport SEXP _rhoR_calcRho_c(SEXP xSEXP, SEXP OcSBaserateSEXP, SEXP testSetLengthSEXP, SEXP testSetBaserateInflationSEXP, SEXP OcSLengthSEXP, SEXP replicatesSEXP, SEXP ScSKappaThresholdSEXP, SEXP ScSKappaMinSEXP, SEXP ScSPrecisionMinSEXP, SEXP ScSPrecisionMaxSEXP, SEXP KPsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< double >::type observedKappa(observedKappaSEXP);
-    Rcpp::traits::input_parameter< double >::type fullSetBaserate(fullSetBaserateSEXP);
-    Rcpp::traits::input_parameter< int >::type handSetLength(handSetLengthSEXP);
-    Rcpp::traits::input_parameter< double >::type handSetBaserateInflation(handSetBaserateInflationSEXP);
-    Rcpp::traits::input_parameter< int >::type fullSetLength(fullSetLengthSEXP);
-    Rcpp::traits::input_parameter< int >::type runs(runsSEXP);
-    Rcpp::traits::input_parameter< double >::type kappaThreshold(kappaThresholdSEXP);
-    Rcpp::traits::input_parameter< double >::type kappaMin(kappaMinSEXP);
-    Rcpp::traits::input_parameter< double >::type precisionMin(precisionMinSEXP);
-    Rcpp::traits::input_parameter< double >::type precisionMax(precisionMaxSEXP);
+    Rcpp::traits::input_parameter< double >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type OcSBaserate(OcSBaserateSEXP);
+    Rcpp::traits::input_parameter< int >::type testSetLength(testSetLengthSEXP);
+    Rcpp::traits::input_parameter< double >::type testSetBaserateInflation(testSetBaserateInflationSEXP);
+    Rcpp::traits::input_parameter< int >::type OcSLength(OcSLengthSEXP);
+    Rcpp::traits::input_parameter< int >::type replicates(replicatesSEXP);
+    Rcpp::traits::input_parameter< double >::type ScSKappaThreshold(ScSKappaThresholdSEXP);
+    Rcpp::traits::input_parameter< double >::type ScSKappaMin(ScSKappaMinSEXP);
+    Rcpp::traits::input_parameter< double >::type ScSPrecisionMin(ScSPrecisionMinSEXP);
+    Rcpp::traits::input_parameter< double >::type ScSPrecisionMax(ScSPrecisionMaxSEXP);
     Rcpp::traits::input_parameter< NumericMatrix >::type KPs(KPsSEXP);
-    rcpp_result_gen = Rcpp::wrap(calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, fullSetLength, runs, kappaThreshold, kappaMin, precisionMin, precisionMax, KPs));
+    rcpp_result_gen = Rcpp::wrap(calcRho_c(x, OcSBaserate, testSetLength, testSetBaserateInflation, OcSLength, replicates, ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax, KPs));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rhoR_toArmaVec", (DL_FUNC) &_rhoR_toArmaVec, 1},
-    {"_rhoR_sample_weighted3", (DL_FUNC) &_rhoR_sample_weighted3, 3},
+    {"_rhoR_sample_contingency_table", (DL_FUNC) &_rhoR_sample_contingency_table, 3},
     {"_rhoR_getBootPvalue_c", (DL_FUNC) &_rhoR_getBootPvalue_c, 2},
-    {"_rhoR_checkBRPKcombo_c", (DL_FUNC) &_rhoR_checkBRPKcombo_c, 3},
-    {"_rhoR_getR_c", (DL_FUNC) &_rhoR_getR_c, 3},
-    {"_rhoR_genPKcombo_c", (DL_FUNC) &_rhoR_genPKcombo_c, 5},
-    {"_rhoR_generateKPs_c", (DL_FUNC) &_rhoR_generateKPs_c, 8},
-    {"_rhoR_ct_from_pr", (DL_FUNC) &_rhoR_ct_from_pr, 4},
-    {"_rhoR_createRandomCT", (DL_FUNC) &_rhoR_createRandomCT, 6},
-    {"_rhoR_ct_kappa_c", (DL_FUNC) &_rhoR_ct_kappa_c, 1},
+    {"_rhoR_check_BRK_combo", (DL_FUNC) &_rhoR_check_BRK_combo, 3},
+    {"_rhoR_recall", (DL_FUNC) &_rhoR_recall, 3},
+    {"_rhoR_find_valid_pk", (DL_FUNC) &_rhoR_find_valid_pk, 5},
+    {"_rhoR_generate_kp_list", (DL_FUNC) &_rhoR_generate_kp_list, 8},
+    {"_rhoR_contingency_table", (DL_FUNC) &_rhoR_contingency_table, 4},
+    {"_rhoR_random_contingency_table", (DL_FUNC) &_rhoR_random_contingency_table, 6},
+    {"_rhoR_kappa_ct", (DL_FUNC) &_rhoR_kappa_ct, 1},
     {"_rhoR_getHand_ct", (DL_FUNC) &_rhoR_getHand_ct, 3},
     {"_rhoR_getHand_kappa", (DL_FUNC) &_rhoR_getHand_kappa, 3},
     {"_rhoR_calcRho_c", (DL_FUNC) &_rhoR_calcRho_c, 11},

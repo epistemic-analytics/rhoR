@@ -1,13 +1,3 @@
-
-ctFromSet <- function(set) {
-  tp = length(which(set[,1] == 1 & set[,2] == 1))
-  tn = length(which(set[,1] == 0 & set[,2] == 0))
-  fp = length(which(set[,1] == 0 & set[,2] == 1))
-  fn = length(which(set[,1] == 1 & set[,2] == 0))
-  
-  matrix(c(tp,fp,fn,tn), ncol=2, nrow=2)
-}
-
 compareMakers <- function(
   baserate = 0.5,
   threshold = 0.65,
@@ -20,7 +10,7 @@ compareMakers <- function(
   handSetBaserate = 0.2,
   replicates = 800
 ) {
-  # ct = createRandomCT(
+  # ct = random_contingency_table(
   #   setLength, baserate = baserate,
   #   kappaMin = kappaMin, kappaMax = kappaMax,
   #   minPrecision = minPrecision, maxPrecision = maxPrecision

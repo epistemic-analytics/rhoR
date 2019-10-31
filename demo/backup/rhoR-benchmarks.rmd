@@ -14,9 +14,9 @@ devtools::load_all(".")
 ```
 
 ```{r}
-rhoR::createRandomCT(setLength=100,   baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)
-rhoR::createRandomCT(setLength=1000,  baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)
-rhoR::createRandomCT(setLength=10000, baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)
+rhoR::random_contingency_table(setLength=100,   baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)
+rhoR::random_contingency_table(setLength=1000,  baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)
+rhoR::random_contingency_table(setLength=10000, baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)
 ```
 
 The important piece to note is that for each contingency table the corresponding codeset is setLength * 2 in size. 
@@ -66,7 +66,7 @@ library(microbenchmark)
 
 microbenchmark(
   kps.r = rhoR::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax),
-  kps.c = rhoR::generateKPs_c(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax),
+  kps.c = rhoR::generate_kp_list(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax),
   times = 10, unit = "ms"
 )
 ```
@@ -76,7 +76,7 @@ kps.r = rhoR::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisi
 kps.df = do.call("rbind", kps.r)
 microbenchmark(
   kp.r = rhoR::genPKcombo(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = NULL, precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = NULL, baserate = baserate),
-  kp.c = rhoR::genPKcombo_c(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = rep(1, nrow(kps.df)), precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = rep(1, nrow(kps.df)), baserate = baserate),
+  kp.c = rhoR::find_valid_pk(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = rep(1, nrow(kps.df)), precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = rep(1, nrow(kps.df)), baserate = baserate),
   times = 10, unit = "ms"
 )
 ```
@@ -91,7 +91,7 @@ recall = getR(kappa, baserate, precision)
 
 microbenchmark(
   fullSet.r = prset(precision = precision, recall = recall, length = 10000, baserate = baserate),
-  fullSet.c = ct_from_pr(precision = precision, recall = recall, length = 10000, baserate = baserate),
+  fullSet.c = contingency_table(precision = precision, recall = recall, length = 10000, baserate = baserate),
   times = 10, unit = "ms"
 )
 
@@ -101,11 +101,11 @@ microbenchmark(
 
 ```{r}
 codeset = prset(precision = precision, recall = recall, length = 10000, baserate = baserate)
-ctset = ct_from_pr(precision = precision, recall = recall, length = 10000, baserate = baserate)
+ctset = contingency_table(precision = precision, recall = recall, length = 10000, baserate = baserate)
 
 microbenchmark(
   kappa.cs = kappaSet(codeset),
-  kappa.ct = ct_kappa_c(ctset),
+  kappa.ct = kappa_ct(ctset),
   times = 100, unit = "ms"
 )
 ```

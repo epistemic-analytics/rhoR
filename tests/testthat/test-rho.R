@@ -1,3 +1,6 @@
+library(testthat)
+context("Testing rho")
+
 test_that("testing rho errors", {
   expect_error(rho(0.90, OcSBaserate = NULL), regexp = "Must give a baserate when a kappa")
   expect_error(rho(0.90, OcSBaserate = 0.2, testSetLength = NULL), regexp = "Must give a testSetLength when a kappa")

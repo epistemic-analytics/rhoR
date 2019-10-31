@@ -32,18 +32,18 @@ test_that("create random sets", {
   set <- rhoR:::createRandomSet(len, br, 0.4, 0.65, 0, 1)
   
   expect_gte(sum(set[,1]), len * br)
-  expect_gte(kappa(set), 0.4)
-  expect_lte(kappa(set), 0.65)
+  expect_gte(round(kappa(set), 2), 0.4)
+  expect_lte(round(kappa(set), 2), 0.65)
   
   ct <- rhoR:::createRandomSet(len, br, 0.4, 0.65, 0, 1, type = "ct")
   expect_gte(sum(ct[1, ]), len * br)
-  expect_gte(kappa(ct), 0.4)
-  expect_lte(kappa(ct), 0.65)
+  expect_gte(round(kappa(ct), 2), 0.4)
+  expect_lte(round(kappa(ct), 2), 0.65)
   
-  ct <- rhoR:::createRandomCT(len, br, 0.5, 0.75, 0, 1)
+  ct <- rhoR:::random_contingency_table(len, br, 0.5, 0.75, 0, 1)
   expect_gte(sum(ct[1, ]), len * br)
-  expect_gte(kappa(ct), 0.5)
-  expect_lte(kappa(ct), 0.75)
+  expect_gte(round(kappa(ct), 2), 0.5)
+  expect_lte(round(kappa(ct), 2), 0.75)
 })
 
 test_that("rho min", {
@@ -54,16 +54,16 @@ test_that("rho min", {
   expect_error(rhoMin(br, inc = 12.5), regexp = "Inc value must")
   expect_error(rhoMin(br, alpha = 2), regexp = "Alpha must")
   
-  expect_output(rhoR:::rhoMin(br, printInc = TRUE), regexp = "30\\s0\\.0")
+  expect_output(rhoR:::rhoMin(br, printInc = TRUE), regexp = "20\\s0\\.0")
 })
 
 test_that("rho given kappa errors", {
-  expect_error(rhoK(2), regexp = "between 0 and 1")
-  expect_error(rhoK(-2), regexp = "between 0 and 1")
-  expect_error(rhoK(0.9, OcSBaserate = -1), regexp = "OcSBaserate must be positive")
+  expect_error(rhoK(2, OcSBaserate = 0.5, testSetLength = 10), regexp = "between 0 and 1")
+  expect_error(rhoK(-2, OcSBaserate = 0.5, testSetLength = 10), regexp = "between 0 and 1")
+  expect_error(rhoK(0.9, OcSBaserate = -1), regexp = "OcSBaserate.*?0 and 1")
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 1.5), regexp = "testSetLength.*?positive integer")
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, OcSLength = 2.5), regexp = "OcSLength.*?positive integer")
-  expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, replicates = 1.5), regexp = "Replicates.*?positive integer")
+  expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, replicates = 1.5), regexp = "replicates.*?positive integer")
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSKappaThreshold = -1), regexp = "ScSKappaTh.*?positive")
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSKappaMin = -1), regexp = "ScSKappaMin.*?positive")
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSKappaMin = 0.9, ScSKappaThreshold = 0.8), regexp = "ScSKappaThresh.*?greater.*?Min")
@@ -81,7 +81,7 @@ test_that("create from PR", {
   br <- 0.2
   
   set <- rhoR:::prset(prec, rec, hsl, br)
-  ct  <-   ct_from_pr(prec, rec, hsl, br)
+  ct  <-   contingency_table(prec, rec, hsl, br)
 
   set_tp <- sum(set[, 1] == 1 & set[, 2] == 1)
   set_tn <- sum(set[, 1] == 0 & set[, 2] == 0)
@@ -95,16 +95,17 @@ test_that("create from PR", {
 })
 
 test_that("rhoK on set and ct", { 
-  len = 100
+  len = 1000
   br = 0.2
-  set <- rhoR:::createRandomSet(len, br, 0.4, 0.65, 0, 1)
+  set <- rhoR:::createRandomSet(len, br, 0.9, 1, 0.8, 1)
 
   set_k <- kappa(set)
   ocs_br <- 0.2
-  tsl <- 10
+  tsl <- 80
 
-  set_k_std <- rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl)
-  set_k_c <-   rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl, method = "c")
+  set_k_std <- replicate(10, rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl))
+  set_k_c   <- replicate(10, rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl, method = "c"))
+  testthat::expect_equivalent(mean(set_k_std), mean(set_k_c), tolerance = 0.01)
 })
 
 test_that("Generate KPs", {
@@ -119,7 +120,7 @@ test_that("Generate KPs", {
   
   kps_r <- matrix(unlist(kps_list), byrow = TRUE, ncol = 2, dimnames = list(NULL, names(kps_list[[1]])))
   
-  kps_c <- generateKPs_c(num, br, kmin, kmax, pmin, pmax)
+  kps_c <- generate_kp_list(num, br, kmin, kmax, pmin, pmax)
   
   r_means <- colMeans(kps_r)
   c_means <- colMeans(kps_c)
@@ -133,9 +134,11 @@ test_that("CT kappa comparisons", {
   hsl <- 40
   br <- 0.2
 
-  ct <- ct_from_pr(prec, rec, hsl, br)
+  ct <- contingency_table(prec, rec, hsl, br)
   k_r <- kappaCT(ct)
-  k_c <- ct_kappa_c(ct)
+  k_c <- kappa_ct(ct)
+  
+  testthat::expect_equivalent(k_r, k_c)
 })
 
 test_that("compare calcRhos", {
@@ -147,26 +150,24 @@ test_that("compare calcRhos", {
   pmax <- 0.85
   
   kps_list <- generateKPs(num, br, kmin, kmax, pmin, pmax)
-  
   kps_r <- matrix(unlist(kps_list), byrow = TRUE, ncol = 2, dimnames = list(NULL, names(kps_list[[1]])))
-  
-  kps_c <- generateKPs_c(num, br, kmin, kmax, pmin, pmax)
-  
+  kps_c <- generate_kp_list(num, br, kmin, kmax, pmin, pmax)
+
   observedKappa = 0.67
   fullSetBaserate = 0.2
   handSetLength = 80
   handSetBaserateInflation = 0.2
   
-  calc_rs <- replicate(100, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_list))
-  calc_cs <- replicate(100, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_r))
+  calc_rs <- replicate(10, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_list))
+  calc_cs <- replicate(10, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_r))
   expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.05))
   
-  calc_rs <- replicate(100, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_list, runs = 50))
-  calc_cs <- replicate(100, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_r, runs = 50))
+  calc_rs <- replicate(50, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_list, replicates = 50))
+  calc_cs <- replicate(50, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_r, replicates = 50))
   expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.05))
   
-  calc_rs <- replicate(100, rhoR:::calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
-  calc_cs <- replicate(100, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
+  calc_rs <- replicate(10, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
+  calc_cs <- replicate(10, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
   expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.05))
 })
 
@@ -178,6 +179,16 @@ test_that("kps from c", {
   pmin <- 0.9
   pmax <- 0.95
 
-  kps_c <- generateKPs_c(num, br, kmin, kmax, pmin, pmax, distributionType = 1)
+  kps_c <- generate_kp_list(num, br, kmin, kmax, pmin, pmax, distributionType = 1)
   testthat::expect_lte(abs(round(mean(kps_c[,2])  * 100) - 65), 1)
+})
+
+test_that("ct equals set", {
+  ct_as_set <- as.codeset(contingencyTable)
+  expect_equal(ct_as_set[,1], codeSet[,1])
+  expect_equal(ct_as_set[,2], codeSet[,2])
+})
+test_that("set equals ct", {
+  set_as_ct <- as.contingency.table(codeSet)
+  expect_true(all.equal(set_as_ct, contingencyTable))
 })

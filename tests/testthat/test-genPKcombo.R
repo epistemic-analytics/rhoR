@@ -18,16 +18,16 @@ test_that("verify precision kappa combinations", {
   # kps.r = rhoR::generateKPs(numNeeded = 100, br, kappaMin, kappaMax, precisionMin, precisionMax)
   # kps.df = do.call("rbind", kps.r)
   # # kps.df[,1] = 0.5
-  # rhoR:::genPKcombo_c(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = rep(1, nrow(kps.df)), precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = rep(1, nrow(kps.df)), baserate = br)
-  # rhoR:::genPKcombo_c(c(0.1, 0.1), c(1, 1), 0.2, 1, 0.6)
+  # rhoR:::find_valid_pk(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = rep(1, nrow(kps.df)), precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = rep(1, nrow(kps.df)), baserate = br)
+  # rhoR:::find_valid_pk(c(0.1, 0.1), c(1, 1), 0.2, 1, 0.6)
   
   ## Thorws error in endless loop
-  pk <- rhoR:::genPKcombo_c(c(rep(0.6, 1000), 0.4), rep(1, 1001), 0.5, 1, 0.2)
+  pk <- rhoR:::find_valid_pk(c(rep(0.6, 1000), 0.4), rep(1, 1001), 0.5, 1, 0.2)
   testthat::expect_equal(pk[1], 0.5)
   testthat::expect_equal(pk[2], 0.4)
   
   ## Force find new
-  pk <- rhoR:::genPKcombo_c(0.2, 1, c(rep(0.1, 10000), 0.9), c(rep(1, 10000), 0.1), 0.2)
+  pk <- rhoR:::find_valid_pk(0.2, 1, c(rep(0.1, 10000), 0.9), c(rep(1, 10000), 0.1), 0.2)
   testthat::expect_equal(pk[1], 0.9)
   testthat::expect_equal(pk[2], 0.2)
 })
@@ -54,14 +54,14 @@ test_that("verify p boots", {
   expect_equal(p_r, p_c)
 })
 
-test_that("calc rho tests", {
-  observedKappa = 0.67
-  fullSetBaserate = 0.2
-  handSetLength = 20
-  handSetBaserateInflation = 0.2
-  
-  kps <- generateKPs(100, 0.2, 0.6, 0.8, 0.6, 0.9,)
-  rhoR:::calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps)
-  # Rs = replicate(10, rhoR:::calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
-  # Cs = replicate(10, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
-})
+# test_that("calc rho tests", {
+#   observedKappa = 0.67
+#   fullSetBaserate = 0.2
+#   handSetLength = 20
+#   handSetBaserateInflation = 0.2
+#   
+#   kps <- generateKPs(100, 0.2, 0.6, 0.8, 0.6, 0.9,)
+#   rhoR:::calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps)
+#   # Rs = replicate(10, rhoR:::calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
+#   # Cs = replicate(10, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
+# })

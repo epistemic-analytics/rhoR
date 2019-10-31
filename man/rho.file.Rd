@@ -15,7 +15,7 @@ rho.file(file, x, y, OcSBaserate = NULL, testSetBaserateInflation = 0,
 
 \item{y}{The second column from file}
 
-\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}})}
+\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})}
 
 \item{testSetBaserateInflation}{The minimum \code{\link{baserate}} from the sampling procedure}
 
@@ -30,17 +30,21 @@ rho.file(file, x, y, OcSBaserate = NULL, testSetBaserateInflation = 0,
 \item{ScSPrecisionMin}{The minimum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
 
 \item{ScSPrecisionMax}{The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
+
+\item{x}{The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho}
 }
 \value{
+rho for the given parameters
+
 A list of the format:\describe{
 \item{rho}{The rho of the \code{\link{codeSet}}}
 \item{kappa}{The Cohen's Kappa of the \code{\link{codeSet}}}
 }
 }
 \description{
-This function calculates rho and kappa for a given \code{\link[=getTestSet]{testSet}} as defined by the file and columns (x, y), and returns a list containing both values. Called by \code{\link{rho}}.
+This function calculates rho and kappa for a given \code{\link[=getTestSet]{testSet}} as defined by the file 
+and columns (x, y), and returns a list containing both values. Called by \code{\link{rho}}.
 }
 \seealso{
-\code{\link{rho}} and \code{\link{rhoK}} and \code{\link{rhoCT}}
+\code{\link{rho}}
 }
-\keyword{rhoSet}

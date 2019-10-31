@@ -20,6 +20,8 @@ createSimulatedCodeSet(length, baserate, kappaMin, kappaMax, precisionMin,
 
 \item{precisionMax}{the maximum precision of the simulated \code{\link{codeSet}}}
 
+\item{...}{Parameters passed to createRandomSet (e.g. type = "set" or type = "ct")}
+
 \item{tries}{the maximum number of tries to generate a valid set, smaller set lengths may require an increased number of tries}
 }
 \value{

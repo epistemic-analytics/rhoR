@@ -1,5 +1,6 @@
 ###
 #' @include rhoR.R
+#' 
 #' @title Rho
 #' 
 #' @description 
@@ -24,66 +25,67 @@
 #'
 #' @export
 #'
-#' @param data The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho
-#' @param OcSBaserate The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})
+#' @template rho-params
 #' @param testSetLength The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)
-#' @param testSetBaserateInflation The minimum \code{\link{baserate}} from the sampling procedure
-#' @param OcSLength The length of the observed \code{\link{codeSet}}
-#' @param replicates The number of simulated \code{\link[=getTestSet]{codeSets}} to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study
-#' @param ScSKappaThreshold The maximum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
-#' @param ScSKappaMin The minimum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
-#' @param ScSPrecisionMin The minimum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
-#' @param ScSPrecisionMax The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho
 #' 
-#' @keywords rho
-#' 
-#' @seealso \code{\link{rhoK}} and \code{\link{rhoSet}} and \code{\link{rhoCT}}
+#' @seealso \code{\link{rhoK}}
 #' 
 #' @examples
 #' # Given an observed kappa value
-#' rho(data = 0.88, OcSBaserate = 0.2, testSetLength = 80)
+#' rho(x = 0.88, OcSBaserate = 0.2, testSetLength = 80)
 #' 
 #' # Given a test Set
-#' rho(data = codeSet)
+#' rho(x = codeSet)
 #' 
 #' # Given a contingency Table
-#' rho(data = contingencyTable)
-#'
+#' rho(x = contingencyTable)
 #' 
 #' @return rho and kappa for the given data and parameters (unless kappa is given)
 ###
 
-rho = function(data, OcSBaserate = NULL,
-               testSetLength = NULL,
-               testSetBaserateInflation = 0,
-               OcSLength = 10000,
-               replicates = 800,
-               ScSKappaThreshold = .65,
-               ScSKappaMin = .40,
-               ScSPrecisionMin = 0.6,
-               ScSPrecisionMax = 1
-){
-  if (class(data) == "numeric") {
+rho = function(
+  x,
+  OcSBaserate = NULL,
+  testSetLength = NULL,
+  testSetBaserateInflation = 0,
+  OcSLength = 10000,
+  replicates = 800,
+  ScSKappaThreshold = .65,
+  ScSKappaMin = .40,
+  ScSPrecisionMin = 0.6,
+  ScSPrecisionMax = 1
+) {
+
+  ### Calculate rho given a kappa value
+  if (class(x) == "numeric") {
     if (is.null(OcSBaserate)) { stop("Must give a baserate when a kappa value is given") }
     if (is.null(testSetLength)) { stop("Must give a testSetLength when a kappa value is given") }
 
-    return(rhoK(data, OcSBaserate,
+    result <- rhoK(x, OcSBaserate,
                testSetLength,
                testSetBaserateInflation,
                OcSLength,
                replicates,
-               ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
-  } else if (nrow(data) != 2) {
-    return(rhoSet(data, OcSBaserate,
+               ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax) 
+  }
+
+  ### Calculate rho given a code set
+  else if (nrow(x) != 2) {
+    result <- rhoSet(x, OcSBaserate,
                   testSetBaserateInflation,
                   OcSLength,
                   replicates,
-                  ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
-  } else {
-    return(rhoCT(data, OcSBaserate,
+                  ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax)
+  }
+
+  ### Calculate rho given a contingency table
+  else {
+    result <- rhoCT(x, OcSBaserate,
                  testSetBaserateInflation,
                  OcSLength,
                  replicates,
-                 ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
+                 ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax)
   }
+
+  return(result)
 }

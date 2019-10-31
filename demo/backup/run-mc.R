@@ -12,7 +12,7 @@ run.rho_c <- function(
   handset.baserate = 0.2, 
   replicates = 800
 ) {
-  ct = createRandomCT(
+  ct = random_contingency_table(
     setLength = 10000, baserate = baserate,
     kappaMin = 0.4, kappaMax = threshold,
     minPrecision = 0.2, maxPrecision = 0.8

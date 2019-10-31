@@ -33,19 +33,3 @@ calcKappa <- function(set, isSet = TRUE, kappaThreshold = NULL) {
     return(list(kappa = kappa, above = kappa > kappaThreshold))
   }
 }
-
-#' @export
-ct.kappa <- function(ct) {
-  a = ct[1,1] # gold 1 & silver 1
-  c = ct[1,2] # gold 1 & silver 0
-  b = ct[2,1] # gold 0 & silver 1
-  d = ct[2,2] # gold 0 & silver 0
-  size = sum(ct)
-  
-  p0 = (a+d) / size
-  pYes = ((a + b) / size) * ((a + c) / size)
-  pNo =  ((c + d) / size) * ((b + d) / size)
-  pE = (pYes + pNo)
-  k = (p0 - pE) / (1 - pE)
-  return(k)
-}
