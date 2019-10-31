@@ -1,8 +1,8 @@
 rm(list = ls())
 
 microbenchmark::microbenchmark(
-  R = createSimulatedCodeSet(100, 0.2, 0.4, 0.65, 0.2,0.8, type="ct"),
-  C = createRandomCT(100, 0.2, 0.4, 0.65, 0.2, 0.8),
+  R = rhoR:::createRandomSet(100, 0.2, 0.4, 0.65, 0.2,0.8, type="ct"),
+  C = rhoR:::createRandomCT(100, 0.2, 0.4, 0.65, 0.2, 0.8),
   times = 1000
 )
 

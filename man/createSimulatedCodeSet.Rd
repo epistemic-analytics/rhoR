@@ -5,7 +5,7 @@
 \title{Create Simulated codeSet}
 \usage{
 createSimulatedCodeSet(length, baserate, kappaMin, kappaMax, precisionMin,
-  precisionMax, tries = 50)
+  precisionMax, ..., tries = 50)
 }
 \arguments{
 \item{length}{the length of the simulated \code{\link{codeSet}} to be created}

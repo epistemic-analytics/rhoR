@@ -1,6 +1,11 @@
 #' @export
-generateKPs = function(numNeeded, baserate, kappaMin, kappaMax, precisionMin, precisionMax, distributionType = 'FLAT', distributionLength = 100000){
-
+generateKPs = function(
+  numNeeded, baserate,
+  kappaMin, kappaMax,
+  precisionMin, precisionMax,
+  distributionType = 'FLAT',
+  distributionLength = 100000
+) {
   kappaDistribution = seq(kappaMin, kappaMax, length = distributionLength)
 
   if (distributionType == 'FLAT') {
@@ -17,7 +22,7 @@ generateKPs = function(numNeeded, baserate, kappaMin, kappaMax, precisionMin, pr
 
   KPs = tryCatch({
     KPs = list()
-    for(i in 1:numNeeded){
+    for (i in 1:numNeeded) {
       KPs[[length(KPs) + 1]] = genPKcombo(kappaDistribution, kappaProbability, precisionDistribution, precisionProbability, baserate)
     }
     KPs

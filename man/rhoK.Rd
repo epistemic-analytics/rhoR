@@ -7,7 +7,7 @@
 rhoK(observedKappa, OcSBaserate, testSetLength,
   testSetBaserateInflation = 0, OcSLength = 10000, replicates = 800,
   ScSKappaThreshold = 0.65, ScSKappaMin = 0.4, ScSPrecisionMin = 0.6,
-  ScSPrecisionMax = 1)
+  ScSPrecisionMax = 1, method = "standard")
 }
 \arguments{
 \item{observedKappa}{The observed kappa value used to calculate rho}

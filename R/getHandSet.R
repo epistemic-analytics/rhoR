@@ -43,29 +43,45 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
 }
 
 #' @export
-getHandCT = function(full.ct, handSetLength, handSetBaserate, returnSet=FALSE) {
+getHandCT = function(full.ct, handSetLength, handSetBaserate, as_kappa = TRUE) {
   positives = ceiling(handSetLength * handSetBaserate);
   
   if(positives > sum(full.ct[1,])){
-    warning("Not enough positives in first rater to inflate to this level")
-    return(NA)
+    stop("Not enough positives in first rater to inflate to this level")
   }
   
-  positiveIndices = sample_weighted(full.ct[1,], n=positives)
+  # positiveIndices = sample_weighted(xx = full.ct[1,],  probs = full.ct[1,] / sum(full.ct[1,]),  n = positives)
+  positiveIndices = sample_ct(full.ct[1,], positives)
   
   other.ct = full.ct
-  other.ct[1,1] = other.ct[1,1] - sum(positiveIndices == 1)
-  other.ct[1,2] = other.ct[1,2] - sum(positiveIndices == 2)
+  # browser()
+  # other.ct[1,1] = other.ct[1,1] - sum(positiveIndices == 1)
+  # other.ct[1,2] = other.ct[1,2] - sum(positiveIndices == 2)
+  other.ct[1, ] = other.ct[1, ] - positiveIndices
   
-  otherIndices = sample_weighted(as.vector(other.ct), handSetLength - positives)
+  other.ct_v <- as.vector(other.ct)
+  # otherIndices <- sample_weighted(xx = other.ct_v, probs = other.ct_v / sum(other.ct_v), n = handSetLength - positives)
+  this.ct <- sample_ct(other.ct_v,  handSetLength - positives)
+  # allIndices <- c(positiveIndices, otherIndices)
+  this.ct[1, ] = this.ct[1, ] + positiveIndices
   
-  allIndices = c(positiveIndices, otherIndices)
-  
-  this.ct = matrix(sapply(1:4, function(x) sum(allIndices == x)), ncol=2)
-  if(returnSet){
-    return(t(this.ct))
+  # this.ct = matrix(sapply(1:4, function(x) sum(allIndices == x)), ncol=2)
+  # this.ct <- sample_ct(other.ct, handSetLength - positives)
+  if (!as_kappa) {
+    return(this.ct);
   } 
   
-  handSetKappa = ct.kappa(this.ct);
-  return(handSetKappa);
+  return(ct.kappa(this.ct));
+}
+
+sample_ct <- function(x, size) {
+  x_vec <- as.vector(x)
+  x_sampled <- matrix(rep(0, length(x)), ncol = length(x_vec) / 2)
+  for(i in seq(size)) {
+    s <- sample(seq(x_vec), 1, replace = F, prob = x_vec / sum(x_vec))
+    x_sampled[[s]] = x_sampled[[s]] + 1
+    x_vec[s] = x_vec[s] - 1
+  }
+
+  return(x_sampled)
 }

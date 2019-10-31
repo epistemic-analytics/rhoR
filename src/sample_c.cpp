@@ -1,12 +1,3 @@
-// [[Rcpp::depends(RcppArmadillo)]]
-
-#include <RcppArmadillo.h>
-#include <RcppArmadilloExtensions/sample.h>
-
-#include <Rcpp.h>
-using namespace Rcpp;
-using namespace arma;
-
 
 /***R
 # ct = matrix(c(1,2,3,4), ncol=2)

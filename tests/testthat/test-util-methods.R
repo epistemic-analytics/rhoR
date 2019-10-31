@@ -7,6 +7,8 @@ test_that("p value", {
 
   expect_equal(getBootPvalue(dist, 0.6), 1)
   expect_equal(getBootPvalue(dist, 0.7), 0.5)
+  
+  expect_equal(getBootPvalue_c(rep(0.8, 10), 0.7), 1)
 })
 
 test_that("brpk values", {
@@ -18,8 +20,10 @@ test_that("p combos", {
   p_min <- 0.80;
   p_max <- 0.85;
   
-  combo <- genPcombo(0.8, p_min, p_max, 0.5)
+  combo <- rhoR:::genPcombo(0.8, p_min, p_max, 0.5)
   expect_true(p_min < combo && combo < p_max)
+  
+  expect_error(rhoR:::genPcombo(0.9, p_min, p_max, 0.5))
 })
 
 test_that("create random sets", {
@@ -30,6 +34,16 @@ test_that("create random sets", {
   expect_gte(sum(set[,1]), len * br)
   expect_gte(kappa(set), 0.4)
   expect_lte(kappa(set), 0.65)
+  
+  ct <- rhoR:::createRandomSet(len, br, 0.4, 0.65, 0, 1, type = "ct")
+  expect_gte(sum(ct[1, ]), len * br)
+  expect_gte(kappa(ct), 0.4)
+  expect_lte(kappa(ct), 0.65)
+  
+  ct <- rhoR:::createRandomCT(len, br, 0.5, 0.75, 0, 1)
+  expect_gte(sum(ct[1, ]), len * br)
+  expect_gte(kappa(ct), 0.5)
+  expect_lte(kappa(ct), 0.75)
 })
 
 test_that("rho min", {
@@ -54,8 +68,116 @@ test_that("rho given kappa errors", {
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSKappaMin = -1), regexp = "ScSKappaMin.*?positive")
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSKappaMin = 0.9, ScSKappaThreshold = 0.8), regexp = "ScSKappaThresh.*?greater.*?Min")
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSPrecisionMin = -2), regexp = "ScSPrecisionMin.*?0 and 1")
-  expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSPrecisionMin = 2), regexp = "ScSPrecisionMin.*?0 and 1")
+  expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSPrecisionMin =  2), regexp = "ScSPrecisionMin.*?0 and 1")
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSPrecisionMax = -2), regexp = "ScSPrecisionMax.*?0 and 1")
-  expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSPrecisionMax = 2), regexp = "ScSPrecisionMax.*?0 and 1")
+  expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSPrecisionMax =  2), regexp = "ScSPrecisionMax.*?0 and 1")
   expect_error(rhoK(0.9, OcSBaserate = 0.2, testSetLength = 200, ScSPrecisionMin = 0.6, ScSPrecisionMax = 0.5), regexp = "ScSPrecisionMax.*?greater.*?Min")
+})
+
+test_that("create from PR", {
+  prec <- 0.8
+  rec <- 0.6
+  hsl <- 40
+  br <- 0.2
+  
+  set <- rhoR:::prset(prec, rec, hsl, br)
+  ct  <-   ct_from_pr(prec, rec, hsl, br)
+
+  set_tp <- sum(set[, 1] == 1 & set[, 2] == 1)
+  set_tn <- sum(set[, 1] == 0 & set[, 2] == 0)
+  set_fn <- sum(set[, 1] == 1 & set[, 2] == 0)
+  set_fp <- sum(set[, 1] == 0 & set[, 2] == 1)
+  
+  expect_equal(set_tp, ct[1, 1])
+  expect_equal(set_tn, ct[2, 2])
+  expect_equal(set_fn, ct[1, 2])
+  expect_equal(set_fp, ct[2, 1])
+})
+
+test_that("rhoK on set and ct", { 
+  len = 100
+  br = 0.2
+  set <- rhoR:::createRandomSet(len, br, 0.4, 0.65, 0, 1)
+
+  set_k <- kappa(set)
+  ocs_br <- 0.2
+  tsl <- 10
+
+  set_k_std <- rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl)
+  set_k_c <-   rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl, method = "c")
+})
+
+test_that("Generate KPs", {
+  num <- 10000
+  br  <- 0.2
+  kmin <- 0.60
+  kmax <- 0.65
+  pmin <- 0.8
+  pmax <- 0.85
+  
+  kps_list <- generateKPs(num, br, kmin, kmax, pmin, pmax)
+  
+  kps_r <- matrix(unlist(kps_list), byrow = TRUE, ncol = 2, dimnames = list(NULL, names(kps_list[[1]])))
+  
+  kps_c <- generateKPs_c(num, br, kmin, kmax, pmin, pmax)
+  
+  r_means <- colMeans(kps_r)
+  c_means <- colMeans(kps_c)
+  testthat::expect_true(rhoR:::all_equal(r_means[1], c_means[1], tolerance = 0.001))
+  testthat::expect_true(rhoR:::all_equal(r_means[2], c_means[2], tolerance = 0.001))
+})
+
+test_that("CT kappa comparisons", {
+  prec <- 0.8
+  rec <- 0.6
+  hsl <- 40
+  br <- 0.2
+
+  ct <- ct_from_pr(prec, rec, hsl, br)
+  k_r <- kappaCT(ct)
+  k_c <- ct_kappa_c(ct)
+})
+
+test_that("compare calcRhos", {
+  num <- 100
+  br  <- 0.2
+  kmin <- 0.60
+  kmax <- 0.65
+  pmin <- 0.8
+  pmax <- 0.85
+  
+  kps_list <- generateKPs(num, br, kmin, kmax, pmin, pmax)
+  
+  kps_r <- matrix(unlist(kps_list), byrow = TRUE, ncol = 2, dimnames = list(NULL, names(kps_list[[1]])))
+  
+  kps_c <- generateKPs_c(num, br, kmin, kmax, pmin, pmax)
+  
+  observedKappa = 0.67
+  fullSetBaserate = 0.2
+  handSetLength = 80
+  handSetBaserateInflation = 0.2
+  
+  calc_rs <- replicate(100, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_list))
+  calc_cs <- replicate(100, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_r))
+  expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.05))
+  
+  calc_rs <- replicate(100, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_list, runs = 50))
+  calc_cs <- replicate(100, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_r, runs = 50))
+  expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.05))
+  
+  calc_rs <- replicate(100, rhoR:::calcRho(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
+  calc_cs <- replicate(100, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
+  expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.05))
+})
+
+test_that("kps from c", {
+  num <- 10000
+  br  <- 0.2
+  kmin <- 0.40
+  kmax <- 0.80
+  pmin <- 0.9
+  pmax <- 0.95
+
+  kps_c <- generateKPs_c(num, br, kmin, kmax, pmin, pmax, distributionType = 1)
+  testthat::expect_lte(abs(round(mean(kps_c[,2])  * 100) - 65), 1)
 })

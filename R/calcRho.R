@@ -28,12 +28,22 @@ calcRho = function(
   kappaThreshold = .65, 
   kappaMin = .40, 
   precisionMin = 0.6, 
-  precisionMax = 1
+  precisionMax = 1, 
+  KPs = NULL
 ) {
-
+  
+  if(is.null(KPs)) {
+    KPs = generateKPs(runs, fullSetBaserate, kappaMin, kappaThreshold, precisionMin, precisionMax)
+  }
+  if(length(KPs) < runs) {
+    runs = length(KPs)
+  }
+  
   #creates distribution from random kappa sets
   savedKappas = rep(0,runs);
-  KPs = generateKPs(runs, fullSetBaserate, kappaMin, kappaThreshold, precisionMin, precisionMax)
+  
+  # cat("Runs: ", runs, "\n")
+  # cat("KPs length:, ", length(KPs), "\n")
   for (i in 1:runs) {
     KP = KPs[i]
     kappa = KP[[1]]$kappa

@@ -5,19 +5,11 @@ toArmaVec <- function(m) {
     .Call('_rhoR_toArmaVec', PACKAGE = 'rhoR', m)
 }
 
-#' @export
-sample_weighted <- function(x, n) {
-    .Call('_rhoR_sample_weighted', PACKAGE = 'rhoR', x, n)
-}
-
-sample_weighted2 <- function(xx, n, forR = TRUE) {
-    .Call('_rhoR_sample_weighted2', PACKAGE = 'rhoR', xx, n, forR)
-}
-
 sample_weighted3 <- function(xx, n, forR = TRUE) {
     .Call('_rhoR_sample_weighted3', PACKAGE = 'rhoR', xx, n, forR)
 }
 
+#' @export
 getBootPvalue_c <- function(distribution, result) {
     .Call('_rhoR_getBootPvalue_c', PACKAGE = 'rhoR', distribution, result)
 }
@@ -26,6 +18,7 @@ checkBRPKcombo_c <- function(BR, P, K) {
     .Call('_rhoR_checkBRPKcombo_c', PACKAGE = 'rhoR', BR, P, K)
 }
 
+#' @export
 getR_c <- function(kappa, BR, P) {
     .Call('_rhoR_getR_c', PACKAGE = 'rhoR', kappa, BR, P)
 }
@@ -34,10 +27,12 @@ genPKcombo_c <- function(kappaDistribution, kappaProbability, precisionDistribut
     .Call('_rhoR_genPKcombo_c', PACKAGE = 'rhoR', kappaDistribution, kappaProbability, precisionDistribution, precisionProbability, baserate)
 }
 
+#' @export
 generateKPs_c <- function(numNeeded, baserate, kappaMin, kappaMax, precisionMin, precisionMax, distributionType = 0L, distributionLength = 10000L) {
     .Call('_rhoR_generateKPs_c', PACKAGE = 'rhoR', numNeeded, baserate, kappaMin, kappaMax, precisionMin, precisionMax, distributionType, distributionLength)
 }
 
+#' @export
 ct_from_pr <- function(precision, recall, length, baserate) {
     .Call('_rhoR_ct_from_pr', PACKAGE = 'rhoR', precision, recall, length, baserate)
 }
@@ -63,17 +58,7 @@ getHand_kappa <- function(ct, handSetLength, handSetBaserate) {
 }
 
 #' @export
-calcRho_c <- function(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation = 0, fullSetLength = 10000L, runs = 800L, kappaThreshold = 0.65, kappaMin = 0.40, precisionMin = 0.6, precisionMax = 1.0) {
-    .Call('_rhoR_calcRho_c', PACKAGE = 'rhoR', observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, fullSetLength, runs, kappaThreshold, kappaMin, precisionMin, precisionMax)
-}
-
-#' @export
-rhoCT_c <- function(contingencyTable, testSetBaserateInflation = 0.2, replicates = 800L, OcSLength = 10000L, OcSBaserate = -1.0, ScSKappaThreshold = 0.65, ScSKappaMin = 0.40, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1) {
-    .Call('_rhoR_rhoCT_c', PACKAGE = 'rhoR', contingencyTable, testSetBaserateInflation, replicates, OcSLength, OcSBaserate, ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax)
-}
-
-#' @export
-run_rho_in_c <- function(threshold, infl, handsetLength = 20L, handsetBaserate = 0.2, replicates = 10000L) {
-    .Call('_rhoR_run_rho_in_c', PACKAGE = 'rhoR', threshold, infl, handsetLength, handsetBaserate, replicates)
+calcRho_c <- function(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation = 0, fullSetLength = 10000L, runs = 800L, kappaThreshold = 0.65, kappaMin = 0.40, precisionMin = 0.6, precisionMax = 1.0, KPs = matrix(0)) {
+    .Call('_rhoR_calcRho_c', PACKAGE = 'rhoR', observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, fullSetLength, runs, kappaThreshold, kappaMin, precisionMin, precisionMax, KPs)
 }
 

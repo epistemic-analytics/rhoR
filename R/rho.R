@@ -63,22 +63,23 @@ rho = function(data, OcSBaserate = NULL,
                ScSPrecisionMin = 0.6,
                ScSPrecisionMax = 1
 ){
-  if(class(data) == "numeric"){
-    if(is.null(OcSBaserate)){stop("Must give a baserate when a kappa value is given")}
-    if(is.null(testSetLength)){stop("Must give a testSetLength when a kappa value is given")}
+  if (class(data) == "numeric") {
+    if (is.null(OcSBaserate)) { stop("Must give a baserate when a kappa value is given") }
+    if (is.null(testSetLength)) { stop("Must give a testSetLength when a kappa value is given") }
+
     return(rhoK(data, OcSBaserate,
                testSetLength,
                testSetBaserateInflation,
                OcSLength,
                replicates,
                ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
-  }else if(nrow(data) != 2){
+  } else if (nrow(data) != 2) {
     return(rhoSet(data, OcSBaserate,
                   testSetBaserateInflation,
                   OcSLength,
                   replicates,
                   ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax))
-  }else{
+  } else {
     return(rhoCT(data, OcSBaserate,
                  testSetBaserateInflation,
                  OcSLength,

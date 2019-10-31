@@ -35,7 +35,7 @@ rhoSet = function(
   ScSKappaMin = .40,
   ScSPrecisionMin = 0.6,
   ScSPrecisionMax = 1
-){
+) {
   kappa = kappaSet(set);
   
   row.count = nrow(set);
