@@ -8,8 +8,8 @@ library(rvest)
 args <- commandArgs(trailingOnly = TRUE)
 
 print(getwd())
-rep <- covr::report( x = covr::package_coverage(quiet = F), file = paste0("/index.html"))
-#setwd(paste0("inst/coverage/", args[1]))
+rep <- covr::report( x = covr::package_coverage(quiet = F), file = paste0("inst/coverage/", args[1], "/index.html"))
+setwd(paste0("inst/coverage/", args[1]))
 res = lapply(dir(".", full.names = F, recursive = T), function(f) { 
     aws.s3::put_object(
         file = f,
@@ -23,12 +23,12 @@ perc <- sub(
     replacement = "",
     x = html_text(html_nodes(read_html(
             paste0(
-                # "inst/coverage/",
-                # ifelse(
-                #     length(args) > 0,
-                #     paste0(args[1], "/"),
-                #     ""
-                # ),
+                "inst/coverage/",
+                ifelse(
+                    length(args) > 0,
+                    paste0(args[1], "/"),
+                    ""
+                ),
                 "index.html"
             )
     ), "h2"))
