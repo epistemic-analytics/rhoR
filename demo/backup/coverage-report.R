@@ -12,10 +12,10 @@ print(list.files("."))
 print(list.files("./inst/"))
 print(list.files("./inst/coverage"))
 print(list.files(paste0("./inst/coverage/", args[1])))
-print(list.dirs(paste0("./inst/coverage/")))
+# print(list.dirs(paste0("./inst/coverage/")))
 
-rep <- covr::report( x = covr::package_coverage(quiet = F), file = paste0("inst/coverage/", args[1], "/index.html"))
-setwd(paste0("inst/coverage/", args[1]))
+rep <- covr::report( x = covr::package_coverage(quiet = T), file = paste0("./inst/coverage/", args[1], "/index.html"))
+setwd(paste0("./inst/coverage/", args[1]))
 res = lapply(dir(".", full.names = F, recursive = T), function(f) { 
     aws.s3::put_object(
         file = f,
