@@ -23,12 +23,12 @@ perc <- sub(
     replacement = "",
     x = html_text(html_nodes(read_html(
             paste0(
-                "inst/coverage/",
-                ifelse(
-                    length(args) > 0,
-                    paste0(args[1], "/"),
-                    ""
-                ),
+                # "inst/coverage/",
+                # ifelse(
+                #     length(args) > 0,
+                #     paste0(args[1], "/"),
+                #     ""
+                # ),
                 "index.html"
             )
     ), "h2"))
