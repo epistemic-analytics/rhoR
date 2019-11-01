@@ -1,10 +1,21 @@
 library(covr)
 library(magrittr)
 
+
 install.packages("rvest", repos = "https://cran.rstudio.com")
 library(rvest)
 
 args <- commandArgs(trailingOnly = TRUE)
+
+rep <- covr::report( x = covr::package_coverage(quiet = F), file = paste0("inst/coverage/", args[1], "/index.html"))
+setwd(paste0("inst/coverage/", args[1]))
+res = lapply(dir(".", full.names = F, recursive = T), function(f) { 
+    aws.s3::put_object(
+        file = f,
+        object = paste0("coverage/", args[1], "/", f),
+        bucket = "rhor.qe-libs.org", acl = "public-read"
+    ) 
+})
 
 perc <- sub(
     pattern = "rhoR coverage - ",
