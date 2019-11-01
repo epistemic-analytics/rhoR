@@ -4,13 +4,13 @@
 \alias{rho}
 \title{Rho}
 \usage{
-rho(data, OcSBaserate = NULL, testSetLength = NULL,
+rho(x, OcSBaserate = NULL, testSetLength = NULL,
   testSetBaserateInflation = 0, OcSLength = 10000, replicates = 800,
   ScSKappaThreshold = 0.65, ScSKappaMin = 0.4, ScSPrecisionMin = 0.6,
   ScSPrecisionMax = 1)
 }
 \arguments{
-\item{data}{The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho}
+\item{x}{The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho}
 
 \item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})}
 
@@ -31,6 +31,8 @@ rho(data, OcSBaserate = NULL, testSetLength = NULL,
 \item{ScSPrecisionMax}{The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
 }
 \value{
+rho for the given parameters
+
 rho and kappa for the given data and parameters (unless kappa is given)
 }
 \description{
@@ -55,17 +57,17 @@ For example, using an alpha level of 0.05, if the observed kappa is greater than
 }
 \examples{
 # Given an observed kappa value
-rho(data = 0.88, OcSBaserate = 0.2, testSetLength = 80)
+rho(x = 0.88, OcSBaserate = 0.2, testSetLength = 80)
 
 # Given a test Set
-rho(data = codeSet)
+rho(x = codeSet)
 
 # Given a contingency Table
-rho(data = contingencyTable)
-
+rho(x = contingencyTable)
 
 }
 \seealso{
-\code{\link{rhoK}} and \code{\link{rhoSet}} and \code{\link{rhoCT}}
+\code{\link{rho}}
+
+\code{\link{rhoK}}
 }
-\keyword{rho}

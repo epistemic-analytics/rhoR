@@ -50,5 +50,8 @@ test_that("CT baserate error", {
 test_that("Verify recall", {
   test_k <- rhoR:::calcKappa(contingencyTable, isSet = FALSE)
   test_r <- rhoR:::getR(test_k, 0.2, 0.8)
-  expect_equal(round(test_r, 3), .606)
+  test_r_c <- rhoR:::recall(test_k, 0.2, 0.8)
+  expect_equal(round(test_r,   3), .606)
+  expect_equal(round(test_r_c, 3), .606)
+  expect_equal(round(test_r_c, 3), round(test_r, 3))
 })

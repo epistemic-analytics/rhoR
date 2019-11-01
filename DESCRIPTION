@@ -19,10 +19,14 @@ Depends:
 License: GPL-3  | file LICENSE
 LazyData: true
 RoxygenNote: 6.1.1
+LinkingTo: Rcpp, RcppArmadillo
+Imports:
+    Rcpp
 BugReports: https://gitlab.com/epistemic-analytics/qe-packages/rhor/issues
 Suggests:
     testthat (>= 2.1.0)
 Collate: 
+    'RcppExports.R'
     'rhoR.R'
     'rho.R'
     'rhoK.R'
@@ -52,3 +56,5 @@ Collate:
     'getR.R'
     'getTestSet.R'
     'prset.R'
+    'rho.file.R'
+    'utils.R'
