@@ -8,6 +8,12 @@ library(rvest)
 args <- commandArgs(trailingOnly = TRUE)
 
 print(getwd())
+print(list.files("."))
+print(list.files("./inst/"))
+print(list.files("./inst/coverage"))
+print(list.files(paste0("./inst/coverage/", args[1])))
+print(list.dirs(paste0("./inst/coverage/")))
+
 rep <- covr::report( x = covr::package_coverage(quiet = F), file = paste0("inst/coverage/", args[1], "/index.html"))
 setwd(paste0("inst/coverage/", args[1]))
 res = lapply(dir(".", full.names = F, recursive = T), function(f) { 
