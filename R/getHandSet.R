@@ -42,7 +42,18 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
   return(handSetKappa);
 }
 
+###
+#' @title Get Handset
+#' @description This function is to get a handset of a set and calculate the kappa
+#' 
+#' @param full.ct This is the set to take a handset of
+#' @param handSetLength This is the length of the handset to take
+#' @param handSetBaserate This is the minimum baserate to inflate the handset to
+#' @param as_kappa If FALSE then return the handSet, if TRUE (default) return the kappa of the handSet
+#' 
+#' @return The function returns the handSet if returnSet is TRUE or the kappa of the handSet if not
 #' @export
+###
 getHandCT <- function(full.ct, handSetLength, handSetBaserate, as_kappa = TRUE) {
   positives <- ceiling(handSetLength * handSetBaserate)
   

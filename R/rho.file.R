@@ -3,13 +3,12 @@
 #' 
 #' @description 
 #' This function calculates rho and kappa for a given \code{\link[=getTestSet]{testSet}} as defined by the file 
-#' and columns (x, y), and returns a list containing both values. Called by \code{\link{rho}}.
+#' and columns (col1, col2), and returns a list containing both values. Called by \code{\link{rho}}.
 #' 
 #' @export
 #' 
-#' @param file The file to be used that contains the codes to calculate Rho and Kappa
-#' @param x The first column from file
-#' @param y The second column from file
+#' @param col1 The first column from file
+#' @param col2 The second column from file
 #' @template rho-params
 #' 
 #' @return A list of the format:\describe{
@@ -18,7 +17,7 @@
 #' }
 ###
 rho.file <- function(
-  file, x, y, 
+  x, col1, col2, 
   OcSBaserate = NULL,
   testSetBaserateInflation = 0,
   OcSLength = 10000,
@@ -28,8 +27,8 @@ rho.file <- function(
   ScSPrecisionMin = 0.6,
   ScSPrecisionMax = 1
 ) {
-  setFile = utils::read.csv(file)
-  set = as.matrix(setFile[,c(x,y)])
+  setFile = utils::read.csv(x)
+  set = as.matrix(setFile[,c(col1, col2)])
   
   if (!any(is.na(set))) {
     rhoSet(
@@ -42,6 +41,6 @@ rho.file <- function(
     )
   }
   else {
-    stop("The columns provided for x and y must not contain NA")
+    stop("The columns provided for col1 and col2 must not contain NA")
   }
 }

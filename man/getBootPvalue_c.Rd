@@ -7,9 +7,9 @@
 getBootPvalue_c(distribution, result)
 }
 \arguments{
-\item{vector}{distribution of calculated kappas}
+\item{distribution}{vector of calculated kappas}
 
-\item{double}{calculated kappa to compare against}
+\item{result}{double calculated kappa to compare against}
 }
 \value{
 double calculated p-value

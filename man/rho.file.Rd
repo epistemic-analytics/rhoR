@@ -4,16 +4,17 @@
 \alias{rho.file}
 \title{Rho using a file}
 \usage{
-rho.file(file, x, y, OcSBaserate = NULL, testSetBaserateInflation = 0,
-  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.65,
-  ScSKappaMin = 0.4, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1)
+rho.file(x, col1, col2, OcSBaserate = NULL,
+  testSetBaserateInflation = 0, OcSLength = 10000, replicates = 800,
+  ScSKappaThreshold = 0.65, ScSKappaMin = 0.4, ScSPrecisionMin = 0.6,
+  ScSPrecisionMax = 1)
 }
 \arguments{
-\item{file}{The file to be used that contains the codes to calculate Rho and Kappa}
+\item{x}{The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho}
 
-\item{x}{The first column from file}
+\item{col1}{The first column from file}
 
-\item{y}{The second column from file}
+\item{col2}{The second column from file}
 
 \item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})}
 
@@ -30,8 +31,6 @@ rho.file(file, x, y, OcSBaserate = NULL, testSetBaserateInflation = 0,
 \item{ScSPrecisionMin}{The minimum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
 
 \item{ScSPrecisionMax}{The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
-
-\item{x}{The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho}
 }
 \value{
 rho for the given parameters
@@ -43,7 +42,7 @@ A list of the format:\describe{
 }
 \description{
 This function calculates rho and kappa for a given \code{\link[=getTestSet]{testSet}} as defined by the file 
-and columns (x, y), and returns a list containing both values. Called by \code{\link{rho}}.
+and columns (col1, col2), and returns a list containing both values. Called by \code{\link{rho}}.
 }
 \seealso{
 \code{\link{rho}}

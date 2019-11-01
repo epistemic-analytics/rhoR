@@ -16,8 +16,8 @@ sample_contingency_table <- function(xx, n, forR = TRUE) {
 #' @name getBootPvalue_c
 #' @title getBootPvalue_c
 #' 
-#' @param vector distribution of calculated kappas
-#' @param double calculated kappa to compare against
+#' @param distribution vector of calculated kappas
+#' @param result double calculated kappa to compare against
 #' 
 #' @description 
 #' returns the percentage of the time that the distribution was greater or equal to the observed kappa
@@ -78,7 +78,7 @@ generate_kp_list <- function(numNeeded, baserate, kappaMin, kappaMax, precisionM
 #' @description Create a contingency table using the provied precision, recall, baserate, and length.
 #' 
 #' @param precision double
-#' @param recall double
+#' @param rec double
 #' @param length int
 #' @param baserate double
 #' 
@@ -130,9 +130,9 @@ getHand_ct <- function(ct, handSetLength, handSetBaserate) {
 #' 
 #' @description This function returns kappa calculated from a Handset taken from  a larger Contingency Table
 #' 
-#' @template rho-params
-#' @param KPs matrix of kappa (column 1) and precision (column 2) values
-#' @param testSetLength The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)
+#' @param ct KPs matrix of kappa (column 1) and precision (column 2) values
+#' @param handSetLength The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)
+#' @param handSetBaserate baserate to inflate the sampled contingency table to
 #' 
 #' @return Kappa as double
 #' 

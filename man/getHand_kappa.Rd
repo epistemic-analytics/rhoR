@@ -7,36 +7,15 @@
 getHand_kappa(ct, handSetLength, handSetBaserate)
 }
 \arguments{
-\item{x}{The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho}
+\item{ct}{KPs matrix of kappa (column 1) and precision (column 2) values}
 
-\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})}
+\item{handSetLength}{The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)}
 
-\item{testSetBaserateInflation}{The minimum \code{\link{baserate}} from the sampling procedure}
-
-\item{OcSLength}{The length of the observed \code{\link{codeSet}}}
-
-\item{replicates}{The number of simulated \code{\link[=getTestSet]{codeSets}} to use in the null hypothesis distribution for rho; similar to replicates in a Monte Carlo study}
-
-\item{ScSKappaThreshold}{The maximum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
-
-\item{ScSKappaMin}{The minimum kappa value used to generate simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
-
-\item{ScSPrecisionMin}{The minimum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
-
-\item{ScSPrecisionMax}{The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
-
-\item{KPs}{matrix of kappa (column 1) and precision (column 2) values}
-
-\item{testSetLength}{The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)}
+\item{handSetBaserate}{baserate to inflate the sampled contingency table to}
 }
 \value{
-rho for the given parameters
-
 Kappa as double
 }
 \description{
 This function returns kappa calculated from a Handset taken from  a larger Contingency Table
-}
-\seealso{
-\code{\link{rho}}
 }

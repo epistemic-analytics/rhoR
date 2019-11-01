@@ -1,4 +1,3 @@
-#' @export
 generateKPs = function(
   numNeeded, baserate,
   kappaMin, kappaMax,

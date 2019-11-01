@@ -9,11 +9,11 @@ contingency_table(precision, rec, length, baserate)
 \arguments{
 \item{precision}{double}
 
+\item{rec}{double}
+
 \item{length}{int}
 
 \item{baserate}{double}
-
-\item{recall}{double}
 }
 \description{
 Create a contingency table using the provied precision, recall, baserate, and length.
