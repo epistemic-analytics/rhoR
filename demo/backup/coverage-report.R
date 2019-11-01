@@ -7,7 +7,8 @@ library(rvest)
 
 args <- commandArgs(trailingOnly = TRUE)
 
-rep <- covr::report( x = covr::package_coverage(quiet = F), file = paste0("inst/coverage/", args[1], "/index.html"))
+print(getwd())
+rep <- covr::report( x = covr::package_coverage(quiet = F), file = paste0("/index.html"))
 setwd(paste0("inst/coverage/", args[1]))
 res = lapply(dir(".", full.names = F, recursive = T), function(f) { 
     aws.s3::put_object(
