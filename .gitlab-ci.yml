@@ -20,7 +20,8 @@ variables:
     - export _R_CHECK_CRAN_INCOMING_=FALSE
     - export _R_CHECK_FORCE_SUGGESTS_=TRUE
     - mkdir -p archive/
-    - rm -f ./R/RcppExports.R
+    - rm -f ./R/RcppExports*
+    - rm -f ./src/RcppExports*
     - mkdir -p ~/.R/
     - rm -f ~/.R/Makevars
     #- cp demo/backup/Makevars ~/.R/ || true
@@ -39,9 +40,9 @@ variables:
     expire_in: 1 week
   <<: *build_template
   script:
-    - R --no-site-file --no-environ --no-save --no-restore --quiet CMD check ${PKG}_$VERSION.tar.gz --as-cran --no-manual || true
-    - cat /builds/epistemic-analytics/qe-packages/rhoR.Rcheck/00install.out || true
-    - cat /builds/epistemic-analytics/qe-packages/rhoR.Rcheck/00check.log || true
+    - R --no-site-file --no-environ --no-save --no-restore --quiet CMD check ${PKG}_$VERSION.tar.gz --as-cran --no-manual #|| true
+    #- cat /builds/epistemic-analytics/qe-packages/rhoR.Rcheck/00install.out || true
+    #- cat /builds/epistemic-analytics/qe-packages/rhoR.Rcheck/00check.log || true
     - mv ./${PKG}-00build.log ${PKG}/archive/ || true
     - mv ./${PKG}.Rcheck/00check.log ${PKG}/archive/ || true
     - mv ./${PKG}.Rcheck/00install.out ${PKG}/archive/ || true
