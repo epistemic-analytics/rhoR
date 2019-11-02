@@ -80,7 +80,7 @@ check:r-winbuilder:
 
 test:r-release:
   stage: test
-  image: $REG_URL/release-test:latest
+  image: $REG_URL/release-test:current
   script:
     - Rscript -e 'update(devtools::dev_package_deps("."))'
     - Rscript -e 'Rcpp::compileAttributes()'
