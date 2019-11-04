@@ -1,3 +1,3 @@
-#v1.2.1.0
+#v1.3.0.0
 
-Bug fixes in rhoSet and kappaSet
+Perfmorance improvements using contingency tables in Rcpp

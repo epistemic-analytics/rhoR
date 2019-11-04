@@ -1,3 +1,6 @@
+## rhoR 1.3.0.0
+* Rcpp implmentation using Contingency Tables for the basis of calculating rho
+
 ## rhoR 1.2.1.2
 * `getHandSetIndices()` bug fixed for sampling positive indices
 * `createSimulatedCodeSet()` floating point error fixed for exact matching kappa min and max values
