@@ -99,6 +99,7 @@ release:cran:
   except:
     - branches
   when: manual
+  <<: *build_template
   script:
     - cat cran-comments.md
     - Rscript -e "devtools:::upload_cran(devtools::as.package('.'), './build/rhoR_$VERSION.tar.gz')"
