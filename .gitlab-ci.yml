@@ -116,6 +116,7 @@ docs:build-site:
     - rm -rf src/RcppExports*
     - rm -rf R/RcppExports*
     - Rscript -e 'update(devtools::dev_package_deps("."))'
+    - Rscript -e 'install.packages("microbenchmark")'
     - 'Rscript -e "Rcpp::compileAttributes()"'
     - 'Rscript -e "devtools::install(\".\", quick = T, build = T, dependencies = F, upgrade = F)"'
     - 'Rscript -e "pkgdown::build_site(preview = F, document = F, lazy = T, new_process = T)"'
