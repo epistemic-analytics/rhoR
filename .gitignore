@@ -8,3 +8,6 @@
 
 inst/coverage/
 docs/
+
+lintr*
+.lintr/

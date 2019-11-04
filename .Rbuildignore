@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 .gitlab-ci.yml
 cran-comments.md
+
+lintr*
+.lintr/
+docs
