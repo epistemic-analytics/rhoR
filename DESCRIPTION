@@ -27,7 +27,8 @@ BugReports: https://gitlab.com/epistemic-analytics/qe-packages/rhor/issues
 Suggests:
     testthat (>= 2.1.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    microbenchmark
 Collate: 
     'RcppExports.R'
     'rhoR.R'

@@ -15,7 +15,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(rhoR)
+require(microbenchmark)
+require(rhoR)
 ```
 
 The first versions of the rhoR package calculated rho using a matrix of two columns, referred to as a codeset. Even the methods that accepted a contingency table, actually converted that table to a codeset and off-loaded the work to the functions accepting a codeset. This was all well and good until the codesets became large. A critical step in the calculation of rho is the sampling, and then re-sampling, a high number of times (default: 800). It is at this point that passing a matrix of say 10,000 rows and sampling numerous times, becomes a burden.
@@ -40,7 +41,7 @@ precisionMin=0
 precisionMax=1
 
 set = rhoR::createSimulatedCodeSet(length= 10, baserate, kappaMin, kappaMax, precisionMin, precisionMax)
-kappa.precision.combos = rhoR::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax)
+kappa.precision.combos = rhoR:::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax)
 ```
 ```{r echo=F }
 set
@@ -71,21 +72,18 @@ kappa(handset)
 # Where is it slow?
 
 ```{r}
-library(microbenchmark)
-
 microbenchmark(
-  kps.r = rhoR::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax),
-  kps.c = rhoR::generate_kp_list(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax),
+  kps.r = rhoR:::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax),
+  kps.c = rhoR:::generate_kp_list(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax),
   times = 10, unit = "ms"
 )
 ```
 
 ```{r, echo = F}
-kps.r = rhoR::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax)
+kps.r = rhoR:::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax)
 kps.df = do.call("rbind", kps.r)
 microbenchmark(
   kp.r = rhoR:::genPKcombo(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = NULL, precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = NULL, baserate = baserate),
-  
   kp.c = rhoR:::find_valid_pk(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = rep(1, nrow(kps.df)), precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = rep(1, nrow(kps.df)), baserate = baserate),
   times = 10, unit = "ms"
 )
@@ -123,7 +121,7 @@ microbenchmark(
 
 ```{r include=FALSE}
 # run.bench <- function(oK, fsb, hsl, fsl = 10000, times = 100) {
-#   microbenchmark::microbenchmark(
+#   microbenchmark(
 #     rho.set = rhoR:::calcRho(observedKappa = oK, fullSetBaserate = fsb, handSetLength = hsl, fullSetLength = fsl),
 #     rho.ct = rhoR:::calcRho2(observedKappa = oK, fullSetBaserate = fsb, handSetLength = hsl, fullSetLength = fsl),
 #     times = times
