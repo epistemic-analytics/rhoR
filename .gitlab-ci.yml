@@ -17,7 +17,7 @@ variables:
 # Templates
 .build_definition: &build_template
   before_script:
-    - export _R_CHECK_CRAN_INCOMING_=FALSE
+    - export _R_CHECK_CRAN_INCOMING_=TRUE
     - export _R_CHECK_FORCE_SUGGESTS_=TRUE
     - mkdir -p archive/
     - rm -f ./R/RcppExports.R
