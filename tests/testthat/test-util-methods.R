@@ -28,8 +28,8 @@ test_that("create random sets", {
   set <- rhoR:::createRandomSet(len, br, 0.4, 0.65, 0, 1)
   
   expect_gte(sum(set[,1]), len * br)
-  expect_gte(kappa(set), 0.4)
-  expect_lte(kappa(set), 0.65)
+  expect_gte(floor(kappa(set) * 100) / 100, 0.4)
+  expect_lte(floor(kappa(set) * 100) / 100, 0.65)
 })
 
 test_that("rho min", {
