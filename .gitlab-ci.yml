@@ -89,6 +89,7 @@ test:r-release:
   dependencies:
     - check:r-release
 
+
 release:cran:
   stage: release
   image: egruw/r-ftp
