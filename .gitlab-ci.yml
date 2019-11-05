@@ -99,10 +99,10 @@ release:cran:
   except:
     - branches
   when: manual
-  <<: *build_template
+  <<: *build_template 
   script:
-    - cat cran-comments.md
-    - Rscript -e "devtools:::upload_cran(devtools::as.package('.'), './build/rhoR_$VERSION.tar.gz')"
+    - cat rhoR/cran-comments.md
+    - Rscript -e "devtools:::upload_cran(devtools::as.package('rhoR/'), \"rhoR_$VERSION.tar.gz\")"
   tags:
     - docker
   allow_failure: false
