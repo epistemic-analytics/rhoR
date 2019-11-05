@@ -5,7 +5,7 @@
 #' @param handSetLength This is the length of the handset to take
 #' @param handSetBaserate This is the minimum baserate to inflate the handset to
 #' @param returnSet If TRUE, then return the handSet if FALSE, return the kappa of the handSet
-#' @keywords handset, hand, inflation
+#' 
 #' @return The function returns the handSet if returnSet is TRUE or the kappa of the handSet if not
 #' @export
 ###

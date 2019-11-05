@@ -9,3 +9,5 @@
 inst/coverage/
 docs/
 inst/doc
+lintr*
+.lintr/

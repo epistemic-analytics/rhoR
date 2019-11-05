@@ -21,6 +21,3 @@ The function returns the handSet if returnSet is TRUE or the kappa of the handSe
 \description{
 This function is to get a handset of a set and calculate the kappa
 }
-\keyword{hand,}
-\keyword{handset,}
-\keyword{inflation}

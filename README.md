@@ -2,7 +2,7 @@
 
 [![build status](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/badges/master/build.svg)](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/commits/master)
 [![coverage](https://s3-us-west-2.amazonaws.com/rhor.qe-libs.org/coverage-master.svg)](http://rhor.qe-libs.org/coverage/master/index.html)
-[![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://cran.r-project.org/web/packages/rhoR/index.html) 
+[![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://CRAN.R-project.org/package=rhoR) 
 [![cran downloads](https://cranlogs.r-pkg.org/badges/grand-total/rhoR)](https://cranlogs.r-pkg.org/badges/grand-total/rhoR) 
 
 ## What is Rho
@@ -26,7 +26,7 @@ threshold).
 [![build status](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/badges/master/build.svg)](https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhoR/commits/master)
 [![coverage](https://s3-us-west-2.amazonaws.com/rhor.qe-libs.org/coverage-master.svg)](http://rhor.qe-libs.org/coverage/master/index.html)
 
-[![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://cran.r-project.org/web/packages/rhoR/index.html) 
+[![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://CRAN.R-project.org/package=rhoR) 
 [![cran downloads](https://cranlogs.r-pkg.org/badges/grand-total/rhoR)](https://cranlogs.r-pkg.org/badges/grand-total/rhoR) 
 ```
 install.packages("rhoR")

@@ -54,7 +54,7 @@ test_that("rho min", {
   expect_error(rhoMin(br, inc = 12.5), regexp = "Inc value must")
   expect_error(rhoMin(br, alpha = 2), regexp = "Alpha must")
   
-  expect_output(rhoR:::rhoMin(br, printInc = TRUE), regexp = "20\\s0\\.0")
+  expect_output(rhoR:::rhoMin(br, printInc = TRUE), regexp = "10\\s0\\.")
 })
 
 test_that("rho given kappa errors", {
