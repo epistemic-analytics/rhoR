@@ -33,12 +33,14 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
   }
 
   #if return set is true return set rather than kappa
-  if(returnSet){
+  if (returnSet) {
+    this.set <- as.code.set(this.set);
     return(this.set);
   }
 
   #otherwise return the kappa of the set
   handSetKappa = calcKappa(this.set);
+  
   return(handSetKappa);
 }
 
@@ -56,35 +58,37 @@ getHandSet = function(set, handSetLength, handSetBaserate, returnSet=FALSE) {
 ###
 getHandCT <- function(full.ct, handSetLength, handSetBaserate, as_kappa = TRUE) {
   positives <- ceiling(handSetLength * handSetBaserate)
-  
   if (positives > sum(full.ct[1,])) {
     stop("Not enough positives in first rater to inflate to this level")
   }
-
-  positiveIndices <- sample_ct(full.ct[1,], positives)
-
-  other_ct <- full.ct
-  other_ct[1, ] <- other_ct[1, ] - positiveIndices
-
-  other_ct_vec <- as.vector(other_ct)
-  this_ct <- sample_ct(other_ct_vec,  handSetLength - positives)
-  this_ct[1, ] <- this_ct[1, ] + positiveIndices
+  
+  # positiveIndices <- sample_ct(full.ct[1,], positives)
+  # 
+  # other_ct <- full.ct
+  # other_ct[1, ] <- other_ct[1, ] - positiveIndices
+  # 
+  # other_ct_vec <- as.vector(other_ct)
+  # this_ct <- sample_ct(other_ct_vec,  handSetLength - positives)
+  # this_ct[1, ] <- this_ct[1, ] + positiveIndices
+  
+  this_ct <- getHand_ct(ct = full.ct, handSetLength = handSetLength, handSetBaserate = handSetBaserate)
 
   if (!as_kappa) {
+    this_ct <- as.contingency.table(this_ct);
     return(this_ct)
   } 
 
   return(kappa_ct(this_ct))
 }
 
-sample_ct <- function(x, size) {
-  x_vec <- as.vector(x)
-  x_sampled <- matrix(rep(0, length(x)), ncol = length(x_vec) / 2)
-  for(i in seq(size)) {
-    s <- sample(seq(x_vec), 1, replace = F, prob = x_vec / sum(x_vec))
-    x_sampled[[s]] = x_sampled[[s]] + 1
-    x_vec[s] = x_vec[s] - 1
-  }
-
-  return(x_sampled)
-}
+# sample_ct <- function(x, size) {
+#   x_vec <- as.vector(x)
+#   x_sampled <- matrix(rep(0, length(x)), ncol = length(x_vec) / 2)
+#   for(i in seq(size)) {
+#     s <- sample(seq(x_vec), 1, replace = F, prob = x_vec / sum(x_vec))
+#     x_sampled[[s]] = x_sampled[[s]] + 1
+#     x_vec[s] = x_vec[s] - 1
+#   }
+# 
+#   return(x_sampled)
+# }

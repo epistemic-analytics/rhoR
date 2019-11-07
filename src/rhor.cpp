@@ -317,17 +317,6 @@ double kappa_ct(arma::imat ct) {
   return(k);
 }
 
-//' @title Get Handset from Conntingency Table
-//' @description This function returns a Handset from a larger Contingency Table
-//' @name getHand_ct
-//' 
-//' @param ct [TBD]
-//' @param handSetLength [TBD]
-//' @param handSetBaserate [TBD]
-//' 
-//' @return Contingency Table matrix
-//' 
-//' @export
 // [[Rcpp::export]]
 arma::imat getHand_ct(arma::imat ct, int handSetLength, double handSetBaserate) {
   int positives = ceil(handSetLength * handSetBaserate);

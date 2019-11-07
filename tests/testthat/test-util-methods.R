@@ -180,15 +180,53 @@ test_that("kps from c", {
   pmax <- 0.95
 
   kps_c <- generate_kp_list(num, br, kmin, kmax, pmin, pmax, distributionType = 1)
-  testthat::expect_lte(abs(round(mean(kps_c[,2])  * 100) - 65), 1)
+  expect_lte(abs(round(mean(kps_c[,2])  * 100) - 65), 1)
 })
 
 test_that("ct equals set", {
-  ct_as_set <- as.codeset(contingencyTable)
+  ct_as_set <- as.code.set(contingencyTable)
   expect_equal(ct_as_set[,1], codeSet[,1])
   expect_equal(ct_as_set[,2], codeSet[,2])
 })
 test_that("set equals ct", {
   set_as_ct <- as.contingency.table(codeSet)
-  expect_true(all.equal(set_as_ct, contingencyTable))
+  expect_equivalent(unclass(set_as_ct), contingencyTable)
+})
+
+test_that("verify rating set printing", {
+  # tmp <- tempfile()
+  # on.exit(unlink(tmp), add = TRUE)
+  
+  ct_as_set <- as.code.set(contingencyTable)
+  # sink(tmp)
+  # print(ct_as_set)
+
+  # output <- readLines(tmp)
+  # unlink(tmp)
+  # sink(file = NULL)
+  # testthat::expect_true(grepl(x = output, pattern = "\\s+\\[,1\\]\\s\\[,2\\]")[1])
+  testthat::expect_output(print(ct_as_set), regexp = "first_rater second_rater" )
+})
+
+test_that("test dollar completion", {
+  set_as_ct <- as.contingency.table(codeSet)
+  expect_null(rhoR:::`$.rating.set`(set_as_ct, ""))
+  expect_equal(rhoR:::`$.rating.set`(set_as_ct, "kappa"), 0.625)
+  expect_equal(rhoR:::`$.rating.set`(set_as_ct, "second_negative"), 35)
+  expect_equal(rhoR:::`$.rating.set`(set_as_ct, "first_positive"), 4)
+  
+  ct_as_set <- as.code.set(contingencyTable)
+  expect_null(rhoR:::`$.rating.set`(ct_as_set, ""))
+  expect_equal(rhoR:::`$.rating.set`(ct_as_set, "kappa"), 0.625)
+  expect_equal(sum(rhoR:::`$.rating.set`(ct_as_set, "second_rater") == 0), 35)
+  expect_true(all(rhoR:::.codegen_dollar(ct_as_set) %in% rhoR:::additional_attributes))
+  
+  expect_true(all(rhoR:::.DollarNames.rating.set(ct_as_set) %in% c("first_rater", "second_rater", "baserate", "kappa")))
+  expect_true(all(rhoR:::.DollarNames.rating.set(set_as_ct) %in% c("first_positive", "first_negative",
+                                                                   "second_positive", "second_negative",
+                                                                   "agreement", "baserate", "kappa")))
+})
+
+test_that("package loading", {
+  testthat::expect_error(rhoR:::.onLoad("", "rhoR"))
 })

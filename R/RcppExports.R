@@ -110,17 +110,6 @@ kappa_ct <- function(ct) {
     .Call('_rhoR_kappa_ct', PACKAGE = 'rhoR', ct)
 }
 
-#' @title Get Handset from Conntingency Table
-#' @description This function returns a Handset from a larger Contingency Table
-#' @name getHand_ct
-#' 
-#' @param ct [TBD]
-#' @param handSetLength [TBD]
-#' @param handSetBaserate [TBD]
-#' 
-#' @return Contingency Table matrix
-#' 
-#' @export
 getHand_ct <- function(ct, handSetLength, handSetBaserate) {
     .Call('_rhoR_getHand_ct', PACKAGE = 'rhoR', ct, handSetLength, handSetBaserate)
 }

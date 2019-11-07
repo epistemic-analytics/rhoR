@@ -34,3 +34,7 @@
 #' @docType package
 #' @name rhoR
 NULL
+
+# @title Default colors used for plotting.
+# @description Default colors for plotting
+additional_attributes <- c("agreement", "baserate", "kappa")
