@@ -7,11 +7,11 @@ test_that("testing rho errors", {
 })
 
 test_that("testing perfect rhos", {
-  perfect_rho_set <- matrix(c(rep(1, times = 40), rep(0, times=100)), byrow=T, ncol=2)
+  perfect_rho_set <- matrix(c(rep(1, times = 80), rep(0, times=100)), byrow=T, ncol=2)
   perfect_rho <- rho(perfect_rho_set)
   expect_equal(round(perfect_rho$rho, 2), 0.00)
   
-  perfect_rho_ct <- matrix(c(20, 0, 0, 50), ncol=2)
+  perfect_rho_ct <- matrix(c(30, 0, 0, 60), ncol=2)
   perfect_rho_2 <- rho(perfect_rho_ct)
   expect_equal(round(perfect_rho_2$rho, 2), 0.00)
 })

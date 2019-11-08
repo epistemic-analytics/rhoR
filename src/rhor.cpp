@@ -221,7 +221,7 @@ Rcpp::NumericMatrix generate_kp_list(
 
   arma::vec kappaProbability;
   if(distributionType == 1) {
-    kappaProbability = normpdf(kappaDistribution, 0.65, 0.1);
+    kappaProbability = normpdf(kappaDistribution, 0.9, 0.1);
   }
 
   double precStep = (precisionMax - precisionMin) / (10000 - 1);
@@ -378,7 +378,7 @@ double calcRho_c(
   double testSetBaserateInflation = 0,
   int OcSLength = 10000, 
   int replicates = 800, 
-  double ScSKappaThreshold = 0.65,
+  double ScSKappaThreshold = 0.9,
   double ScSKappaMin = 0.40,
   double ScSPrecisionMin = 0.6, 
   double ScSPrecisionMax = 1.0,

@@ -91,7 +91,7 @@ recall = getR(kappa, baserate, precision)
 
 microbenchmark(
   fullSet.r = prset(precision = precision, recall = recall, length = 10000, baserate = baserate),
-  fullSet.c = contingency_table(precision = precision, recall = recall, length = 10000, baserate = baserate),
+  fullSet.c = contingency_table(precision = precision, rec = recall, length = 10000, baserate = baserate),
   times = 10, unit = "ms"
 )
 
@@ -101,7 +101,7 @@ microbenchmark(
 
 ```{r}
 codeset = prset(precision = precision, recall = recall, length = 10000, baserate = baserate)
-ctset = contingency_table(precision = precision, recall = recall, length = 10000, baserate = baserate)
+ctset = contingency_table(precision = precision, rec = recall, length = 10000, baserate = baserate)
 
 microbenchmark(
   kappa.cs = kappaSet(codeset),
@@ -112,25 +112,25 @@ microbenchmark(
 
 
 ```{r include=FALSE}
-# run.bench <- function(oK, fsb, hsl, fsl = 10000, times = 100) {
-#   microbenchmark::microbenchmark(
-#     rho.set = rhoR:::calcRho(observedKappa = oK, fullSetBaserate = fsb, handSetLength = hsl, fullSetLength = fsl),
-#     rho.ct = rhoR:::calcRho2(observedKappa = oK, fullSetBaserate = fsb, handSetLength = hsl, fullSetLength = fsl),
-#     times = times
-#   )
-# }
+run.bench <- function(oK, fsb, hsl, fsl = 10000, times = 1.00) {
+  microbenchmark::microbenchmark(
+    rho.set = rhoR:::calcRho(oK, fsb, testSetLength = hsl,OcSLength = fsl),
+    rho.ct = rhoR:::calcRho_c(oK, fsb, testSetLength = hsl, OcSLength = fsl),
+    times = times, unit = "ms"
+  )
+}
 ```
 
 ## Benchmarks
 
 ```{r }
-# run.bench(0.8, 0.3, 20, 1000)
+run.bench(0.8, 0.3, 20, 1000, times = 100)
 ```
 ```{r }
-# run.bench(0.8, 0.3, 200, 10000)
+run.bench(0.8, 0.3, 200, 10000, times = 10)
 ```
 ```{r }
-# run.bench(0.8, 0.3, 20, 100000, times = 10)
+run.bench(0.8, 0.3, 20, 100000, times = 10)
 ```
 
 

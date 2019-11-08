@@ -20,8 +20,8 @@ rhoSet = function(
   testSetBaserateInflation = 0,
   OcSLength = 10000,
   replicates = 800,
-  ScSKappaThreshold = .65,
-  ScSKappaMin = .40,
+  ScSKappaThreshold = 0.9,
+  ScSKappaMin = 0.40,
   ScSPrecisionMin = 0.6,
   ScSPrecisionMax = 1
 ) {

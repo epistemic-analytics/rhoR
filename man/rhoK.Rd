@@ -5,7 +5,7 @@
 \title{Rho (kappa)}
 \usage{
 rhoK(x, OcSBaserate, testSetLength, testSetBaserateInflation = 0,
-  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.65,
+  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.9,
   ScSKappaMin = 0.4, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1,
   method = "standard")
 }

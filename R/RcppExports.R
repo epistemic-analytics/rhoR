@@ -130,7 +130,7 @@ getHand_kappa <- function(ct, handSetLength, handSetBaserate) {
     .Call('_rhoR_getHand_kappa', PACKAGE = 'rhoR', ct, handSetLength, handSetBaserate)
 }
 
-calcRho_c <- function(x, OcSBaserate, testSetLength, testSetBaserateInflation = 0, OcSLength = 10000L, replicates = 800L, ScSKappaThreshold = 0.65, ScSKappaMin = 0.40, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1.0, KPs = matrix(0)) {
+calcRho_c <- function(x, OcSBaserate, testSetLength, testSetBaserateInflation = 0, OcSLength = 10000L, replicates = 800L, ScSKappaThreshold = 0.9, ScSKappaMin = 0.40, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1.0, KPs = matrix(0)) {
     .Call('_rhoR_calcRho_c', PACKAGE = 'rhoR', x, OcSBaserate, testSetLength, testSetBaserateInflation, OcSLength, replicates, ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax, KPs)
 }
 

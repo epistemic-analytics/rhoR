@@ -8,7 +8,7 @@ test_that("Reading ratings from file", {
 
   testthat::expect_equivalent(r_1$rho, 0.00, tolerance = 0.01)
   testthat::expect_equivalent(r_1$kappa, 1.00, tolerance = 0.01)
-  testthat::expect_equivalent(r_2$kappa, 0.62, tolerance = 0.01)
+  testthat::expect_equivalent(r_2$kappa, 0.85, tolerance = 0.01)
   
   testthat::expect_error(rho.file(fileName, col1 = "rater1", col2 = "rater2"))
 })
