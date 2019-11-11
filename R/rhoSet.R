@@ -42,6 +42,8 @@ rhoSet = function(
       replicates,
       ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax
     ), 
-    kappa = kappa
-  ));
+    kappa = kappa,
+    recall = rating_set_recall(x),
+    precision = rating_set_precision(x)
+  ))
 }

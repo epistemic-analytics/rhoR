@@ -45,6 +45,7 @@ Collate:
     'baserateCT.R'
     'calcKappa.R'
     'calcRho.R'
+    'calculations.R'
     'checkBRPKcombo.R'
     'contingencyTable.R'
     'codeSet.R'
