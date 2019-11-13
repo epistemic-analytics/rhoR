@@ -11,7 +11,7 @@ test_that("default inflation to 0", {
   
   testSetBR = baserate(testSet_matrix)
   
-  expect_equal(colnames(testSet_matrix), c("firstRater", "secondRater"))
+  expect_equal(colnames(testSet_matrix), c("first_rater", "second_rater"))
   expect_equal(nrow(testSet_matrix), testSetLength)
   expect_gte(testSetBR$firstBaserate, 0)
 })
@@ -28,7 +28,7 @@ test_that("custom inflation", {
   
   testSetBR = baserate(testSet_matrix)
   
-  expect_equal(colnames(testSet_matrix), c("firstRater", "secondRater"))
+  expect_equal(colnames(testSet_matrix), c("first_rater", "second_rater"))
   expect_equal(nrow(testSet_matrix), testSetLength)
   expect_gte(testSetBR$firstBaserate, testSetInflation)
 })

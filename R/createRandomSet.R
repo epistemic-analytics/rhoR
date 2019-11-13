@@ -10,13 +10,19 @@
 # @keywords random, set, generation, kappa, ranges
 # @return This returns a set with the given parameters
 ###
-createRandomSet = function(setLength, baserate, kappaMin, kappaMax, minPrecision = 0, maxPrecision = 1){
+createRandomSet = function(setLength, baserate, kappaMin, kappaMax, minPrecision = 0, maxPrecision = 1, type = "set"){
   #generates a valid precision with the given kappa and baserate
   KP = generateKPs(1, baserate, kappaMin, kappaMax, minPrecision, maxPrecision)[[1]]
   kappa = KP$kappa
   precision = KP$precision
   recall = getR(kappa, baserate, precision)
-  fullSet = prset(precision = precision, recall = recall, length = setLength, baserate = baserate);
-  #calls prset to generate the set
+  
+  if(type == "ct") {
+    fullSet = pr.ct(precision = precision, recall = recall, length = setLength, baserate = baserate);
+  } 
+  else {
+    fullSet = prset(precision = precision, recall = recall, length = setLength, baserate = baserate);
+  }
+  
   return(fullSet);
 }

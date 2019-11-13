@@ -22,7 +22,7 @@ test_that("verify error checks", {
   expect_error(createSimulatedCodeSet(len, br, kmin, kmax, pmin, pmax - 1, tries), regexp = "precisionMax.*?0 and 1")
   expect_error(createSimulatedCodeSet(len, br, kmin, kmax, pmin, pmax + 1, tries), regexp = "precisionMax.*?0 and 1")
   expect_error(createSimulatedCodeSet(len, br, kmin, kmax, precisionMin = 0.9, precisionMax = 0.7, tries), regexp = "precisionMin.*less.*?Max")
-  expect_error(createSimulatedCodeSet(len, br, kmin, kmax, pmin, pmax, 0), regexp = "tries.*?1")
+  expect_error(createSimulatedCodeSet(len, br, kmin, kmax, pmin, pmax, tries = 0), regexp = "tries.*?1")
 })
 
 test_that("verify good set", {
@@ -56,9 +56,9 @@ test_that("impossible set", {
   expect_error(createSimulatedCodeSet(len, br, kmin, kmax, pmin, pmax, tries), regexp = "Unable to create.*26471")
 })
 
-test_that("explicit any.equal checks", {
-  expect_false(any.equal(c(1.1001, 2.2), 11/10))
-  expect_true(any.equal(c(1.1000000001, 2.2), 11/10))
-  expect_true(any.equal(c(1.1, 2.2), 11/10))
-  expect_true(any.equal(c(1.1, 2.2), 22/10))
+test_that("explicit any_equal checks", {
+  expect_false(any_equal(c(1.1001, 2.2), 11/10))
+  expect_true(any_equal(c(1.1000000001, 2.2), 11/10))
+  expect_true(any_equal(c(1.1, 2.2), 11/10))
+  expect_true(any_equal(c(1.1, 2.2), 22/10))
 })

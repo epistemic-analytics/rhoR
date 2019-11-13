@@ -2,7 +2,7 @@ Package: rhoR
 Title: Rho for Inter Rater Reliability
 Authors@R: c(person("Brendan", "Eagan", email="beagan@wisc.edu", role = c("aut")),person("Brad", "Rogers", email = "bjrogers2@wisc.edu", role = c("aut")), person("Rebecca","Pozen", email = "rpozen@wisc.edu", role = c("aut")),person("Cody L", "Marquart", email="cody.marquart@wisc.edu", role = c("cre", "aut"), comment = c(ORCID = "0000-0002-3387-6792")),person("David", "Williamson Shaffer", email = "dws@education.wisc.edu", role = c("aut")))
 Maintainer: Cody L Marquart <cody.marquart@wisc.edu>
-Version: 1.2.1.2
+Version: 1.3.0.0
 Description: Rho is used to test the generalization of inter rater reliability
     (IRR) statistics. Calculating rho starts by generating a large number of
     simulated, fully-coded data sets: a sizable collection of hypothetical
@@ -19,10 +19,18 @@ Depends:
 License: GPL-3  | file LICENSE
 LazyData: true
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr
+LinkingTo: Rcpp, RcppArmadillo
+Imports:
+    Rcpp
 BugReports: https://gitlab.com/epistemic-analytics/qe-packages/rhor/issues
 Suggests:
-    testthat (>= 2.1.0)
+    testthat (>= 2.1.0),
+    knitr,
+    rmarkdown,
+    microbenchmark
 Collate: 
+    'RcppExports.R'
     'rhoR.R'
     'rho.R'
     'rhoK.R'
@@ -37,6 +45,7 @@ Collate:
     'baserateCT.R'
     'calcKappa.R'
     'calcRho.R'
+    'calculations.R'
     'checkBRPKcombo.R'
     'contingencyTable.R'
     'codeSet.R'
@@ -52,3 +61,6 @@ Collate:
     'getR.R'
     'getTestSet.R'
     'prset.R'
+    'rho.file.R'
+    'utils.R'
+    'zzz.R'

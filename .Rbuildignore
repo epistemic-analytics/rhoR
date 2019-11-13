@@ -2,8 +2,8 @@
 ^\.Rproj\.user$
 .gitlab-ci.yml
 cran-comments.md
-
-lintr*
-.lintr/
+man-roxygen
+.lintr
+lintr_results
 docs
 archive

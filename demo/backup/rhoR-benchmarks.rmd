@@ -1,0 +1,136 @@
+---
+title: "rhoR Benchmarks"
+output: html_document
+---
+
+The first versions of the rhoR package calculated rho using a matrix of two columns, referred to as a codeset. Even the methods that accepted a contingency table, actually converted that table to a codeset and off-loaded the work to the functions accepting a codeset. This was all well and good until the codesets became large. A critical step in the calculation of rho is the sampling, and then re-sampling, a high number of times (default: 800). It is at this point that passing a matrix of say 10,000 rows and sampling numerous times, becomes a burden.
+
+The alternative, as being introduced in version 1.3.0 of the rhoR package, is to convert sets to contingency tables and sample from that.  The motivation here is that even as the size grows, the contingency table still only consists of four numbers:
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+devtools::load_all(".")
+```
+
+```{r}
+rhoR::random_contingency_table(setLength=100,   baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)
+rhoR::random_contingency_table(setLength=1000,  baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)
+rhoR::random_contingency_table(setLength=10000, baserate = 0.3, kappaMin = 0.4, kappaMax = 0.8)
+```
+
+The important piece to note is that for each contingency table the corresponding codeset is setLength * 2 in size. 
+
+So in regards to the size of the matrices, it's clear the contingency tables are much smaller, but the tricky piece comes in to play when updating the rho operations themselves.  A main component of rho is generating samples that contain a minimum number of positive matches from the first-rater and kappa agreement within a desired range.  DOing so with a codeset, we are able to sample directly from the corresponding rows of the codeset that meet certain criteria (e.g. both raters agree.)   
+
+```{r}
+baserate = 0.3
+kappaMin=0.4
+kappaMax = 0.8
+precisionMin=0
+precisionMax=1
+
+set = rhoR::createSimulatedCodeSet(length= 10, baserate, kappaMin, kappaMax, precisionMin, precisionMax)
+kappa.precision.combos = rhoR::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax)
+```
+```{r echo=F }
+set
+kappa.precision.combos[[1]]
+```
+```{r}
+curr.kappa = kappa.precision.combos[[1]]$kappa
+curr.precision = kappa.precision.combos[[1]]$precision
+
+curr.recall = getR(curr.kappa, baserate, curr.precision)
+simulated.set = prset(precision = curr.precision, recall = curr.recall, length = 10000, baserate = baserate);
+```
+
+Given a simulated set, we now get to the point where we generate a sampled handset, matching the minimum desired baserate, and calculate the kappa agreement. NOTE: this step, along with the previous, is what happens, by default 800 times and we will see slows downs significantly when running on larger codesets.
+
+```{r}
+handset = getHandSet(set = simulated.set, handSetLength = 20, handSetBaserate = baserate, returnSet = T);
+```
+```{r, echo = F}
+handset
+```
+
+```{r}
+calcKappa(handset)
+```
+
+
+# Where is it slow?
+
+```{r}
+library(microbenchmark)
+
+microbenchmark(
+  kps.r = rhoR::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax),
+  kps.c = rhoR::generate_kp_list(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax),
+  times = 10, unit = "ms"
+)
+```
+
+```{r, echo = F}
+kps.r = rhoR::generateKPs(numNeeded = 800, baserate, kappaMin, kappaMax, precisionMin, precisionMax)
+kps.df = do.call("rbind", kps.r)
+microbenchmark(
+  kp.r = rhoR::genPKcombo(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = NULL, precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = NULL, baserate = baserate),
+  kp.c = rhoR::find_valid_pk(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = rep(1, nrow(kps.df)), precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = rep(1, nrow(kps.df)), baserate = baserate),
+  times = 10, unit = "ms"
+)
+```
+
+# Create Sets From a Precision and Kappa
+
+```{r}
+kp.r = rhoR::genPKcombo(kappaDistribution = as.numeric(kps.df[,2]), kappaProbability = NULL, precisionDistribution = as.numeric(kps.df[,1]), precisionProbability = NULL, baserate = baserate)
+kappa = kp.r$kappa
+precision = kp.r$precision
+recall = getR(kappa, baserate, precision)
+
+microbenchmark(
+  fullSet.r = prset(precision = precision, recall = recall, length = 10000, baserate = baserate),
+  fullSet.c = contingency_table(precision = precision, rec = recall, length = 10000, baserate = baserate),
+  times = 10, unit = "ms"
+)
+
+```
+
+# Calculate Kappa on Codeset vs. Contingency Table
+
+```{r}
+codeset = prset(precision = precision, recall = recall, length = 10000, baserate = baserate)
+ctset = contingency_table(precision = precision, rec = recall, length = 10000, baserate = baserate)
+
+microbenchmark(
+  kappa.cs = kappaSet(codeset),
+  kappa.ct = kappa_ct(ctset),
+  times = 100, unit = "ms"
+)
+```
+
+
+```{r include=FALSE}
+run.bench <- function(oK, fsb, hsl, fsl = 10000, times = 1.00) {
+  microbenchmark::microbenchmark(
+    rho.set = rhoR:::calcRho(oK, fsb, testSetLength = hsl,OcSLength = fsl),
+    rho.ct = rhoR:::calcRho_c(oK, fsb, testSetLength = hsl, OcSLength = fsl),
+    times = times, unit = "ms"
+  )
+}
+```
+
+## Benchmarks
+
+```{r }
+run.bench(0.8, 0.3, 20, 1000, times = 100)
+```
+```{r }
+run.bench(0.8, 0.3, 200, 10000, times = 10)
+```
+```{r }
+run.bench(0.8, 0.3, 200, 100000, times = 10)
+```
+
+

@@ -1,6 +1,3 @@
-Fixed check errors from previous submission
+#v1.3.0.0
 
-## rhoR 1.2.1.2
-* `getHandSetIndices()` bug fixed for sampling positive indices
-* `createSimulatedCodeSet()` floating point error fixed for exact matching kappa min and max values
-* Implented full test suite for package
+Perfmorance improvements using contingency tables in Rcpp

@@ -4,14 +4,14 @@
 \alias{rhoSet}
 \title{Rho (set)}
 \usage{
-rhoSet(set, OcSBaserate = NULL, testSetBaserateInflation = 0,
-  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.65,
+rhoSet(x, OcSBaserate = NULL, testSetBaserateInflation = 0,
+  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.9,
   ScSKappaMin = 0.4, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1)
 }
 \arguments{
-\item{set}{The \code{\link[=getTestSet]{testSet}} used to calculate rho}
+\item{x}{The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho}
 
-\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}})}
+\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})}
 
 \item{testSetBaserateInflation}{The minimum \code{\link{baserate}} from the sampling procedure}
 
@@ -28,6 +28,8 @@ rhoSet(set, OcSBaserate = NULL, testSetBaserateInflation = 0,
 \item{ScSPrecisionMax}{The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
 }
 \value{
+rho for the given parameters
+
 A list of the format:\describe{
 \item{rho}{The rho of the \code{\link{codeSet}}}
 \item{kappa}{The Cohen's Kappa of the \code{\link{codeSet}}}
@@ -37,6 +39,5 @@ A list of the format:\describe{
 This function calculates rho and kappa for a given \code{\link[=getTestSet]{testSet}}, and returns a list containing both values. Called by \code{\link{rho}}.
 }
 \seealso{
-\code{\link{rho}} and \code{\link{rhoK}} and \code{\link{rhoCT}}
+\code{\link{rho}}
 }
-\keyword{rhoSet}

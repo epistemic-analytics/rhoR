@@ -4,13 +4,13 @@
 \alias{rhoK}
 \title{Rho (kappa)}
 \usage{
-rhoK(observedKappa, OcSBaserate, testSetLength,
-  testSetBaserateInflation = 0, OcSLength = 10000, replicates = 800,
-  ScSKappaThreshold = 0.65, ScSKappaMin = 0.4, ScSPrecisionMin = 0.6,
-  ScSPrecisionMax = 1)
+rhoK(x, OcSBaserate, testSetLength, testSetBaserateInflation = 0,
+  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.9,
+  ScSKappaMin = 0.4, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1,
+  method = "standard")
 }
 \arguments{
-\item{observedKappa}{The observed kappa value used to calculate rho}
+\item{x}{The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho}
 
 \item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})}
 
@@ -29,14 +29,19 @@ rhoK(observedKappa, OcSBaserate, testSetLength,
 \item{ScSPrecisionMin}{The minimum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
 
 \item{ScSPrecisionMax}{The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
+
+\item{method}{set to "c" to calculate using the C++ implmentation. Defaults to "standard"}
 }
 \value{
 rho for the given parameters
+
+rho for the given parameters
 }
 \description{
-This function calculates rho for an observed kappa value with associated set parameters (testSetLength and OcSBaserate). Called by \code{\link{rho}}.
+This function calculates rho for an observed kappa value with associated set parameters
+(testSetLength and OcSBaserate). Called by \code{\link{rho}}. A p-value is returned and if 
+this value is less than 0.05, it is said that the handset does generalize to the entire set
 }
 \seealso{
-\code{\link{rho}} and \code{\link{rhoSet}} and \code{\link{rhoCT}}
+\code{\link{rho}}
 }
-\keyword{rhoK}

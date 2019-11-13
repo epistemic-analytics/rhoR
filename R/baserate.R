@@ -30,11 +30,10 @@
 #' }
 #' 
 ###
-
 baserate = function(data){
-  if(nrow(data) != 2){
+  if (nrow(data) != 2) {
     return(baserateSet(data))
-  }else{
+  } else {
     return(baserateCT(data))
   }
 }

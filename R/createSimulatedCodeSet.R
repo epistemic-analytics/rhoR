@@ -1,7 +1,3 @@
-any.equal <- function(target, current, tolerance = sqrt(.Machine$double.eps)) {
-  any(sapply(target, function(targ) abs(current - targ) < tolerance ))
-}
-
 ###
 #' @include codeSet.R
 #' @title Create Simulated codeSet
@@ -17,6 +13,7 @@ any.equal <- function(target, current, tolerance = sqrt(.Machine$double.eps)) {
 #' @param kappaMax the maximum kappa of the simulated \code{\link{codeSet}}
 #' @param precisionMin the minimum precision of the simulated \code{\link{codeSet}}
 #' @param precisionMax the maximum precision of the simulated \code{\link{codeSet}}
+#' @param ... Parameters passed to createRandomSet (e.g. type = "set" or type = "ct")
 #' @param tries the maximum number of tries to generate a valid set, smaller set lengths may require an increased number of tries
 #' 
 #' @details
@@ -25,7 +22,7 @@ any.equal <- function(target, current, tolerance = sqrt(.Machine$double.eps)) {
 #' @return A \code{\link{codeSet}} that fulfills the given parameters
 #' 
 ###
-createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisionMin, precisionMax, tries = 50) {
+createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisionMin, precisionMax, ..., tries = 50){
   if(length <= 0){stop("length must be positive")}
   if(baserate < 0){stop("baserate must be positive")}
   if(kappaMin < 0 | kappaMin > 1) stop("kappaMin must be between 0 and 1.")
@@ -44,7 +41,7 @@ createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisio
     set = createRandomSet(setLength = length, baserate = baserate, kappaMin = kappaMin, kappaMax = kappaMax, minPrecision = precisionMin, maxPrecision = precisionMax)
     k = kappa(set)
     
-    if ((k > kappaMin && k < kappaMax) || any.equal(k, c(kappaMin, kappaMax))) {
+    if ((k > kappaMin && k < kappaMax) || any_equal(k, c(kappaMin, kappaMax))) {
       setFound = set
       validSet = T
     }
@@ -78,4 +75,6 @@ createSimulatedCodeSet = function(length, baserate, kappaMin, kappaMax, precisio
   }
   
   return(setFound)
+  
+  # return(createRandomSet(setLength = length, baserate = baserate, kappaMin = kappaMin, kappaMax = kappaMax, minPrecision = precisionMin, maxPrecision = precisionMax, ...))
 }

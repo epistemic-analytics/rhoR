@@ -4,15 +4,14 @@
 \alias{rhoCT}
 \title{Rho (contingency Table)}
 \usage{
-rhoCT(contingencyTable, OcSBaserate = NULL,
-  testSetBaserateInflation = 0, OcSLength = 10000, replicates = 800,
-  ScSKappaThreshold = 0.65, ScSKappaMin = 0.4, ScSPrecisionMin = 0.6,
-  ScSPrecisionMax = 1)
+rhoCT(x, OcSBaserate = NULL, testSetBaserateInflation = 0,
+  OcSLength = 10000, replicates = 800, ScSKappaThreshold = 0.9,
+  ScSKappaMin = 0.4, ScSPrecisionMin = 0.6, ScSPrecisionMax = 1)
 }
 \arguments{
-\item{contingencyTable}{The \code{\link{contingencyTable}} used to calculate rho}
+\item{x}{The observed kappa value, \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}} that will be tested with rho}
 
-\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of the \code{\link{contingencyTable}})}
+\item{OcSBaserate}{The \code{\link{baserate}} of the observed \code{\link{codeSet}} (defaults to \code{\link{baserate}} of \code{\link[=getTestSet]{testSet}} or \code{\link{contingencyTable}})}
 
 \item{testSetBaserateInflation}{The minimum \code{\link{baserate}} from the sampling procedure}
 
@@ -29,6 +28,8 @@ rhoCT(contingencyTable, OcSBaserate = NULL,
 \item{ScSPrecisionMax}{The maximum precision to be used for generation of simulated \code{\link[=getTestSet]{codeSets}} in the null hypothesis distribution for rho}
 }
 \value{
+rho for the given parameters
+
 A list of the format:\describe{
 \item{rho}{The rho of the \code{\link{contingencyTable}}}
 \item{kappa}{The Cohen's Kappa of the \code{\link{contingencyTable}}}
@@ -38,6 +39,5 @@ A list of the format:\describe{
 This function calculates rho and kappa for a given \code{\link{contingencyTable}}, and returns a list containing both values. Called by \code{\link{rho}}.
 }
 \seealso{
-\code{\link{rho}} and \code{\link{rhoK}} and \code{\link{rhoSet}}
+\code{\link{rho}}
 }
-\keyword{rhoCT}

@@ -20,7 +20,6 @@
 #' }
 #' 
 ###
-
 baserateSet = function(set){
   firstBaserate = length(which(set[,1] == 1))/nrow(set)
   secondBaserate = length(which(set[,2] == 1))/nrow(set)
