@@ -175,7 +175,7 @@ test_that("compare calcRhos", {
   
   calc_rs <- replicate(50, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_list, replicates = 50))
   calc_cs <- replicate(50, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_r, replicates = 50))
-  testthat::expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.1))
+  expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.3))
   
   calc_rs <- replicate(10, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
   calc_cs <- replicate(10, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
