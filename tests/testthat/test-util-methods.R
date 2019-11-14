@@ -16,15 +16,15 @@ test_that("brpk values", {
   expect_true(checkBRPKcombo(0.2, 0.8, 0.8))
 })
 
-test_that("p combos", {
-  p_min <- 0.80;
-  p_max <- 0.85;
-  
-  combo <- rhoR:::genPcombo(0.8, p_min, p_max, 0.5)
-  expect_true(p_min < combo && combo < p_max)
-  
-  expect_match(tryCatch(genPcombo(0.9, p_min, p_max, 0.5), error = function(e) { e$message }), regexp = "nested too deeply")
-})
+# test_that("p combos", {
+#   p_min <- 0.80;
+#   p_max <- 0.85;
+#   
+#   combo <- rhoR:::genPcombo(0.8, p_min, p_max, 0.5)
+#   expect_true(p_min < combo && combo < p_max)
+#   
+#   expect_match(tryCatch(genPcombo(0.9, p_min, p_max, 0.5), error = function(e) { e$message }), regexp = "nested too deeply")
+# })
 
 test_that("create random sets", {
   len <- 200
