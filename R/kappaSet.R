@@ -1,5 +1,4 @@
 ###
-#' @include kappa.R
 #' @title Calculate kappa (Set)
 #' 
 #' @description 
@@ -7,8 +6,6 @@
 #' 
 #' @export
 #' @param set A \code{\link{codeSet}}
-#' 
-#' @keywords kapppaSet
 #' 
 #' @seealso \code{\link{kappa}} and \code{\link{kappaCT}}
 #' 

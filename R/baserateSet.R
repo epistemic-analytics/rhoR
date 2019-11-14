@@ -1,18 +1,14 @@
 ###
-#' @include rhoMin.R
 #' @title Calculate Baserate (Set)
 #' 
 #' @description
 #' This function will calculate the baserate of the first rater, second rater, and the average of both the raters. Called by \code{\link{baserate}}.
 #' 
-#' @export
-#' 
 #' @param set The \code{\link{codeSet}} for which the baserate is calculated
-#' 
-#' @keywords baserateSet
 #' 
 #' @seealso \code{\link{baserate}} and \code{\link{baserateCT}}
 #' 
+#' @export
 #' @return A list of the format:\describe{
 #' \item{firstBaserate}{The percentage that a positive code, or a 1, appears in the first rater}
 #' \item{secondBaserate}{The percentage that a positive code, or a 1, appears in the second rater}

@@ -6,7 +6,6 @@
 # @param Pmin This is the minimum precision desired
 # @param Pmax This is the maximum precision desired
 # @param BR This is the baserate of the desired pair
-# @keywords generate, combo, kappa, precision, baserate
 # @return This returns a precision value that will generate a valid set with the other parameters
 ####
 

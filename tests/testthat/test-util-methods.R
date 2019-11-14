@@ -155,7 +155,7 @@ test_that("compare calcRhos", {
 
   observedKappa = 0.91
   fullSetBaserate = 0.2
-  handSetLength = 80
+  handSetLength = 100
   handSetBaserateInflation = 0.2
   
   calc_rs <- replicate(10, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_list))
@@ -164,7 +164,7 @@ test_that("compare calcRhos", {
   
   calc_rs <- replicate(50, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_list, replicates = 50))
   calc_cs <- replicate(50, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation, KPs = kps_r, replicates = 50))
-  expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.05))
+  testthat::expect_true(rhoR:::all_equal(mean(calc_rs), mean(calc_cs), tolerance = 0.05))
   
   calc_rs <- replicate(10, rhoR:::calcRho(  observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
   calc_cs <- replicate(10, rhoR:::calcRho_c(observedKappa, fullSetBaserate, handSetLength, handSetBaserateInflation))
@@ -172,7 +172,7 @@ test_that("compare calcRhos", {
 })
 
 test_that("kps from c", {
-  num <- 10000
+  num <- 50000
   br  <- 0.2
   kmin <- 0
   kmax <- 1
@@ -180,7 +180,7 @@ test_that("kps from c", {
   pmax <- 1
 
   kps_c <- generate_kp_list(num, br, kmin, kmax, pmin, pmax, distributionType = 1)
-  expect_equal(mean(kps_c[,2]), 0.9, tolerance = 0.03)
+  expect_equal(mean(kps_c[,2]), 0.9, tolerance = 0.04)
 })
 
 test_that("ct equals set", {
@@ -221,8 +221,8 @@ test_that("test dollar completion", {
   expect_equal(sum(rhoR:::`$.rating.set`(ct_as_set, "second_rater") == 0), 35)
   expect_true(all(rhoR:::.codegen_dollar(ct_as_set) %in% rhoR:::additional_attributes))
   
-  expect_true(all(rhoR:::.DollarNames.rating.set(ct_as_set) %in% c("first_rater", "second_rater", "baserate", "kappa")))
-  expect_true(all(rhoR:::.DollarNames.rating.set(set_as_ct) %in% c("first_positive", "first_negative",
+  expect_true(all(`.DollarNames.rating.set`(ct_as_set) %in% c("first_rater", "second_rater", "baserate", "kappa")))
+  expect_true(all(`.DollarNames.rating.set`(set_as_ct) %in% c("first_positive", "first_negative",
                                                                    "second_positive", "second_negative",
                                                                    "agreement", "baserate", "kappa")))
 })

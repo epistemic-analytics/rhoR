@@ -1,6 +1,4 @@
 ###
-#' @include rho.R
-#' 
 #' @title Rho (kappa)
 #' 
 #' @description 
@@ -8,12 +6,11 @@
 #' (testSetLength and OcSBaserate). Called by \code{\link{rho}}. A p-value is returned and if 
 #' this value is less than 0.05, it is said that the handset does generalize to the entire set
 #' 
-#' @export
-#'
 #' @template rho-params
 #' @param testSetLength The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)
 #' @param method set to "c" to calculate using the C++ implmentation. Defaults to "standard"
 #' 
+#' @export
 #' @return rho for the given parameters
 ###
 rhoK = function(

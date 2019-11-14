@@ -14,7 +14,6 @@
 # # @param precisionMin The minimum precision
 # # @param precisionMax The maximum precision
 # # @param handSetFunction A function to call
-# # @keywords rho, calculate, observedKappa, kappa, disribution
 # # 
 # # @return a P value is returned and if this value is less than 0.05, it is said that the handset does generalize to the entire set
 # ###

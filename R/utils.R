@@ -104,7 +104,7 @@ as.code.set <- function(x) {
 }
 
 #' @export
-.DollarNames.rating.set <- function(x, pattern = "") {
+.DollarNames.rating.set <- function(x, pattern) {
   vals <- .codegen_dollar(x, pattern)
   
   cols <- colnames(x)
@@ -127,12 +127,12 @@ as.code.set <- function(x) {
 }
 
 #' @export
-print.rating.set <- function(x) {
+print.rating.set <- function(x, ...) {
   y <- unclass(x)
 
   for(a in additional_attributes) {
     attr(y, a) <- NULL
   }
   
-  print(y)
+  print(y, ...)
 }

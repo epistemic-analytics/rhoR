@@ -7,7 +7,6 @@
 # @param kappa The kappa of the set to be created
 # @param minPrecision The minimum precision accepted in this set. Defaults to 0
 # @param maxPrecision The maximum precision accepted in this set. Defaults to 1
-# @keywords random, set, generation, kappa, ranges
 # @return This returns a set with the given parameters
 ###
 createRandomSet = function(setLength, baserate, kappaMin, kappaMax, minPrecision = 0, maxPrecision = 1, type = "set"){

@@ -22,8 +22,10 @@ RoxygenNote: 6.1.1
 VignetteBuilder: knitr
 LinkingTo: Rcpp, RcppArmadillo
 Imports:
-    Rcpp
-BugReports: https://gitlab.com/epistemic-analytics/qe-packages/rhor/issues
+    Rcpp,
+    stats,
+    utils,
+    methods
 Suggests:
     testthat (>= 2.1.0),
     knitr,
@@ -31,24 +33,15 @@ Suggests:
     microbenchmark
 Collate: 
     'RcppExports.R'
-    'rhoR.R'
-    'rho.R'
-    'rhoK.R'
-    'rhoSet.R'
-    'rhoCT.R'
-    'kappa.R'
-    'kappaSet.R'
-    'kappaCT.R'
-    'rhoMin.R'
     'baserate.R'
-    'baserateSet.R'
     'baserateCT.R'
+    'baserateSet.R'
     'calcKappa.R'
     'calcRho.R'
     'calculations.R'
     'checkBRPKcombo.R'
-    'contingencyTable.R'
     'codeSet.R'
+    'contingencyTable.R'
     'contingencyToSet.R'
     'createRandomSet.R'
     'createSimulatedCodeSet.R'
@@ -60,7 +53,16 @@ Collate:
     'getHandSetIndices.R'
     'getR.R'
     'getTestSet.R'
+    'kappa.R'
+    'kappaCT.R'
+    'kappaSet.R'
     'prset.R'
+    'rho.R'
     'rho.file.R'
+    'rhoCT.R'
+    'rhoK.R'
+    'rhoMin.R'
+    'rhoR.R'
+    'rhoSet.R'
     'utils.R'
     'zzz.R'

@@ -5,7 +5,6 @@
 # @param BR This is the supplied baserate
 # @param P This is the supplied precision
 # @param K This is the supplied kappa
-# @keywords check, combo, baserate, precision, kappa
 # @return returns TRUE if the combination is valid, FALSE otherwise
 ###
 checkBRPKcombo = function(BR, P, K) {

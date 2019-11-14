@@ -4,7 +4,6 @@
 # This function gets the p value of the result in the distribution
 # @param distribution The distribution that the result falls into
 # @param result The value that you are evaluating where in the distribution it falls
-# @keywords distribution, rho, p, boot
 # @return This returns the p value from the result into the distribution
 ###
 getBootPvalue = function(distribution, result) {
