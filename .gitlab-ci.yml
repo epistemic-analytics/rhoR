@@ -27,7 +27,7 @@ variables:
     - rm -f ~/.R/Makevars
     - Rscript -e 'update(devtools::dev_package_deps("."))'
     - Rscript -e 'Rcpp::compileAttributes()'
-    - Rscript -e 'devtools::install("microbenchmark")'
+    - Rscript -e 'install.packages("microbenchmark")'
     - Rscript -e 'roxygen2::roxygenise(".")'
     - cd ..; R CMD build --log ${PKG} || true
 .check_definition: &check_template
