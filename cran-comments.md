@@ -1,3 +1,5 @@
-#v1.3.0.0
+# Fixing CRAN NOTEs
 
-Perfmorance improvements using contingency tables in Rcpp
+# v1.3.0.0
+
+## Perfmorance improvements using contingency tables in Rcpp

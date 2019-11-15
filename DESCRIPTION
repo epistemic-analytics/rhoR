@@ -19,7 +19,6 @@ Depends:
 License: GPL-3  | file LICENSE
 LazyData: true
 RoxygenNote: 6.1.1
-VignetteBuilder: knitr
 LinkingTo: Rcpp, RcppArmadillo
 Imports:
     Rcpp,
