@@ -22,4 +22,3 @@ This function calculates the baserate of the first rater, second rater, and the 
 \seealso{
 \code{\link{baserate}} and \code{\link{baserateSet}}
 }
-\keyword{baserateCT}

@@ -7,3 +7,5 @@ man-roxygen
 lintr_results
 docs
 archive
+vignettes
+README.md

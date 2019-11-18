@@ -68,6 +68,4 @@ rho(x = contingencyTable)
 }
 \seealso{
 \code{\link{rho}}
-
-\code{\link{rhoK}}
 }

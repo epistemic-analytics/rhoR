@@ -31,4 +31,3 @@ rhoMin(0.2, testSetBaserateInflation = 0.33)
 rhoMin(0.2, inc = 5, printInc = TRUE, testSetBaserateInflation = 0.33)
 
 }
-\keyword{rhoMin}

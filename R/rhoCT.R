@@ -1,14 +1,13 @@
 ###
-#' @include rhoSet.R
 #' @title Rho (contingency Table)
 #' 
 #' @description 
 #' This function calculates rho and kappa for a given \code{\link{contingencyTable}}, and returns a list containing both values. Called by \code{\link{rho}}.
 #' 
-#' @export
 #' 
 #' @template rho-params
 #' 
+#' @export
 #' @return A list of the format:\describe{
 #' \item{rho}{The rho of the \code{\link{contingencyTable}}}
 #' \item{kappa}{The Cohen's Kappa of the \code{\link{contingencyTable}}}

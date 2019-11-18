@@ -1,6 +1,4 @@
-###
-#' @include rhoR.R
-#' 
+### 
 #' @title Rho
 #' 
 #' @description 
@@ -23,12 +21,8 @@
 #' 
 #' For example, using an alpha level of 0.05, if the observed kappa is greater than 95 percent of the kappas in the null hypothesis distribution, the null hypothesis is rejected. Then one can conclude that the two raters would have acceptable agreement had they coded the entire data set.
 #'
-#' @export
-#'
 #' @template rho-params
 #' @param testSetLength The length of the \code{\link[=getTestSet]{testSet}} (ignored unless \emph{data} is an observed kappa value)
-#' 
-#' @seealso \code{\link{rhoK}}
 #' 
 #' @examples
 #' # Given an observed kappa value
@@ -39,7 +33,8 @@
 #' 
 #' # Given a contingency Table
 #' rho(x = contingencyTable)
-#' 
+#'
+#' @export
 #' @return rho and kappa for the given data and parameters (unless kappa is given)
 ###
 rho = function(

@@ -5,7 +5,6 @@
 # @param kappa This is the kappa of the pair
 # @param BR This is the baserate of the pair
 # @param P this is the precision of the pair
-# @keywords recall, get, kappa, baserate, precision
 # @return returns the recall given the parameters
 ###
 getR = function(kappa, BR, P){

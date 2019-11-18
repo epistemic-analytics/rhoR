@@ -1,5 +1,4 @@
 ###
-#' @include baserateSet.R
 #' @title Calculate Baserate (CT)
 #' 
 #' @description
@@ -8,8 +7,6 @@
 #' @export
 #' 
 #' @param CT The \code{\link{contingencyTable}} for which the baserate is calculated
-#' 
-#' @keywords baserateCT
 #' 
 #' @seealso \code{\link{baserate}} and \code{\link{baserateSet}}
 #' 

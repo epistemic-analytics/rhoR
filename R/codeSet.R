@@ -1,4 +1,3 @@
-#' @include contingencyTable.R
 #' @title codeSet
 #' 
 #' @description A codeSet is a Nx2 binary matrix in which the first column corresponds to the first rater and the second column corresponds to the second rater.

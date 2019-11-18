@@ -6,7 +6,6 @@
 # @param recall This is the recall of the given set
 # @param length This is the length of the set
 # @param baserate This is the baserate of the set
-# @keywords prset, precision, recall, generation, set
 # @return returns a set with the given parameters
 ###
 prset = function(precision, recall, length, baserate) {
