@@ -61,7 +61,7 @@ check:r-devel:
 #check:r-oldrelease:
 #  image: $REG_URL/old-release:current
 #  only:
-    - master
+#    - master
 #  <<: *check_template
 check:r-release:
   image: $REG_URL/release:current
