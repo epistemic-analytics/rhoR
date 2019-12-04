@@ -127,6 +127,7 @@ docs:build-site:
   dependencies:
     - test:r-release
 
+
 # Docker Image steps
 .docker_variables: &docker_variables
   DOCKER_HOST: tcp://localhost:2375/
