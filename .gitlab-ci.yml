@@ -11,8 +11,6 @@ variables:
   PKG: "rhoR"
   PKGL: "rhor"
   REG_URL: "${CI_REGISTRY}/epistemic-analytics/qe-packages/rhor"
-  DOCKER_HOST: tcp://localhost:2375/
-  DOCKER_DRIVER: overlay2
 
 # Templates
 .build_definition: &build_template
@@ -129,6 +127,11 @@ docs:build-site:
   dependencies:
     - test:r-release
 
+# Docker Image steps
+.docker_variables: &docker_variables
+  DOCKER_HOST: tcp://localhost:2375/
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
 .docker_definition: &docker_template
   stage: docker
   image: docker:19.03.1
@@ -144,31 +147,27 @@ docs:build-site:
       - $CI_COMMIT_MESSAGE =~ /.*\[build docker\].*/ || $DOCKER_FORCE_REBUILD
 docker:release:
   variables:
+    <<: *docker_variables
     TAG: "release"
     FILE: "release"
-    DOCKER_HOST: tcp://localhost:2375/
-    DOCKER_DRIVER: overlay2
   <<: *docker_template
 docker:release-test:
   variables:
+    <<: *docker_variables
     TAG: "release-test"
     FILE: "release-test"
-    DOCKER_HOST: tcp://localhost:2375/
-    DOCKER_DRIVER: overlay2
   <<: *docker_template
 docker:old-release:
   variables:
+    <<: *docker_variables
     TAG: "old-release"
     FILE: "oldrelease"
-    DOCKER_HOST: tcp://localhost:2375/
-    DOCKER_DRIVER: overlay2
   <<: *docker_template
 docker:devel:
   variables:
+    <<: *docker_variables
     TAG: "devel"
     FILE: "devel"
-    DOCKER_HOST: tcp://localhost:2375/
-    DOCKER_DRIVER: overlay2
   <<: *docker_template
   
   
