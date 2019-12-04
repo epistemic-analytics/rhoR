@@ -1,11 +1,11 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-.gitlab-ci.yml
-cran-comments.md
+^.gitlab-ci.yml
+^cran-comments\.md$
 man-roxygen
 .lintr
 lintr_results
 docs
 archive
 vignettes
-README.md
+demo/backup/
