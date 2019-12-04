@@ -7,7 +7,7 @@ stages:
   - release
 
 variables:
-  VERSION: "1.3.0.0"
+  VERSION: "1.3.0.1"
   PKG: "rhoR"
   PKGL: "rhor"
   REG_URL: "${CI_REGISTRY}/epistemic-analytics/qe-packages/rhor"
@@ -20,6 +20,8 @@ variables:
     - export _R_CHECK_CRAN_INCOMING_=TRUE
     - export _R_CHECK_CRAN_INCOMING_REMOTE_=TRUE
     - export _R_CHECK_FORCE_SUGGESTS_=TRUE
+    - export _R_CLASS_MATRIX_ARRAY_=true
+    - export _R_CHECK_LENGTH_1_CONDITION_="package:_R_CHECK_PACKAGE_NAME_,verbose"
     - mkdir -p archive/
     - rm -f ./R/RcppExports*
     - rm -f ./src/RcppExports*
@@ -94,8 +96,7 @@ test:r-release:
   dependencies:
     - check:r-release
 
-
-release:cran:
+ release:cran:
   stage: release
   image: egruw/r-ftp
   dependencies:

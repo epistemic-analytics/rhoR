@@ -1,5 +1,3 @@
-# Fixing CRAN NOTEs
+# v1.3.0.1
 
-# v1.3.0.0
-
-## Perfmorance improvements using contingency tables in Rcpp
+## Fixes for R-devel moving to R 4.0.0

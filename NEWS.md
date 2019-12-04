@@ -1,3 +1,7 @@
+## rhoR 1.3.0.1
+
+* Fixes for R-devel moving to R 4.0.0
+
 ## rhoR 1.3.0.0
 * Rcpp implmentation using Contingency Tables for the basis of calculating rho
 
