@@ -51,7 +51,7 @@ rho = function(
 ) {
 
   ### Calculate rho given a kappa value
-  if (class(x) == "numeric") {
+  if (is(x, "numeric")) {
     if (is.null(OcSBaserate)) { stop("Must give a baserate when a kappa value is given") }
     if (is.null(testSetLength)) { stop("Must give a testSetLength when a kappa value is given") }
 
