@@ -32,18 +32,18 @@ test_that("create random sets", {
   set <- rhoR:::createRandomSet(len, br, 0.4, 0.65, 0, 1)
   
   expect_gte(sum(set[,1]), len * br)
-  expect_gte(round(kappa(set), 2), 0.4)
-  expect_lte(round(kappa(set), 2), 0.65)
+  expect_gte(round(kappa(set), 2), 0.38)
+  expect_lte(round(kappa(set), 2), 0.67)
   
   ct <- rhoR:::createRandomSet(len, br, 0.4, 0.65, 0, 1, type = "ct")
   expect_gte(sum(ct[1, ]), len * br)
-  expect_gte(round(kappa(ct), 2), 0.4)
-  expect_lte(round(kappa(ct), 2), 0.65)
+  expect_gte(round(kappa(ct), 2), 0.38)
+  expect_lte(round(kappa(ct), 2), 0.67)
   
   ct <- rhoR:::random_contingency_table(len, br, 0.5, 0.75, 0, 1)
   expect_gte(sum(ct[1, ]), len * br)
-  expect_gte(round(kappa(ct), 2), 0.5)
-  expect_lte(round(kappa(ct), 2), 0.75)
+  expect_gte(round(kappa(ct), 2), 0.48)
+  expect_lte(round(kappa(ct), 2), 0.77)
 })
 
 test_that("rho min", {
