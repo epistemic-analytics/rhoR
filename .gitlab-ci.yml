@@ -58,11 +58,11 @@ check:r-devel:
   only:
     - master
   <<: *check_template
-check:r-oldrelease:
-  image: $REG_URL/old-release:current
-  only:
-    - master
-  <<: *check_template
+#check:r-oldrelease:
+#  image: $REG_URL/old-release:current
+#  only:
+#    - master
+#  <<: *check_template
 check:r-release:
   image: $REG_URL/release:current
   <<: *check_template
