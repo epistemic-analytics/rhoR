@@ -1,3 +1,3 @@
-# v1.3.0.1
+# v1.3.0.2
 
-## Fixes for R-devel moving to R 4.0.0
+## Fixing tests in v1.3.0.1
