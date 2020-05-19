@@ -1,9 +1,7 @@
 stages:
   - docker
   - check
-  - test
-  - docs
-  - checkWindows
+  - deploy
   - release
 
 variables:
@@ -80,19 +78,33 @@ check:r-winbuilder:
     - docker
   allow_failure: false
 
-test:r-release:
-  stage: test
+
+pages:
+  stage: deploy
   image: $REG_URL/release-test:current
   script:
+    - rm -rf src/RcppExports*
+    - rm -rf R/RcppExports*
+    - "sed -i -e \"s/Version: \\(.*\\)/Version: ${VERSION}/\" DESCRIPTION"
     - Rscript -e 'update(devtools::dev_package_deps("."))'
+    - Rscript -e 'install.packages("microbenchmark")'
     - Rscript -e 'Rcpp::compileAttributes()'
-    - Rscript -e 'roxygen2::roxygenise(".")'
-    #- 'Rscript -e "rep <- covr::report( x = covr::package_coverage(quiet = F), file = \"inst/coverage/${CI_COMMIT_REF_NAME}/index.html\" )"'
-    #- 'Rscript -e "setwd(\"inst/coverage/${CI_COMMIT_REF_NAME}\"); res = lapply(dir(\".\", full.names = F, recursive = T), function(f) { aws.s3::put_object(file = f, object = paste0(\"coverage/${CI_COMMIT_REF_NAME}/\", f), bucket = \"${PKGL}.qe-libs.org\", acl = \"public-read\") })"'
-    - mkdir -p inst/coverage/${CI_COMMIT_REF_NAME}
-    - 'Rscript --no-save --no-restore demo/backup/coverage-report.R ${CI_COMMIT_REF_NAME}'
-  dependencies:
-    - check:r-release
+    - Rscript -e "devtools::install(\".\", quick = T, build = T, dependencies = F, upgrade = F)"
+    - Rscript -e "pkgdown::build_site(preview = F, devel = T, lazy = T, new_process = T)"
+    - |
+        Rscript -e "cov <- covr::package_coverage(quiet = F);
+                    rep <- covr::report( x = cov, file = \"public/coverage/index.html\", browse = FALSE );"
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - master
+  except:
+    refs:
+      - tags
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /.*\[skip pages\].*/
 
 release:cran:
   stage: release
@@ -111,21 +123,7 @@ release:cran:
   tags:
     - docker
   allow_failure: false
-  
-docs:build-site:
-  stage: docs
-  image: $REG_URL/release-test:current
-  script:
-    - rm -rf src/RcppExports*
-    - rm -rf R/RcppExports*
-    - Rscript -e 'update(devtools::dev_package_deps("."))'
-    - Rscript -e 'install.packages("microbenchmark")'
-    - 'Rscript -e "Rcpp::compileAttributes()"'
-    - 'Rscript -e "devtools::install(\".\", quick = T, build = T, dependencies = F, upgrade = F)"'
-    - 'Rscript -e "pkgdown::build_site(preview = F, document = F, lazy = T, new_process = T)"'
-    - 'Rscript -e "setwd(\"docs\"); res = lapply(dir(\".\", full.names = F, recursive = T), function(f) { aws.s3::put_object(file = f, object = f, bucket = \"${PKGL}.qe-libs.org\", acl = \"public-read\") })"'
-  dependencies:
-    - test:r-release
+
 
 
 # Docker Image steps

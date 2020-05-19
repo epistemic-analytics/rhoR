@@ -1,3 +1,4 @@
+destination: public/
 navbar:
   title: "rhoR"
   type: inverse
@@ -12,4 +13,4 @@ navbar:
       href: "coverage/master/index.html"
   right:
     - icon: fa-gitlab
-      href: https://git.doit.wisc.edu/epistemic-analytics/qe-packages/rhor/
+      href: https://gitlab.com/epistemic-analytics/qe-packages/rhoR/
