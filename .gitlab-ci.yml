@@ -11,6 +11,13 @@ variables:
   REG_URL: "${CI_REGISTRY}/epistemic-analytics/qe-packages/rhor"
 
 # Templates
+.check_condition: &check_condition
+  except:
+    refs:
+      - tags
+  only:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /.*\[check docker\].*/
 .build_definition: &build_template
   before_script:
     - export _R_CHECK_CRAN_INCOMING_=TRUE
@@ -49,7 +56,6 @@ variables:
   tags:
     - docker
   allow_failure: false
-
 # Check Steps
 check:r-devel:
   image: $REG_URL/devel:current
