@@ -56,6 +56,8 @@ variables:
   tags:
     - docker
   allow_failure: false
+  <<: *check_condition
+
 # Check Steps
 check:r-devel:
   image: $REG_URL/devel:current
