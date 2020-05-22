@@ -10,7 +10,7 @@ navbar:
     - text: "Changelog"
       href: "news/index.html"
     - text: "Coverage"
-      href: "coverage/master/index.html"
+      href: "coverage/index.html"
   right:
     - icon: fa-gitlab
       href: https://gitlab.com/epistemic-analytics/qe-packages/rhoR/

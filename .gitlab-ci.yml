@@ -89,7 +89,8 @@ pages:
     - Rscript -e "pkgdown::build_site(preview = F, devel = F, lazy = T, new_process = T)"
     - |
         Rscript -e "cov <- covr::package_coverage(quiet = F);
-                    rep <- covr::report( x = cov, file = \"public/coverage/index.html\", browse = FALSE );"
+                    rep <- covr::report( x = cov, file = \"public/coverage/index.html\", browse = FALSE );
+                    print(cov);"
   artifacts:
     paths:
       - public

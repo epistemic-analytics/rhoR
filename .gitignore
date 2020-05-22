@@ -11,3 +11,6 @@ docs/
 inst/doc
 lintr*
 .lintr/
+
+public/
+pkgdown/
