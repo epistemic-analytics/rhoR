@@ -1,4 +1,4 @@
-#' @title rhoR: A package for computing rho.
+#' @title rhoR: A package for computing rho
 #' @name rhoR
 #' 
 #' @description 
