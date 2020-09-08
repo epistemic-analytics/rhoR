@@ -1,3 +1,8 @@
+## rhoR 1.3.0.3
+  * Eased thresholds on tests to pass all CRAN checks
+
+## rhoR 1.3.0.2
+
 ## rhoR 1.3.0.1
 
 * Fixes for R-devel moving to R 4.0.0
