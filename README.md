@@ -24,23 +24,15 @@ threshold).
 
 ### Install release version from CRAN
 
-[![pipeline status](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/v1.3.0.2/pipeline.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/v1.3.0.2)
-[![coverage report](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/v1.3.0.2/coverage.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/v1.3.0.2)
-[![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://CRAN.R-project.org/package=rhoR) 
-[![cran downloads](https://cranlogs.r-pkg.org/badges/grand-total/rhoR)](https://cranlogs.r-pkg.org/badges/grand-total/rhoR) 
 ```
 install.packages("rhoR")
 ```
 
 ### Install development version
 
-[![pipeline status](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/pipeline.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/pipelines?page=1&scope=branches&ref=master)
-[![coverage report](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/coverage.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
-
 ```
 devtools::install_git(url = "https://gitlab.com/epistemic-analytics/qe-packages/rhoR/", ref="master")
 ```
-
 
 ---
 ## Resources
