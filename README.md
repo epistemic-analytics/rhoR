@@ -1,11 +1,12 @@
 # rhoR <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-[![pipeline status](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/pipeline.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/pipelines?page=1&scope=branches&ref=master)
+[![pipeline status](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/pipeline.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
 [![coverage report](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/coverage.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
 [![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://CRAN.R-project.org/package=rhoR) 
 [![cran downloads](https://cranlogs.r-pkg.org/badges/grand-total/rhoR)](https://cranlogs.r-pkg.org/badges/grand-total/rhoR) 
 
 ## What is Rho
+
 Rho is used to test the generalization of inter rater reliability
 (IRR) statistics. Calculating rho starts by generating a large number of
 simulated, fully-coded data sets: a sizable collection of hypothetical
@@ -22,16 +23,22 @@ threshold).
 
 ## Installation
 
-### Install release version from CRAN
+### From CRAN
+
+[![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://CRAN.R-project.org/package=rhoR) 
+[![cran downloads](https://cranlogs.r-pkg.org/badges/grand-total/rhoR)](https://cranlogs.r-pkg.org/badges/grand-total/rhoR) 
 
 ```
 install.packages("rhoR")
 ```
 
-### Install development version
+### Development Version
+
+[![pipeline status](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/pipeline.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
+[![coverage report](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/coverage.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
 
 ```
-devtools::install_git(url = "https://gitlab.com/epistemic-analytics/qe-packages/rhoR/", ref="master")
+install.packages("rhoR", repos = "cran.qe-libs.org")
 ```
 
 ---
