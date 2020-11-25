@@ -1,3 +1,3 @@
-# v1.3.0.3
+# v1.3.1
 
-## Fixes failing tests in v1.3.0.2 for CRAN checks
+## 

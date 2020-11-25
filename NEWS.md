@@ -1,3 +1,6 @@
+## rhoR 1.3.1
+  * 
+
 ## rhoR 1.3.0.3
   * Eased thresholds on tests to pass all CRAN checks
 
