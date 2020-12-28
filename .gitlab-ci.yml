@@ -256,7 +256,7 @@ release:cranqe:
   artifacts:
     paths:
       - archive/
-      - ${PKGL}/
+      - ${PKG}/
     expire_in: 1 week
   only:
     refs:
@@ -276,10 +276,10 @@ release:cranqe:
     - cd $PKG/
     - Rscript -e 'pkgdown::build_site()'
     - ls -al || true
-    - mkdir -p $PKGL/
-    - mv public/* $PKGL/ || true
-    - ls -al $PKGL/ || true
-    - curl --request POST --form "token=$CI_JOB_TOKEN" --form "variables[QE_PROJECT_NAME]=${PKGL}" --form "variables[QE_PROJECT_ID]=${CI_PROJECT_ID}" --form ref=master https://gitlab.com/api/v4/projects/22522458/trigger/pipeline
+    - mkdir -p $PKG/
+    - mv public/* $PKG/ || true
+    - ls -al $PKG/ || true
+    - curl --request POST --form "token=$CI_JOB_TOKEN" --form "variables[QE_PROJECT_NAME]=${PKG}" --form "variables[QE_PROJECT_ID]=${CI_PROJECT_ID}" --form ref=master https://gitlab.com/api/v4/projects/22522458/trigger/pipeline
 
 
 # Docker Image steps
