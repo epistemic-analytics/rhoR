@@ -6,11 +6,11 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Reference"
-      href: "reference/index.html"
+      href: "reference/"
     - text: "Changelog"
-      href: "news/index.html"
+      href: "news/"
     - text: "Coverage"
-      href: "coverage/index.html"
+      href: "coverage/"
   right:
     - icon: fa-gitlab
       href: https://gitlab.com/epistemic-analytics/qe-packages/rhoR/

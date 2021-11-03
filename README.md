@@ -38,7 +38,7 @@ install.packages("rhoR")
 [![coverage report](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/coverage.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
 
 ```
-install.packages("rhoR", repos = "cran.qe-libs.org")
+install.packages("rhoR", repos = c("https://cran.qe-libs.org", "https://cran.rstudio.org"))
 ```
 
 ---
