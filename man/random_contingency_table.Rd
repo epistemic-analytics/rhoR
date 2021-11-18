@@ -4,8 +4,14 @@
 \alias{random_contingency_table}
 \title{random_contingency_table}
 \usage{
-random_contingency_table(setLength, baserate, kappaMin, kappaMax,
-  minPrecision = 0, maxPrecision = 1)
+random_contingency_table(
+  setLength,
+  baserate,
+  kappaMin,
+  kappaMax,
+  minPrecision = 0,
+  maxPrecision = 1
+)
 }
 \arguments{
 \item{setLength}{[TBD]}

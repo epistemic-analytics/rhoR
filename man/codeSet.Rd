@@ -4,7 +4,9 @@
 \name{codeSet}
 \alias{codeSet}
 \title{codeSet}
-\format{The codeSet is an object of class matrix with n rows and two columns.}
+\format{
+The codeSet is an object of class matrix with n rows and two columns.
+}
 \usage{
 codeSet
 }

@@ -5,8 +5,16 @@
 \alias{generate_kp_list}
 \title{generate_kp_list}
 \usage{
-generate_kp_list(numNeeded, baserate, kappaMin, kappaMax, precisionMin,
-  precisionMax, distributionType = 0L, distributionLength = 10000L)
+generate_kp_list(
+  numNeeded,
+  baserate,
+  kappaMin,
+  kappaMax,
+  precisionMin,
+  precisionMax,
+  distributionType = 0L,
+  distributionLength = 10000L
+)
 }
 \arguments{
 \item{numNeeded}{int}

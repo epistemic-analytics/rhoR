@@ -2,7 +2,7 @@
 % Please edit documentation in R/rhoR.R
 \name{rhoR}
 \alias{rhoR}
-\title{rhoR: A package for computing rho.}
+\title{rhoR: A package for computing rho}
 \description{
 Rho is used to test the generalization of inter rater reliability (IRR)
 statistics, in this case Cohen's Kappa.

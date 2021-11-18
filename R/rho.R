@@ -47,7 +47,8 @@ rho = function(
   ScSKappaThreshold = 0.9,
   ScSKappaMin = 0.40,
   ScSPrecisionMin = 0.6,
-  ScSPrecisionMax = 1
+  ScSPrecisionMax = 1,
+  method = "standard"
 ) {
 
   ### Calculate rho given a kappa value

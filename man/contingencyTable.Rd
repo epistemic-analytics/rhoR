@@ -4,7 +4,9 @@
 \name{contingencyTable}
 \alias{contingencyTable}
 \title{contingencyTable}
-\format{The contingency Table is an object of class matrix with two rows and two columns.  The ordering of the combination vector input to the matrix is as follows: c(Rater1Positive & Rater2Positive, Rater1Negative & Rater2Positive, Rater1Positive & Rater2Negative, Rater1Negative & Rater2Negative).}
+\format{
+The contingency Table is an object of class matrix with two rows and two columns.  The ordering of the combination vector input to the matrix is as follows: c(Rater1Positive & Rater2Positive, Rater1Negative & Rater2Positive, Rater1Positive & Rater2Negative, Rater1Negative & Rater2Negative).
+}
 \usage{
 contingencyTable
 }

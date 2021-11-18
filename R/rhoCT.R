@@ -22,7 +22,8 @@ rhoCT = function(
   ScSKappaThreshold = 0.9,
   ScSKappaMin = .40,
   ScSPrecisionMin = 0.6,
-  ScSPrecisionMax = 1
+  ScSPrecisionMax = 1,
+  method = "standard"
 ){
   if (any(x < 0)) {
     stop("Values in Contingency Table must be positive")
