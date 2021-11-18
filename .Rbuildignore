@@ -9,3 +9,5 @@ docs
 archive
 vignettes
 demo/backup/
+pkgdown/
+public/

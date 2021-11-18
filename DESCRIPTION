@@ -20,7 +20,7 @@ License: GPL-3  | file LICENSE
 URL: https://rhor.qe-libs.org
 BugReports: https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/issues
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 LinkingTo: Rcpp, RcppArmadillo
 Imports:
     Rcpp,
