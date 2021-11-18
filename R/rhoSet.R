@@ -23,7 +23,8 @@ rhoSet = function(
   ScSKappaThreshold = 0.9,
   ScSKappaMin = 0.40,
   ScSPrecisionMin = 0.6,
-  ScSPrecisionMax = 1
+  ScSPrecisionMax = 1,
+  method = "standard"
 ) {
   kappa = kappaSet(x);
   
@@ -40,7 +41,8 @@ rhoSet = function(
       testSetBaserateInflation,
       OcSLength,
       replicates,
-      ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax
+      ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax,
+      method = method
     ), 
     kappa = kappa,
     recall = rating_set_recall(x),
