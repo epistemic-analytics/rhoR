@@ -1,7 +1,7 @@
 # rhoR <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-[![pipeline status](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/pipeline.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
-[![coverage report](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/coverage.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
+[![pipeline status](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/main/pipeline.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/main)
+[![coverage report](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/main/coverage.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/main)
 [![cran status](https://www.r-pkg.org/badges/version-ago/rhoR)](https://CRAN.R-project.org/package=rhoR) 
 [![cran downloads](https://cranlogs.r-pkg.org/badges/grand-total/rhoR)](https://cranlogs.r-pkg.org/badges/grand-total/rhoR) 
 
@@ -34,8 +34,8 @@ install.packages("rhoR")
 
 ### Development Version
 
-[![pipeline status](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/pipeline.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
-[![coverage report](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/master/coverage.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/master)
+[![pipeline status](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/main/pipeline.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/main)
+[![coverage report](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/badges/main/coverage.svg)](https://gitlab.com/epistemic-analytics/qe-packages/rhoR/-/commits/main)
 
 ```
 install.packages("rhoR", repos = c("https://cran.qe-libs.org", "https://cran.rstudio.org"))
@@ -44,4 +44,4 @@ install.packages("rhoR", repos = c("https://cran.qe-libs.org", "https://cran.rst
 ---
 ## Resources
 
-To learn more about Rho, visit the [resources page](http://www.epistemicnetwork.org/resources/).
+To learn more about Rho, visit the [resources page](https://www.epistemicnetwork.org/resources/).

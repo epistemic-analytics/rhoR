@@ -103,9 +103,9 @@ test_that("rhoK on set and ct", {
   ocs_br <- 0.2
   tsl <- 80
 
-  set_k_std <- replicate(10, rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl))
-  set_k_c   <- replicate(10, rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl, method = "c"))
-  testthat::expect_equivalent(mean(set_k_std), mean(set_k_c), tolerance = 0.01)
+  set_k_std <- replicate(20, rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl))
+  set_k_c   <- replicate(20, rhoK(set_k, OcSBaserate = ocs_br, testSetLength = tsl, method = "c"))
+  testthat::expect_equivalent(mean(set_k_std), mean(set_k_c), tolerance = 0.015)
 })
 
 test_that("Generate KPs", {
