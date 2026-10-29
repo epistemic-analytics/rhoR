@@ -1,9 +1,0 @@
-variables:
-  VERSION: 1.3.0.1
-  #DOCKER_FORCE_REBUILD: 0
-  DOCKER_CHECKS_ENABLED: 1
-  #RHUB_CHECKS_ENABLED: 1
-  #WINBUILDER_CHECKS_ENABLED: 1
-
-include:
-  remote: https://gitlab.com/cran-ci/ci-templates/raw/master/templates/CRAN.gitlab-ci.yml

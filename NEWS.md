@@ -1,3 +1,7 @@
+## rhoR 1.3.2
+  * Built and published by cranqe (qe-libs.org/cran); CI now requests cranqe
+    builds via the shared trigger-cranqe template
+
 ## rhoR 1.3.1
   * Eased thresholds on tests to pass all CRAN checks
 
