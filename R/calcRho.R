@@ -1,6 +1,11 @@
 ###
 # This function calculates rho given the parameters of the initial set and the kappa of the observed handset and is
 # called by rhoK()
+#
+# The computation is libqe-stats' qestats::rho_standard (src/rhor.cpp): the
+# same draws and arithmetic as this function's former R implementation
+# (generateKPs, getR, prset, getHandSet, getBootPvalue), so seeded results
+# are unchanged. KPs, when given, is a list of genPKcombo() results.
 ###
 calcRho = function(
   x, 
@@ -15,30 +20,15 @@ calcRho = function(
   ScSPrecisionMax = 1, 
   KPs = NULL
 ) {
-  
-  if(is.null(KPs)) {
-    KPs = generateKPs(replicates, OcSBaserate, ScSKappaMin, ScSKappaThreshold, ScSPrecisionMin, ScSPrecisionMax)
-  }
-  if(length(KPs) < replicates) {
-    replicates = length(KPs)
-  }
-  
-  #creates distribution from random kappa sets
-  savedKappas = rep(0,replicates);
-  
-  # cat("Runs: ", runs, "\n")
-  # cat("KPs length:, ", length(KPs), "\n")
-  for (i in 1:replicates) {
-    KP = KPs[i]
-    kappa = KP[[1]]$kappa
-    precision = KP[[1]]$precision
-    recall = getR(kappa, OcSBaserate, precision)
-    fullSet = prset(precision = precision, recall = recall, length = OcSLength, baserate = OcSBaserate);
-    
-    #computes kappa of handset to add to distribution
-    savedKappas[i] = getHandSet(set = fullSet, handSetLength = testSetLength, handSetBaserate = testSetBaserateInflation);
+  if (!is.null(KPs)) {
+    KPs = cbind(
+      vapply(KPs, function(KP) KP$precision, numeric(1)),
+      vapply(KPs, function(KP) KP$kappa, numeric(1))
+    )
   }
 
-  # compare observedKappa to distribution
-  return(getBootPvalue(savedKappas, x));
+  return(calcRho_standard_c(
+    x, OcSBaserate, testSetLength, testSetBaserateInflation, OcSLength, replicates,
+    ScSKappaThreshold, ScSKappaMin, ScSPrecisionMin, ScSPrecisionMax, KPs
+  ));
 }

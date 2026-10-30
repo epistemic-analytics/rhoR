@@ -2,6 +2,18 @@
   * Regression tests pin the 1.3.2 outputs of every rho building block
     (tests/testthat/test-regression-pins.R), ahead of moving the core to
     the qestats C++ headers
+  * rho's computation now lives in libqe-stats (namespace qestats), vendored
+    in inst/include/qestats/ (tools/sync-qestats.sh updates it): rhoK's
+    default method runs qestats::rho_standard in C++ instead of R (~15x
+    faster), and the C++ functions (`method = "c"`, kappa_ct(),
+    sample_contingency_table(), getHand_kappa(), ...) are thin wrappers over
+    qestats::rho_fast. Seeded results are unchanged: every regression pin
+    passes, and old and new builds agree on 2,046 seeded calls on macOS and
+    Linux. Two edge cases differ: when no valid kappa / precision pair can be
+    drawn, the error comes after at most 10,000 retries (R's recursion limit
+    before), and a test set of one item now gets a kappa instead of an error.
+    The bell-shaped generate_kp_list(distributionType = 1) still runs on
+    RcppArmadillo, unchanged.
 
 ## rhoR 1.3.2
   * Built and published by cranqe (qe-libs.org/cran); CI now requests cranqe
