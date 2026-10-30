@@ -1,3 +1,8 @@
+## rhoR 1.3.3 (development version)
+  * Regression tests pin the 1.3.2 outputs of every rho building block
+    (tests/testthat/test-regression-pins.R), ahead of moving the core to
+    the qestats C++ headers
+
 ## rhoR 1.3.2
   * Built and published by cranqe (qe-libs.org/cran); CI now requests cranqe
     builds via the shared trigger-cranqe template
